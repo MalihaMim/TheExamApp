@@ -9,6 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyNook">
+        <activity android:name=".ProfilePage"></activity>
+        <activity android:name=".FoodPage" />
+        <activity android:name=".FitnessPage" />
+        <activity android:name=".MentalHealthPage" />
+        <activity android:name=".WellbeingPage" />
+        <activity android:name=".FlashcardPage" />
+        <activity android:name=".NotePage" />
+        <activity android:name=".CreatePage" />
+        <activity android:name=".TutorialPage" />
+        <activity android:name=".ReferencePage" />
+        <activity android:name=".LibraryPage" />
+        <activity android:name=".ResourcesPage" />
+        <activity android:name=".TimerPage" />
+        <activity android:name=".AlarmPage" />
+        <activity android:name=".PlannerPage" />
+        <activity android:name=".CalendarPage" />
+        <activity android:name=".SchedulingPage" />
+        <activity android:name=".SignUpPage" />
+        <activity android:name=".LoginPage" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
