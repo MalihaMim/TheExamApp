@@ -6,4 +6,85 @@
     android:layout_height="match_parent"
     tools:context=".CreatePage">
 
+    <Button
+        android:id="@+id/Clock"
+        android:layout_width="66dp"
+        android:layout_height="34dp"
+        android:text="TImer"
+        android:textSize="8sp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="695dp" />
+
+    <Button
+        android:id="@+id/Resources"
+        android:layout_width="72dp"
+        android:layout_height="33dp"
+        android:text="Reso"
+        android:textSize="8sp"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="696dp" />
+
+    <Button
+        android:id="@+id/Home"
+        android:layout_width="74dp"
+        android:layout_height="34dp"
+        android:text="Home"
+        android:textSize="8sp"
+        tools:layout_editor_absoluteX="153dp"
+        tools:layout_editor_absoluteY="695dp" />
+
+    <Button
+        android:id="@+id/WellBeing"
+        android:layout_width="86dp"
+        android:layout_height="33dp"
+        android:text="WeBe"
+        android:textSize="8sp"
+        tools:layout_editor_absoluteX="234dp"
+        tools:layout_editor_absoluteY="696dp" />
+
+    <Button
+        android:id="@+id/Notes"
+        android:layout_width="77dp"
+        android:layout_height="34dp"
+        android:text="Notes"
+        android:textSize="8sp"
+        tools:layout_editor_absoluteX="326dp"
+        tools:layout_editor_absoluteY="695dp" />
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar3"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="673dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="StudyNook"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/notifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Noti"
+        android:textSize="8sp"
+        tools:layout_editor_absoluteX="210dp"
+        tools:layout_editor_absoluteY="8dp" />
+
+    <Button
+        android:id="@+id/profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:textSize="8sp"
+        tools:layout_editor_absoluteX="302dp"
+        tools:layout_editor_absoluteY="10dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
