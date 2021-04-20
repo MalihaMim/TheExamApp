@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class SignUpPage extends AppCompatActivity {
-    private static View view;
+    private View view;
     private EditText name, email, password;
     private Button regButton;
 
@@ -24,9 +24,9 @@ public class SignUpPage extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up_page);
 
         name = findViewById(R.id.regName);
-        email = (EditText) view.findViewById(R.id.regEmail);
-        password = (EditText) view.findViewById(R.id.regPassword);
-        regButton = view.findViewById(R.id.regAccountButton);
+        email = findViewById(R.id.regEmail);
+        password = findViewById(R.id.regPassword);
+        regButton = findViewById(R.id.regAccountButton);
 
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +57,6 @@ public class SignUpPage extends AppCompatActivity {
         if (isEmail(email) == false) {
             email.setError("Enter valid email!");
         }
-
     }
 }
 
