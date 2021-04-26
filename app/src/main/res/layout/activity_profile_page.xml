@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ProfilePage">
 
-    //final push
+    //final push please
     <ImageView
         android:id="@+id/userPicture"
         android:layout_width="100dp"

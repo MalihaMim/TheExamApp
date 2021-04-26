@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class ProfilePage extends AppCompatActivity {
 
-    //final push
+    //final push please
     private static final int PICK_FROM_CAMERA = 0;
     private static final int PICK_FROM_ALBUM = 1;
 
