@@ -35,7 +35,6 @@ public class NotePage extends AppCompatActivity {
         HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
 
         if (set == null) {
-
             notes.add("Example note");
         } else {
             notes = new ArrayList(set);
