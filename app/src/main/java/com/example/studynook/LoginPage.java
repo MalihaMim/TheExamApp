@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginPage extends AppCompatActivity {
 
@@ -37,8 +38,25 @@ public class LoginPage extends AppCompatActivity {
                 String userId = username.getText().toString();
                 String userPw = password.getText().toString();
 
-                Intent intent = new Intent(LoginPage.this, MainActivity.class);
-                startActivity(intent);
+                if (userId.isEmpty()) {
+                    Toast t = Toast.makeText(getApplicationContext(), "You must enter a name to login!", Toast.LENGTH_SHORT);
+                    t.show();
+                    username.setError("Enter a valid username");
+                }
+                if (userPw.isEmpty()) {
+                    Toast t = Toast.makeText(getApplicationContext(), "You must enter a password to login!", Toast.LENGTH_SHORT);
+                    t.show();
+                    password.setError("Enter a valid password");
+                }
+                if (!userId.isEmpty() && !userPw.isEmpty()) {
+                    Intent intent = new Intent(LoginPage.this, MainActivity.class);
+                    startActivity(intent);
+                }
+
+
+
+
+
             }
         });
     }
