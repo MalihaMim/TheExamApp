@@ -37,7 +37,7 @@ public class LoginPage extends AppCompatActivity {
                 String userId = username.getText().toString();
                 String userPw = password.getText().toString();
 
-                Intent intent = new Intent(LoginPage.this, MainActivity.class);
+                Intent intent = new Intent(LoginPage.this, ProfilePage.class);
                 startActivity(intent);
             }
         });

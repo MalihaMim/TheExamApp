@@ -4,6 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#6200ED"
     tools:context=".WellbeingPage">
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="283dp"
+        android:layout_height="69dp"
+        android:layout_marginBottom="464dp"
+        android:text="Physical Health"
+        android:textColor="#000000"
+        app:backgroundTint="#63BAAB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="283dp"
+        android:layout_height="69dp"
+        android:layout_marginBottom="384dp"
+        android:elevation="10dp"
+        android:text="Mental Health"
+        android:textColor="#000000"
+        app:backgroundTint="#C4FCF0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="283dp"
+        android:layout_height="69dp"
+        android:layout_marginBottom="308dp"
+        android:text="Nutritional Health"
+        android:textColor="#000000"
+        app:backgroundTint="#4C8077"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/convergence"
+        android:text="Choose your wellbeing topic:"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="32dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
