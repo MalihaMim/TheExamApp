@@ -34,10 +34,8 @@ public class SignUpPage extends AppCompatActivity {
                 checkDataEntered();
             }
         });
-        //createUser();
-        //setUpListener();
     }
-
+    // Checks to see if the text field in blank when clicking the register button
     boolean isEmail(EditText text) {
         CharSequence email = text.getText().toString();
         return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
@@ -48,14 +46,26 @@ public class SignUpPage extends AppCompatActivity {
         return TextUtils.isEmpty(str);
     }
 
+    boolean isPassword(EditText text) {
+        CharSequence password = text.getText().toString();
+        return TextUtils.isEmpty(password);
+    }
+    // Method to input an error message when there is blank text fields
     void checkDataEntered() {
         if (isEmpty(name)) {
             Toast t = Toast.makeText(this, "You must enter a name to register!", Toast.LENGTH_SHORT);
             t.show();
+            name.setError("Enter a valid name");
         }
-
         if (isEmail(email) == false) {
             email.setError("Enter valid email!");
+            Toast t = Toast.makeText(this, "You must enter an email to register!", Toast.LENGTH_SHORT);
+            t.show();
+        }
+        if (isPassword(password)) {
+            password.setError("Enter a valid password");
+            Toast error = Toast.makeText(this, "You must enter a password to register!", Toast.LENGTH_SHORT);
+            error.show();
         }
     }
 }
