@@ -9,33 +9,33 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class TutorialPage extends AppCompatActivity {
+public class HomePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tutorial_page);
+        setContentView(R.layout.activity_home_page);
 
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         // Set home selected
-        bottomNavigationView.setSelectedItemId(R.id.resources);
+        bottomNavigationView.setSelectedItemId(R.id.home);
 
-        // Switch to different tab when selected
+        // Perform ItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()) {
                     case R.id.schedule:
                         startActivity(new Intent(getApplicationContext(), PlannerPage.class));
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(0, 0); // Animation to switch between pages
                         return true;
                     case R.id.resources:
+                        startActivity(new Intent(getApplicationContext(), ResourcesPage.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), HomePage.class));
-                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.wellbeing:
                         startActivity(new Intent(getApplicationContext(), WellbeingPage.class));

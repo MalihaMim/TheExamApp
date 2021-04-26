@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyNook">
-        <activity android:name=".EditText"></activity>
-        <activity android:name=".CreatePage">
+        <activity android:name=".HomePage"></activity>
+        <activity android:name=".LoginPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +23,7 @@
         <activity android:name=".WellbeingPage" />
         <activity android:name=".FlashcardPage" />
         <activity android:name=".NotePage" />
-        <activity android:name=".SignUpPage" />
+        <activity android:name=".CreatePage" />
         <activity android:name=".TutorialPage" />
         <activity android:name=".ReferencePage" />
         <activity android:name=".LibraryPage" />
@@ -33,8 +33,8 @@
         <activity android:name=".PlannerPage" />
         <activity android:name=".CalendarPage" />
         <activity android:name=".SchedulingPage" />
+        <activity android:name=".SignUpPage" />
         <activity android:name=".ProfilePage" />
-        <activity android:name=".LoginPage" />
         <activity android:name=".MainActivity"></activity>
     </application>
 

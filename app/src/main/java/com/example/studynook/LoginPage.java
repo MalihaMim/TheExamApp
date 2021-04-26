@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 public class LoginPage extends AppCompatActivity {
 
+    //pull
     private EditText username, password;
     private Button login, signup;
 
@@ -37,7 +38,7 @@ public class LoginPage extends AppCompatActivity {
                 String userId = username.getText().toString();
                 String userPw = password.getText().toString();
 
-                Intent intent = new Intent(LoginPage.this, CreatePage.class);
+                Intent intent = new Intent(LoginPage.this, HomePage.class);
                 startActivity(intent);
             }
         });
