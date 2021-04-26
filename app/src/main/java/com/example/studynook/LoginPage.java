@@ -10,7 +10,6 @@ import android.widget.EditText;
 
 public class LoginPage extends AppCompatActivity {
 
-    //pull
     private EditText username, password;
     private Button login, signup;
 
