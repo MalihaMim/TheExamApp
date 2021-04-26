@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class LoginPage extends AppCompatActivity {
 
-    //final push
+    //final push please
     private EditText username, password;
     private Button login, signup;
 
