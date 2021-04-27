@@ -37,6 +37,10 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View v) {
                 String userId = username.getText().toString();
                 String userPw = password.getText().toString();
+
+                //Intent intent = new Intent(LoginPage.this, HomePage.class);
+                //startActivity(intent);
+
                 if (userId.isEmpty()) {
                     Toast t = Toast.makeText(getApplicationContext(), "You must enter a name to login!", Toast.LENGTH_SHORT);
                     t.show();
@@ -47,15 +51,10 @@ public class LoginPage extends AppCompatActivity {
                     t.show();
                     password.setError("Enter a valid password");
                 }
-                if (!userId.isEmpty() && !userPw.isEmpty()) {
-                    Intent intent = new Intent(LoginPage.this, MainActivity.class);
-                    startActivity(intent);
+                else if (!userId.isEmpty() && !userPw.isEmpty()) {
+                    Intent in = new Intent(LoginPage.this, HomePage.class);
+                    startActivity(in);
                 }
-
-
-
-
-
             }
         });
     }
