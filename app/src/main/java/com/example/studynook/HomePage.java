@@ -16,6 +16,9 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        // Gets rid of back button animation
+        onPause();
+
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -49,5 +52,11 @@ public class HomePage extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    // Gets rid of back button animation
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 }
