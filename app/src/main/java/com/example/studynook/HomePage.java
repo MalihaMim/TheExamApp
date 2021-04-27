@@ -1,10 +1,14 @@
 package com.example.studynook;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -16,8 +20,9 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        // Gets rid of back button animation
-        onPause();
+        ActionBar bar = getSupportActionBar();
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#A4C1D4"));
+        bar.setBackgroundDrawable(color);
 
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -54,9 +59,26 @@ public class HomePage extends AppCompatActivity {
         });
     }
 
-    // Gets rid of back button animation
-    public void onPause() {
-        super.onPause();
-        overridePendingTransition(0, 0);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_top_bar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.notibutton:
+                //startActivity(new Intent(this, ));
+                overridePendingTransition(0, 0);
+                return true;
+
+            case R.id.profilebutton:
+                startActivity(new Intent(getApplicationContext(), ProfilePage.class));
+                overridePendingTransition(0, 0);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
