@@ -6,15 +6,34 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CalendarPage extends AppCompatActivity {
+    CalendarView calendarView;
+    TextView dateSelected;
+    private Button addEvent, addReminder, deleteEvent, deleteReminder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar_page);
+
+        // Find the id for calendar and date that was clicked on
+        calendarView = (CalendarView) findViewById(R.id.calendarView);
+        dateSelected = (TextView) findViewById(R.id.date);
+
+        // When the user clicks on the date, display the current date...
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                String date = (month + 1) + "/" + dayOfMonth + "/" + year;
+                dateSelected.setText(date);
+            }
+        });
 
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
