@@ -38,9 +38,6 @@ public class LoginPage extends AppCompatActivity {
                 String userId = username.getText().toString();
                 String userPw = password.getText().toString();
 
-                //Intent intent = new Intent(LoginPage.this, HomePage.class);
-                //startActivity(intent);
-
                 if (userId.isEmpty()) {
                     Toast t = Toast.makeText(getApplicationContext(), "You must enter a name to login!", Toast.LENGTH_SHORT);
                     t.show();
@@ -53,6 +50,8 @@ public class LoginPage extends AppCompatActivity {
                 }
                 else if (!userId.isEmpty() && !userPw.isEmpty()) {
                     Intent in = new Intent(LoginPage.this, HomePage.class);
+                    in.putExtra("userId",userId);
+                    in.putExtra("userPw",userPw);
                     startActivity(in);
                 }
             }
