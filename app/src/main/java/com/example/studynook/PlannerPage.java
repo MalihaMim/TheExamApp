@@ -1,12 +1,9 @@
 package com.example.studynook;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,7 +43,7 @@ public class PlannerPage extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.wellbeing:
-                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
+                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.create:

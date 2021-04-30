@@ -1,85 +1,79 @@
 package com.example.studynook;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
-public class FitnessPage extends AppCompatActivity {
+public class FitnessPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fitness_page);
 
-        ActionBar bar = getSupportActionBar();
-        ColorDrawable color = new ColorDrawable(Color.parseColor("#FFCBBA"));
-        bar.setBackgroundDrawable(color);
-        bar.setTitle("Fitness");
+        //get the spinner from the xml.
+        Spinner dropdown = (Spinner) findViewById(R.id.activity_type_dropdown);
 
-        // Initialise and assign variable
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        //create a list of items for the spinner.
+        String[] items = new String[]{"Select item","Walking", "Running", "Cardio","Strength training","Dance","Sport"};
 
-        // Set home selected
-        bottomNavigationView.setSelectedItemId(R.id.wellbeing);
+        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+        //There are multiple variations of this, but this is the basic variant.
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
 
-        // Switch to different tab when selected
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch(item.getItemId()) {
-                    case R.id.schedule:
-                        startActivity(new Intent(getApplicationContext(), PlannerPage.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.resources:
-                        startActivity(new Intent(getApplicationContext(), ResourcesPage.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), HomePage.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.wellbeing:
-                        return true;
-                    case R.id.create:
-                        startActivity(new Intent(getApplicationContext(), CreatePage.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                }
-                return false;
+        //set the spinners adapter to the previously created one.
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown.setAdapter(adapter);
+        dropdown.setOnItemSelectedListener(this);
+
+        // Hides the top bar
+        getSupportActionBar().hide();
+
+
+    }
+
+    public void openDialog(View v)
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Log");
+        alert.setMessage("Save activity log?");
+        alert.setPositiveButton("Yes",new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialogInterface, int i){
+                Toast.makeText(FitnessPage.this,"Saved!",Toast.LENGTH_SHORT).show();
             }
         });
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(FitnessPage.this,"Cancelled!",Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert.create().show();
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_top_bar, menu);
-        return super.onCreateOptionsMenu(menu);
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT);
+
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.notibutton:
-                //startActivity(new Intent(this, ));
-                overridePendingTransition(0, 0);
-                return true;
+    public void onNothingSelected(AdapterView<?> parent) {
 
-            case R.id.profilebutton:
-                startActivity(new Intent(getApplicationContext(), ProfilePage.class));
-                overridePendingTransition(0, 0);
-                return true;
-        }
+    }
 
-        return super.onOptionsItemSelected(item);
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }

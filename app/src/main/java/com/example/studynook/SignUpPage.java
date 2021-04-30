@@ -18,6 +18,7 @@ public class SignUpPage extends AppCompatActivity {
     private View view;
     private EditText name, email, password;
     private Button regButton;
+    DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,8 @@ public class SignUpPage extends AppCompatActivity {
         email = findViewById(R.id.regEmail);
         password = findViewById(R.id.regPassword);
         regButton = findViewById(R.id.regAccountButton);
+
+        db = new DBHelper(this);
 
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,8 +85,22 @@ public class SignUpPage extends AppCompatActivity {
             Toast displayMessage = Toast.makeText(this, "Account has been registered.", Toast.LENGTH_SHORT);
             displayMessage.show();
 
-            Intent intent = new Intent(SignUpPage.this, HomePage.class);
-            startActivity(intent);
+            String username = name.getText().toString();
+            String pw = password.getText().toString();
+
+            Boolean checkUser = db.checkUsername(username);
+            if(checkUser==false){
+                Boolean insert = db.insertData(username,pw);
+                if(insert==true){
+                    Toast.makeText(SignUpPage.this, "Register successful",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SignUpPage.this, HomePage.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(SignUpPage.this, "Register failed",Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(SignUpPage.this, "User already exists",Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

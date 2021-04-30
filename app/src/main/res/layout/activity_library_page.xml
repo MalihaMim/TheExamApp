@@ -1,26 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LibraryPage">
+    tools:context=".LibraryPage"
+    android:orientation="vertical"
+    >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <Button
+            android:id="@+id/btn_gutebberg"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:text="Project\nGutenberg"
+            android:textAllCaps="false"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/dark_orange"
+            android:layout_marginTop="30sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"/>
+        <Button
+            android:id="@+id/btn_internet"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:text="Internet\nArchive"
+            android:backgroundTint="@color/dark_orange"
+            android:textAllCaps="false"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/white"
+            android:layout_marginTop="30sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <Button
+            android:id="@+id/btn_openlib"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:text="Open\nLibrary"
+            android:backgroundTint="@color/dark_orange"
+            android:textAllCaps="false"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/white"
+            android:layout_marginTop="30sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"/>
+        <Button
+            android:id="@+id/btn_other"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:text="other\nWebsites"
+            android:backgroundTint="@color/dark_orange"
+            android:textAllCaps="false"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/white"
+            android:layout_marginTop="30sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"/>
+    </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Resources"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
-
+        android:text="Find/Buy Book"
+        android:textColor="@color/dark_orange"
+        android:layout_gravity="center"
+        android:textSize="20sp" />
+    <Button
+        android:id="@+id/btn_aut"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:text="AUT\nLibrary"
+        android:backgroundTint="@color/dark_orange"
+        android:textAllCaps="false"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/white"
+        android:layout_marginTop="30sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="center"/>
+    </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bottom_navigation"
         app:itemBackground="@color/light_orange"
-        app:itemTextColor="@drawable/orange_selector"
-        app:itemIconTint="@drawable/orange_selector"
+        app:itemTextColor="@drawable/red_selector"
+        app:itemIconTint="@drawable/red_selector"
         app:menu="@menu/menu_navigation"
         android:layout_alignParentBottom="true"/>
+
 </RelativeLayout>
