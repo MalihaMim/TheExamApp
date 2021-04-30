@@ -1,11 +1,15 @@
 package com.example.studynook;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ResourcesPage extends AppCompatActivity {
     Button tuts,lib,ref;
@@ -16,6 +20,42 @@ public class ResourcesPage extends AppCompatActivity {
         tuts = findViewById(R.id.btn_tutorials);
         lib = findViewById(R.id.btn_library);
         ref = findViewById(R.id.btn_references);
+
+        // Initialise and assign variable
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        // Set home selected
+        bottomNavigationView.setSelectedItemId(R.id.resources);
+
+        // Perform ItemSelectedListener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()) {
+                    case R.id.schedule:
+                        startActivity(new Intent(getApplicationContext(), PlannerPage.class));
+                        overridePendingTransition(0, 0); // Animation to switch between pages
+                        return true;
+                    case R.id.resources:
+                        startActivity(new Intent(getApplicationContext(), ResourcesPage.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.home:
+                        return true;
+                    case R.id.wellbeing:
+                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.create:
+                        startActivity(new Intent(getApplicationContext(), CreatePage.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
+
         tuts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

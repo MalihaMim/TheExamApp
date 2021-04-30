@@ -1,26 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TutorialPage"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/ex_light"
-        android:text="Tutorial"
-        android:textColor="@color/logo2"
-        android:textSize="40sp" />
-    <View
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/background"
-        />
+        android:layout_height="wrap_content"
+        android:background="@color/dark_orange"
+        android:layout_alignParentTop="true"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tutorials"
+            android:textColor="@color/white"
+            android:textSize="40sp" />
+
+
+        <ImageView
+            android:id="@+id/btn_admin_testdrive_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_baseline_account_circle_24"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -34,29 +45,29 @@
 
             <Button
                 android:id="@+id/btn_algebra"
-                android:layout_width="wrap_content"
-                android:layout_height="44dp"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="30sp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="15dp"
-                android:background="@drawable/button_style_dark"
+                android:backgroundTint="@color/dark_orange"
                 android:fontFamily="sans-serif-medium"
-                android:text="Khan Academy "
+                android:text="Khan\nAcademy "
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/btn_programming"
-                android:layout_width="wrap_content"
-                android:layout_height="44dp"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="30sp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="15dp"
-                android:background="@drawable/button_style_dark"
+                android:backgroundTint="@color/dark_orange"
                 android:fontFamily="sans-serif-medium"
-                android:text="Harvard University "
+                android:text="Harvard\nUniversity "
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
         </LinearLayout>
@@ -68,13 +79,13 @@
 
             <Button
                 android:id="@+id/btn_sql"
-                android:layout_width="wrap_content"
-                android:layout_height="44dp"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="30sp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="15dp"
-                android:background="@drawable/button_style_dark"
+                android:backgroundTint="@color/dark_orange"
                 android:fontFamily="sans-serif-medium"
                 android:text="Edx"
                 android:textAllCaps="false"
@@ -82,17 +93,27 @@
 
             <Button
                 android:id="@+id/btn_limits"
-                android:layout_width="wrap_content"
-                android:layout_height="44dp"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="30sp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="15dp"
-                android:background="@drawable/button_style_dark"
+                android:backgroundTint="@color/dark_orange"
                 android:fontFamily="sans-serif-medium"
-                android:text="Linkedin Learning"
+                android:text="Linkedin\nLearning"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation"
+        app:itemBackground="@color/light_orange"
+        app:itemTextColor="@drawable/red_selector"
+        app:itemIconTint="@drawable/red_selector"
+        app:menu="@menu/menu_navigation"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
