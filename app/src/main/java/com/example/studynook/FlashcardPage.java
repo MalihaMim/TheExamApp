@@ -21,7 +21,7 @@ public class FlashcardPage extends AppCompatActivity {
         setContentView(R.layout.activity_flashcard_page);
 
         ActionBar bar = getSupportActionBar();
-        ColorDrawable color = new ColorDrawable(Color.parseColor("#D0F2CA"));
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#A1C7A8"));
         bar.setBackgroundDrawable(color);
         bar.setTitle("Flashcard");
 

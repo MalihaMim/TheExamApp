@@ -2,9 +2,12 @@ package com.example.studynook;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.icu.util.GregorianCalendar;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,11 +27,17 @@ public class CalendarPage extends AppCompatActivity {
     private int curYear = 0, curMonth = 0, curDay = 0;
     private int dayIndex = 0, monthIndex = 0, yearIndex = 0;
 
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar_page);
+
+        ActionBar actionBar = getSupportActionBar();
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#FF5053"));
+        actionBar.setBackgroundDrawable(color);
+        actionBar.setTitle("Calendar");
 
         List<String> userEvents = new ArrayList<>();
         int[] curDate = new int[30];

@@ -21,7 +21,7 @@ public class SchedulingPage extends AppCompatActivity {
         setContentView(R.layout.activity_scheduling_page);
 
         ActionBar actionBar = getSupportActionBar();
-        ColorDrawable color = new ColorDrawable(Color.parseColor("#FFA49C"));
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#FF5053"));
         actionBar.setBackgroundDrawable(color);
         actionBar.setTitle("Schedule");
 

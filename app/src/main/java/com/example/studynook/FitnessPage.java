@@ -21,7 +21,7 @@ public class FitnessPage extends AppCompatActivity {
         setContentView(R.layout.activity_fitness_page);
 
         ActionBar bar = getSupportActionBar();
-        ColorDrawable color = new ColorDrawable(Color.parseColor("#FFCBBA"));
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#A1C7A8"));
         bar.setBackgroundDrawable(color);
         bar.setTitle("Fitness");
 
@@ -37,7 +37,7 @@ public class FitnessPage extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()) {
                     case R.id.schedule:
-                        startActivity(new Intent(getApplicationContext(), PlannerPage.class));
+                        startActivity(new Intent(getApplicationContext(), SchedulingPage.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.resources:

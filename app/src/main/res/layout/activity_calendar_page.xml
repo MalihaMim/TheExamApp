@@ -27,6 +27,7 @@
             android:id="@+id/saveEvent"
             android:layout_width="125dp"
             android:layout_height="50dp"
+            android:background="@color/light_pink"
             android:text="Save Event"/>
     </LinearLayout>
 

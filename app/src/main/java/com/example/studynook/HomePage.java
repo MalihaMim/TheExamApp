@@ -21,7 +21,7 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         ActionBar bar = getSupportActionBar();
-        ColorDrawable color = new ColorDrawable(Color.parseColor("#A4C1D4"));
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#3E7396"));
         bar.setBackgroundDrawable(color);
 
         // Initialise and assign variable
@@ -36,7 +36,7 @@ public class HomePage extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()) {
                     case R.id.schedule:
-                        startActivity(new Intent(getApplicationContext(), PlannerPage.class));
+                        startActivity(new Intent(getApplicationContext(), SchedulingPage.class));
                         overridePendingTransition(0, 0); // Animation to switch between pages
                         return true;
                     case R.id.resources:

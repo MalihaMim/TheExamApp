@@ -21,7 +21,7 @@ public class AlarmPage extends AppCompatActivity {
         setContentView(R.layout.activity_alarm_page);
 
         ActionBar actionBar = getSupportActionBar();
-        ColorDrawable color = new ColorDrawable(Color.parseColor("#FFA49C"));
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#FF5053"));
         actionBar.setBackgroundDrawable(color);
         actionBar.setTitle("Alarm");
 

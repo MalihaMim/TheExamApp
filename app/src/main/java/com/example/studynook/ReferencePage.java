@@ -23,7 +23,6 @@ public class ReferencePage extends AppCompatActivity {
         apa = findViewById(R.id.btn_apa);
         chica = findViewById(R.id.btn_chicago);
 
-
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -36,14 +35,14 @@ public class ReferencePage extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()) {
                     case R.id.schedule:
-                        startActivity(new Intent(getApplicationContext(), PlannerPage.class));
+                        startActivity(new Intent(getApplicationContext(), SchedulingPage.class));
                         overridePendingTransition(0, 0); // Animation to switch between pages
                         return true;
                     case R.id.resources:
-                        startActivity(new Intent(getApplicationContext(), ResourcesPage.class));
-                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.home:
+                        startActivity(new Intent(getApplicationContext(), HomePage.class));
+                        overridePendingTransition(0, 0); // Animation to switch between pages
                         return true;
                     case R.id.wellbeing:
                         startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
