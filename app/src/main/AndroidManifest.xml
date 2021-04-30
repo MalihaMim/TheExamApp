@@ -31,7 +31,7 @@
         <activity android:name=".TimerPage" />
         <activity android:name=".AlarmPage" />
         <activity android:name=".PlannerPage" />
-
+        <activity android:name=".LoginPage" />
         <activity android:name=".SchedulingPage" />
         <activity android:name=".SignUpPage" />
         <activity android:name=".ProfilePage" />

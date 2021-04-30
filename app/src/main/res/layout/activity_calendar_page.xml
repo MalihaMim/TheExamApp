@@ -1,105 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".CalendarPage">
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bottom_navigation"
-        app:itemBackground="@color/light_red"
-        app:itemTextColor="@drawable/red_selector"
-        app:itemIconTint="@drawable/red_selector"
-        app:menu="@menu/menu_navigation"
-        android:layout_alignParentBottom="true"/>
+    android:layout_height="match_parent">
 
     <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="419dp"
+        android:id="@+id/calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/eventContents"
+        android:visibility="gone"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="-8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="0dp" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/addEvent"
-        android:layout_width="143dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginBottom="253dp"
-        android:text="Add Event"
-        app:backgroundTint="#FFA49C" />
+        <EditText
+            android:id="@+id/userInput"
+            android:hint="Enter event"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:layout_height="50dp"/>
+        <Button
+            android:id="@+id/saveEvent"
+            android:layout_width="125dp"
+            android:layout_height="50dp"
+            android:text="Save Event"/>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/deleteEvent"
-        android:layout_width="143dp"
-        android:layout_height="61dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="38dp"
-        android:layout_marginBottom="174dp"
-        android:text="Delete Event"
-        app:backgroundTint="#FFA49C" />
-
-    <Button
-        android:id="@+id/addReminder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
-        android:layout_marginBottom="253dp"
-        android:text="Add Reminder"
-        app:backgroundTint="#FFA49C" />
-
-    <Button
-        android:id="@+id/deleteReminder"
-        android:layout_width="145dp"
-        android:layout_height="61dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
-        android:layout_marginBottom="174dp"
-        android:text="Delete Reminder"
-        app:backgroundTint="#FFA49C" />
-
-    <TextView
-        android:id="@+id/dateClicked"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="38dp"
-        android:layout_marginLeft="38dp"
-        android:layout_marginBottom="333dp"
-        android:text="Date Selected:"
-        android:textSize="20dp"/>
-
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="145dp"
-        android:layout_marginRight="145dp"
-        android:layout_marginBottom="332dp"
-        android:text=""
-        android:textSize="20dp" />
-
-</RelativeLayout>
+</LinearLayout>
