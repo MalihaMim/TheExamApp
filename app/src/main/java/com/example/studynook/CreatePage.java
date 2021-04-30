@@ -10,7 +10,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -50,7 +49,7 @@ public class CreatePage extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.wellbeing:
-                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
+                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.create:
