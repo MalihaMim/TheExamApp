@@ -56,7 +56,7 @@ public class CreatePage extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.wellbeing:
-                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
+                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.create:

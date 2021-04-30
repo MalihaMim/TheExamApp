@@ -22,6 +22,9 @@
         <activity android:name=".HomePage" />
         <activity android:name=".FlashcardPage" />
         <activity android:name=".NotePage" />
+        <activity android:name=".EditText" />
+        <activity android:name=".CountdownPage" />
+        <activity android:name=".SetAlarm" />
         <activity android:name=".CreatePage" />
         <activity android:name=".TutorialPage" />
         <activity android:name=".ReferencePage" />
