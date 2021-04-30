@@ -10,10 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyNook">
         <activity android:name=".HomePage"></activity>
-        <activity android:name=".CalendarPage">
+        <activity android:name=".LoginPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -31,7 +30,7 @@
         <activity android:name=".TimerPage" />
         <activity android:name=".AlarmPage" />
         <activity android:name=".PlannerPage" />
-
+        <activity android:name=".CalendarPage" />
         <activity android:name=".SchedulingPage" />
         <activity android:name=".SignUpPage" />
         <activity android:name=".ProfilePage" />
