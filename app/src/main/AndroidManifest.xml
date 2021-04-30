@@ -9,18 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyNook">
-        <activity android:name=".LoginPage"></activity>
-        <activity android:name=".WellbeingPage">
+        <activity android:name=".LoginPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FoodPage" />
-
+        <activity android:name=".WellBeingPage"></activity>
         <activity android:name=".MentalHealthPage" />
         <activity android:name=".FitnessPage" />
+        <activity android:name=".HomePage" />
         <activity android:name=".FlashcardPage" />
         <activity android:name=".NotePage" />
         <activity android:name=".CreatePage" />

@@ -11,28 +11,33 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class ResourcesPage extends AppCompatActivity {
-    Button tuts,lib,ref;
+public class WellBeingPage extends AppCompatActivity {
+   public TextView text;
+    public Button m_button;
+    public Button b_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_resources_page);
-        tuts = findViewById(R.id.btn_tutorials);
-        lib = findViewById(R.id.btn_library);
-        ref = findViewById(R.id.btn_references);
+        setContentView(R.layout.activity_wellbeing_page);
+
+        text =findViewById(R.id.wellbeing_title);
+        m_button = (Button) findViewById(R.id.mind_button);
+        b_button = (Button) findViewById(R.id.body_button);
 
         ActionBar bar = getSupportActionBar();
-        ColorDrawable color = new ColorDrawable(Color.parseColor("#FFBB3E"));
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#FF8386"));
         bar.setBackgroundDrawable(color);
 
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         // Set home selected
-        bottomNavigationView.setSelectedItemId(R.id.resources);
+        bottomNavigationView.setSelectedItemId(R.id.wellbeing);
 
         // Perform ItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -40,7 +45,7 @@ public class ResourcesPage extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()) {
                     case R.id.schedule:
-                        startActivity(new Intent(getApplicationContext(), PlannerPage.class));
+                        startActivity(new Intent(getApplicationContext(), SchedulingPage.class));
                         overridePendingTransition(0, 0); // Animation to switch between pages
                         return true;
                     case R.id.resources:
@@ -48,10 +53,10 @@ public class ResourcesPage extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.home:
+                        startActivity(new Intent(getApplicationContext(), HomePage.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.wellbeing:
-                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
-                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.create:
                         startActivity(new Intent(getApplicationContext(), CreatePage.class));
@@ -62,27 +67,20 @@ public class ResourcesPage extends AppCompatActivity {
             }
         });
 
+        m_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WellBeingPage.this,MentalHealthPage.class);
+                startActivity(intent);
+            }
+        } );
 
-        tuts.setOnClickListener(new View.OnClickListener() {
+        b_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ResourcesPage.this, TutorialPage.class);
-                startActivity(i);
+                Intent intent = new Intent(WellBeingPage.this,FitnessPage.class);
+                startActivity(intent);
             }
-        });
-        lib.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ResourcesPage.this, LibraryPage.class);
-                startActivity(i);
-            }
-        });
-        ref.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ResourcesPage.this, ReferencePage.class);
-                startActivity(i);
-            }
-        });
+        } );
     }
 }
