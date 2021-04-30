@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">StudyNook</string>
+    <string-array name="fitness_activity_types">
+        <item>Walking</item>
+        <item>Running</item>
+        <item>Cardio</item>
+        <item>Strength training</item>
+        <item>Dance</item>
+        <item>Sport</item>
+    </string-array>
 </resources>

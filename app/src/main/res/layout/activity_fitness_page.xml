@@ -4,183 +4,248 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8B195"
+    android:background="#FFAC8D"
     tools:context=".FitnessPage">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/5"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:cardBackgroundColor="#ffc5bf"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="25dp"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="417dp">
-
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/Seated_Twist"
-            tools:layout_editor_absoluteX="98dp"
-            tools:layout_editor_absoluteY="87dp" />
-    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/3"
+        android:id="@+id/ankle_card"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:cardBackgroundColor="#ffc5bf"
-        app:cardCornerRadius="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="23dp"
+        app:cardBackgroundColor="#FFC300"
+        app:cardCornerRadius="10dp"
         app:cardElevation="25dp"
-        tools:layout_editor_absoluteX="273dp"
-        tools:layout_editor_absoluteY="282dp">
+        app:cardMaxElevation="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/neck_rolls_card"
+        app:layout_constraintStart_toStartOf="parent" >
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/abcAnkle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/Standing_stretch"
-            tools:layout_editor_absoluteX="211dp"
-            tools:layout_editor_absoluteY="102dp" />
+            app:srcCompat="@drawable/abc_ankle" />
     </androidx.cardview.widget.CardView>
 
+    <Spinner
+        android:id="@+id/activity_type_dropdown"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
+        android:background="#FFFFFF"
+        android:dropDownSelector="#000000"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:cardBackgroundColor="#ffc5bf"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="25dp"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="282dp">
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="66dp"
+        android:text="Activity type:"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/Chair_bend"
-            tools:layout_editor_absoluteX="88dp"
-            tools:layout_editor_absoluteY="63dp" />127dp"
-        tools:layout_editor_absoluteY="97dp"
-        tools:srcCompat="@tools:sample/avatars" />
-    </androidx.cardview.widget.CardView>
+    <EditText
+        android:id="@+id/Hours"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
+        android:background="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_type_dropdown" />
+
+    <TextView
+        android:id="@+id/hours_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="64dp"
+        android:fontFamily="sans-serif"
+        android:text="Hours spent:"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/type" />
+
+    <TextView
+        android:id="@+id/log_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="16dp"
+        android:text="Fitness Log:"
+        android:textColor="#581845"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/log_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginRight="160dp"
+        android:text="Log"
+        app:backgroundTint="#FF5733"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Hours"
+        android:onClick="openDialog"
+        />
 
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="10dp"
         android:background="?android:attr/listDivider"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="221dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/log_button" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/chair_bend_card"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="23dp"
+        app:cardBackgroundColor="#FFC300"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="25dp"
+        app:cardMaxElevation="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/seated_twist_card"
+        app:layout_constraintEnd_toStartOf="@+id/forward_fold_card"
+        app:layout_constraintStart_toEndOf="@+id/ankle_card" >
+
+        <ImageView
+            android:id="@+id/chairBend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/seated_stretch" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/stretch_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stretches to Keep You Active:"
-        android:textColor="#E91E63"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="89dp"
+        android:layout_marginRight="89dp"
+        android:text="Stretches to keep you active:"
+        android:textColor="#581845"
+        android:textSize="18sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="247dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/1"
+        android:id="@+id/seated_twist_card"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:cardBackgroundColor="#ffc5bf"
-        app:cardCornerRadius="20dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginRight="23dp"
+        android:layout_marginBottom="46dp"
+        app:cardBackgroundColor="#FFC300"
+        app:cardCornerRadius="10dp"
         app:cardElevation="25dp"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="282dp">
+        app:cardMaxElevation="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/standing_stretch_card"
+        app:layout_constraintStart_toEndOf="@+id/neck_rolls_card" >
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/seatedTwist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/Neck_rolls"
-            tools:layout_editor_absoluteX="132dp"
-            tools:layout_editor_absoluteY="74dp" />
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/seated_twist" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/4"
+        android:id="@+id/standing_stretch_card"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:cardBackgroundColor="#ffc5bf"
-        app:cardCornerRadius="20dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="46dp"
+        app:cardBackgroundColor="#FFC300"
+        app:cardCornerRadius="10dp"
         app:cardElevation="25dp"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="417dp">
+        app:cardMaxElevation="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/standStretch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/Forward_fold"
-            tools:layout_editor_absoluteX="149dp"
-            tools:layout_editor_absoluteY="110dp" />
-
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/standing_stretch" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/6"
+        android:id="@+id/forward_fold_card"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:cardBackgroundColor="#ffc5bf"
-        app:cardCornerRadius="20dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="21dp"
+        app:cardBackgroundColor="#FFC300"
+        app:cardCornerRadius="10dp"
         app:cardElevation="25dp"
-        tools:layout_editor_absoluteX="276dp"
-        tools:layout_editor_absoluteY="416dp">
+        app:cardMaxElevation="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/standing_stretch_card"
+        app:layout_constraintEnd_toEndOf="parent" >
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/forwardFold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/abc_ankle"
-            tools:layout_editor_absoluteX="157dp"
-            tools:layout_editor_absoluteY="92dp" />
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/forward_fold" />
     </androidx.cardview.widget.CardView>
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="200"
-        android:layout_height="50"
-        tools:layout_editor_absoluteX="156dp"
-        tools:layout_editor_absoluteY="47dp" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/neck_rolls_card"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="46dp"
+        app:cardBackgroundColor="#FFC300"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="25dp"
+        app:cardMaxElevation="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" >
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Activity"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="47dp" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Time Spent"
-        tools:layout_editor_absoluteX="44dp"
-        tools:layout_editor_absoluteY="116dp" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Log"
-        tools:layout_editor_absoluteX="156dp"
-        tools:layout_editor_absoluteY="163dp" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fitness Log"
-        tools:layout_editor_absoluteX="170dp"
-        tools:layout_editor_absoluteY="14dp" />
-
+        <ImageView
+            android:id="@+id/neckRolls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/neck_roll" />
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

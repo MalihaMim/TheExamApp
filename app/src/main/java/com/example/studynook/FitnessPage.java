@@ -1,28 +1,79 @@
 package com.example.studynook;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
-public class FitnessPage<adapter> extends AppCompatActivity {
+import com.google.android.material.snackbar.Snackbar;
 
-    //get the spinner from the xml.
-    Spinner dropdown = findViewById(R.id.spinner);
-    //create a list of items for the spinner.
-    String[] items = new String[]{"Walking", "Running", "Cardio","Strength training","Dance","Sport"};
-    //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-    //There are multiple variations of this, but this is the basic variant.
-    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-    //set the spinners adapter to the previously created one.
-    adapter.setAdapter(adapter);
-
+public class FitnessPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fitness_page);
+
+        //get the spinner from the xml.
+        Spinner dropdown = findViewById(R.id.activity_type_dropdown);
+
+        //create a list of items for the spinner.
+        String[] items = new String[]{"Select item","Walking", "Running", "Cardio","Strength training","Dance","Sport"};
+
+        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+        //There are multiple variations of this, but this is the basic variant.
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+
+        //set the spinners adapter to the previously created one.
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown.setAdapter(adapter);
+        dropdown.setOnItemSelectedListener(this);
+
+        // Hides the top bar
+        getSupportActionBar().hide();
+
+
+    }
+
+    public void openDialog(View v)
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Log");
+        alert.setMessage("Save activity log?");
+        alert.setPositiveButton("Yes",new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialogInterface, int i){
+                Toast.makeText(FitnessPage.this,"Saved!",Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(FitnessPage.this,"Cancelled!",Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert.create().show();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT);
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }
