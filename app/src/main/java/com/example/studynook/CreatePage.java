@@ -29,8 +29,8 @@ public class CreatePage extends AppCompatActivity {
         bar.setBackgroundDrawable(color);
         bar.setTitle("Create");
 
-//        note = findViewById(R.id.noteButton);
-//        flashcard = findViewById(R.id.flashcardButton);
+        note = findViewById(R.id.noteButton);
+        flashcard = findViewById(R.id.flashcardButton);
 
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -66,23 +66,23 @@ public class CreatePage extends AppCompatActivity {
             }
         });
 
-//        note.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(CreatePage.this, NotePage.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        flashcard.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(CreatePage.this, FlashcardPage.class);
-//                startActivity(intent);
-//            }
-//        });
+        note.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CreatePage.this, NotePage.class);
+                startActivity(intent);
+            }
+        });
+
+        flashcard.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CreatePage.this, FlashcardPage.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

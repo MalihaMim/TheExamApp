@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.studynook">
 
     <application
@@ -9,8 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyNook">
-        <activity android:name=".HomePage"></activity>
-        <activity android:name=".CalendarPage">
+        <activity android:name=".HomePage" />
+        <activity
+            android:name=".AlarmPage"
+            tools:ignore="DuplicateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,14 +31,19 @@
         <activity android:name=".ReferencePage" />
         <activity android:name=".LibraryPage" />
         <activity android:name=".ResourcesPage" />
-        <activity android:name=".TimerPage" />
-        <activity android:name=".AlarmPage" />
+        <activity android:name=".SetAlarm" />
+        <activity android:name=".CalendarPage" />
         <activity android:name=".PlannerPage" />
-
         <activity android:name=".SchedulingPage" />
         <activity android:name=".SignUpPage" />
         <activity android:name=".ProfilePage" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".EditText" />
+        <activity android:name=".TimerPage" />
+        <activity android:name=".CountdownPage" />
+
+        <receiver android:name=".AlarmSound"/>
+
     </application>
 
 </manifest>

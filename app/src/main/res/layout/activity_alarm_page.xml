@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".AlarmPage">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Schedule"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,5 +15,43 @@
         app:itemIconTint="@drawable/red_selector"
         app:menu="@menu/menu_navigation"
         android:layout_alignParentBottom="true"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TimePicker
+            android:id="@+id/timePick"
+            android:layout_width="432dp"
+            android:layout_height="207dp"
+            android:layout_marginTop="92dp"
+            android:layout_weight="0.6"
+            android:timePickerMode="spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/setalarmButton"
+            android:layout_width="439dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="352dp"
+            android:text="Set Alarm"
+            app:backgroundTint="#FF5053"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/cancelalarmButton"
+            android:layout_width="439dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="424dp"
+            android:text="Cancel alarm"
+            app:backgroundTint="#FF5053"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

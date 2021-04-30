@@ -1,36 +1,43 @@
 package com.example.studynook;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.NumberPicker;
+import android.widget.CheckBox;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class TimerPage extends AppCompatActivity {
+public class SetAlarm extends AppCompatActivity {
 
-    protected NumberPicker hour, minutes, seconds;
-    private Button start;
-    protected boolean isStart;
+    private TimePicker alarmTime;
+    private Button setAlarm;
+    private Integer hour, minute;
+//    protected int alarmId;
+//    private TextView alarmTitle;
+//    private CheckBox recurring, mon, tue, wed, thu, fri, sat, sun;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timer_page);
+        setContentView(R.layout.activity_set_alarm);
 
         ActionBar actionBar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#FFA49C"));
         actionBar.setBackgroundDrawable(color);
-        actionBar.setTitle("Timer");
+        actionBar.setTitle("Set Alarm");
 
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -66,31 +73,25 @@ public class TimerPage extends AppCompatActivity {
             }
         });
 
-        hour = findViewById(R.id.hourPicker);
-        hour.setMinValue(0);
-        hour.setMaxValue(99);
+        alarmTime = findViewById(R.id.timePick);
+        setAlarm = findViewById(R.id.setAlarm);
 
-        minutes = findViewById(R.id.minutePicker);
-        minutes.setMinValue(0);
-        minutes.setMaxValue(59);
+        hour = alarmTime.getCurrentHour();
+        minute = alarmTime.getCurrentMinute();
 
-        seconds = findViewById(R.id.secondPicker);
-        seconds.setMinValue(0);
-        seconds.setMaxValue(59);
+        Intent intent = getIntent();
+        intent.putExtra("hour", hour);
+        intent.putExtra("minute", minute);
 
-        isStart = false;
-        start = findViewById(R.id.startTimerButton);
-        start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isStart = true;
-                long time = (long) hour.getValue() * 3600000 + (long) minutes.getValue() * 60000 + (long) seconds.getValue() * 1000;
-                Intent intent = new Intent(TimerPage.this, CountdownPage.class);
-                intent.putExtra("isStart", isStart);
-                intent.putExtra("Countdown", time);
-                startActivity(intent);
-            }
-        });
+//        alarmTitle = findViewById(R.id.alarmTitle);
+//        recurring = findViewById(R.id.recurring);
+//        mon = findViewById(R.id.monday);
+//        tue = findViewById(R.id.tuesday);
+//        wed = findViewById(R.id.wednesday);
+//        thu = findViewById(R.id.thursday);
+//        fri = findViewById(R.id.friday);
+//        sat = findViewById(R.id.saturday);
+//        sun = findViewById(R.id.sunday);
     }
 
     @Override

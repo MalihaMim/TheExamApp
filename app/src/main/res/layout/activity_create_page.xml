@@ -16,4 +16,35 @@
         app:menu="@menu/menu_navigation"
         android:layout_alignParentBottom="true"/>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/noteButton"
+            android:layout_width="246dp"
+            android:layout_height="89dp"
+            android:layout_marginTop="236dp"
+            android:text="Note"
+            android:textSize="30sp"
+            app:backgroundTint="#A1C7A8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/flashcardButton"
+            android:layout_width="246dp"
+            android:layout_height="89dp"
+            android:layout_marginTop="408dp"
+            android:text="Flashcard"
+            android:textSize="30sp"
+            app:backgroundTint="#A1C7A8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.499"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </RelativeLayout>
