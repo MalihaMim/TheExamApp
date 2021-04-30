@@ -9,30 +9,6 @@
     android:orientation="vertical"
     android:theme="@style/Theme.Design.Light.NoActionBar">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/dark_orange"
-        android:layout_alignParentTop="true"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="References"
-            android:textColor="@color/white"
-            android:textSize="40sp" />
-
-
-        <ImageView
-            android:id="@+id/btn_admin_testdrive_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/ic_baseline_account_circle_24"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
