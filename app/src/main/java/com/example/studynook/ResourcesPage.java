@@ -1,9 +1,12 @@
 package com.example.studynook;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +23,10 @@ public class ResourcesPage extends AppCompatActivity {
         tuts = findViewById(R.id.btn_tutorials);
         lib = findViewById(R.id.btn_library);
         ref = findViewById(R.id.btn_references);
+
+        ActionBar bar = getSupportActionBar();
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#FFBB3E"));
+        bar.setBackgroundDrawable(color);
 
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -43,7 +50,7 @@ public class ResourcesPage extends AppCompatActivity {
                         overridePendingTransition(0, 0); // Animation to switch between pages
                         return true;
                     case R.id.wellbeing:
-                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
+                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.create:

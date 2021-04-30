@@ -10,11 +10,14 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CreatePage extends AppCompatActivity {
+
+    private Button note, flashcard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,9 @@ public class CreatePage extends AppCompatActivity {
         ColorDrawable color = new ColorDrawable(Color.parseColor("#A1C7A8"));
         bar.setBackgroundDrawable(color);
         bar.setTitle("Create");
+
+        note = findViewById(R.id.noteButton);
+        flashcard = findViewById(R.id.flashcardButton);
 
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -50,13 +56,31 @@ public class CreatePage extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.wellbeing:
-                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
+                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.create:
                       return true;
                 }
                 return false;
+            }
+        });
+
+        note.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CreatePage.this, NotePage.class);
+                startActivity(intent);
+            }
+        });
+
+        flashcard.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CreatePage.this, FlashcardPage.class);
+                startActivity(intent);
             }
         });
     }

@@ -8,29 +8,34 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.NumberPicker;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class TimerPage extends AppCompatActivity {
+import java.util.Locale;
 
-    protected NumberPicker hour, minutes, seconds;
-    private Button start;
-    protected boolean isStart;
+public class CountdownPage extends AppCompatActivity {
+
+    private TextView countdown;
+    private Button pause, reset, resume;
+    private CountDownTimer countTimer;
+    private boolean isRunning;
+    private long countdownTime, pauseTimeLeft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timer_page);
+        setContentView(R.layout.activity_countdown_page);
 
         ActionBar actionBar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#FFA49C"));
         actionBar.setBackgroundDrawable(color);
-        actionBar.setTitle("Timer");
+        actionBar.setTitle("Countdown");
 
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -66,31 +71,94 @@ public class TimerPage extends AppCompatActivity {
             }
         });
 
-        hour = findViewById(R.id.hourPicker);
-        hour.setMinValue(0);
-        hour.setMaxValue(99);
+        countdown = findViewById(R.id.countdownText);
+        pause = findViewById(R.id.pauseButton);
+        reset = findViewById(R.id.resetButton);
+        resume = findViewById(R.id.resumeButton);
 
-        minutes = findViewById(R.id.minutePicker);
-        minutes.setMinValue(0);
-        minutes.setMaxValue(59);
+        Bundle extras = getIntent().getExtras();
 
-        seconds = findViewById(R.id.secondPicker);
-        seconds.setMinValue(0);
-        seconds.setMaxValue(59);
+        if (extras != null)
+        {
+            isRunning = extras.getBoolean("isStart");
+            countdownTime = extras.getLong("Countdown");
+        }
 
-        isStart = false;
-        start = findViewById(R.id.startTimerButton);
-        start.setOnClickListener(new View.OnClickListener() {
+        startTimer();
+
+        pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isStart = true;
-                long time = (long) hour.getValue() * 3600000 + (long) minutes.getValue() * 60000 + (long) seconds.getValue() * 1000;
-                Intent intent = new Intent(TimerPage.this, CountdownPage.class);
-                intent.putExtra("isStart", isStart);
-                intent.putExtra("Countdown", time);
-                startActivity(intent);
+                pauseTimer();
             }
         });
+
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetTimer();
+            }
+        });
+
+        resume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resumeTimer();
+            }
+        });
+    }
+
+    public void startTimer() {
+        countTimer = new CountDownTimer(countdownTime, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                countdownTime = millisUntilFinished;
+                updateCountdownText();
+            }
+
+            @Override
+            public void onFinish() {
+                isRunning = false;
+                countdown.setText("Finish!!");
+                pause.setVisibility(View.INVISIBLE);
+                reset.setVisibility(View.VISIBLE);
+            }
+        };
+
+        countTimer.start();
+        isRunning = true;
+        pause.setVisibility(View.VISIBLE);
+        reset.setVisibility(View.INVISIBLE);
+        resume.setVisibility(View.INVISIBLE);
+    }
+
+    public void pauseTimer() {
+        pauseTimeLeft = countdownTime;
+        countTimer.cancel();
+        isRunning = false;
+        pause.setVisibility(View.INVISIBLE);
+        reset.setVisibility(View.VISIBLE);
+        resume.setVisibility(View.VISIBLE);
+    }
+
+    public void resetTimer() {
+        Intent intent = new Intent(CountdownPage.this, TimerPage.class);
+        startActivity(intent);
+    }
+
+    public void resumeTimer() {
+        isRunning = true;
+        countdownTime = pauseTimeLeft;
+        startTimer();
+    }
+
+    public void updateCountdownText() {
+        int hour = (int) (countdownTime / 1000) / 3600;
+        int minute = (int) ((countdownTime / 1000) % 3600) / 60;
+        int second = (int) (countdownTime / 1000) % 60;
+        String timeLeft = String.format(Locale.getDefault(), "%02d : %02d : %02d", hour, minute, second);
+
+        countdown.setText(timeLeft);
     }
 
     @Override

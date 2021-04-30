@@ -22,8 +22,8 @@ import java.util.HashSet;
 
 public class NotePage extends AppCompatActivity {
 
-    static ArrayList<String> notes = new ArrayList<>();
-    static ArrayAdapter arrayAdapter;
+    protected static ArrayList<String> notes = new ArrayList<>();
+    protected static ArrayAdapter arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class NotePage extends AppCompatActivity {
             notes = new ArrayList(set);
         }
 
-        // Using custom listView Provided by Android Studio
+        // Using custom listView provided by Android Studio
         arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, notes);
 
         listView.setAdapter(arrayAdapter);
@@ -48,7 +48,7 @@ public class NotePage extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Going from MainActivity to NotesEditorActivity
+                // Going from NotePage to EditText
                 Intent intent = new Intent(getApplicationContext(), EditText.class);
                 intent.putExtra("noteId", position);
                 startActivity(intent);
@@ -83,7 +83,7 @@ public class NotePage extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_add_note, menu);
+        menuInflater.inflate(R.menu.menu_add, menu);
 
         return super.onCreateOptionsMenu(menu);
     }
