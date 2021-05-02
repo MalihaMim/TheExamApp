@@ -10,10 +10,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SchedulingPage extends AppCompatActivity {
+    private Button alarm, timer, calendar, planner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +24,46 @@ public class SchedulingPage extends AppCompatActivity {
         setContentView(R.layout.activity_scheduling_page);
 
         ActionBar actionBar = getSupportActionBar();
-        ColorDrawable color = new ColorDrawable(Color.parseColor("#FFA49C"));
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#FF5053"));
         actionBar.setBackgroundDrawable(color);
         actionBar.setTitle("Schedule");
 
+        alarm = findViewById(R.id.alarmButton);
+        timer = findViewById(R.id.timerButton);
+        calendar = findViewById(R.id.calendarButton);
+        planner = findViewById(R.id.plannerButton);
+
+        alarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SchedulingPage.this, AlarmPage.class);
+                startActivity(intent);
+            }
+        } );
+
+        timer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SchedulingPage.this, TimerPage.class);
+                startActivity(intent);
+            }
+        } );
+
+        calendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SchedulingPage.this, CalendarPage.class);
+                startActivity(intent);
+            }
+        } );
+
+        planner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SchedulingPage.this, PlannerPage.class);
+                startActivity(intent);
+            }
+        } );
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 

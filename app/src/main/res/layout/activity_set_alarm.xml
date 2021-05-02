@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AlarmPage">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation"
+        app:itemBackground="@color/light_red"
+        app:itemTextColor="@drawable/red_selector"
+        app:itemIconTint="@drawable/red_selector"
+        app:menu="@menu/menu_navigation"
+        android:layout_alignParentBottom="true"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TimePicker
+            android:id="@+id/timePick"
+            android:layout_width="432dp"
+            android:layout_height="207dp"
+            android:layout_weight="0.6"
+            android:timePickerMode="spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+<!--    <EditText-->
+<!--        android:id="@+id/alarmTitle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginEnd="4dp"-->
+<!--        android:layout_marginRight="4dp"-->
+<!--        android:hint="Alarm Title"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/timePick"-->
+<!--        tools:ignore="MissingConstraints" />-->
+
+<!--    <CheckBox-->
+<!--        android:id="@+id/recurring"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:checked="false"-->
+<!--        android:text="Recurring Alarm"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/alarmTitle"-->
+<!--        android:layout_alignParentLeft="true" />-->
+
+        <Button
+            android:id="@+id/setAlarm"
+            android:layout_width="346dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginBottom="100dp"
+            android:text="Set Alarm"
+            app:backgroundTint="#FF5053"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+<!--    <CheckBox-->
+<!--            android:id="@+id/monday"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Mon"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/recurring" />-->
+
+<!--        <CheckBox-->
+<!--            android:id="@+id/tuesday"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:checked="false"-->
+<!--            android:text="Tue"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/monday"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/recurring" />-->
+
+<!--        <CheckBox-->
+<!--            android:id="@+id/wednesday"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:checked="false"-->
+<!--            android:text="Wed"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/tuesday"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/recurring" />-->
+
+<!--        <CheckBox-->
+<!--            android:id="@+id/thursday"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:checked="false"-->
+<!--            android:text="Thu"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/wednesday"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/recurring" />-->
+
+<!--        <CheckBox-->
+<!--            android:id="@+id/friday"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:checked="false"-->
+<!--            android:text="Fri"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/thursday"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/recurring" />-->
+
+<!--        <CheckBox-->
+<!--            android:id="@+id/saturday"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:checked="false"-->
+<!--            android:text="Sat"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/monday" />-->
+
+<!--        <CheckBox-->
+<!--            android:id="@+id/sunday"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:checked="false"-->
+<!--            android:text="Sun"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/saturday"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/tuesday" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

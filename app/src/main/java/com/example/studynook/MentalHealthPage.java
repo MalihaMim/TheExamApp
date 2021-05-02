@@ -21,7 +21,7 @@ public class MentalHealthPage extends AppCompatActivity {
         setContentView(R.layout.activity_mental_health_page);
 
         ActionBar bar = getSupportActionBar();
-        ColorDrawable color = new ColorDrawable(Color.parseColor("#FFCBBA"));
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#FF8386"));
         bar.setBackgroundDrawable(color);
         bar.setTitle("Mental Health");
 
@@ -37,7 +37,7 @@ public class MentalHealthPage extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()) {
                     case R.id.schedule:
-                        startActivity(new Intent(getApplicationContext(), PlannerPage.class));
+                        startActivity(new Intent(getApplicationContext(), SchedulingPage.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.resources:
