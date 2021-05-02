@@ -1,0 +1,2264 @@
+Index: app/src/main/res/layout/activity_library_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".LibraryPage\"\r\n    android:orientation=\"vertical\"\r\n    >\r\n    <RelativeLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:background=\"@color/dark_orange\"\r\n        android:layout_alignParentTop=\"true\"\r\n        >\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Library\"\r\n            android:textColor=\"@color/white\"\r\n            android:textSize=\"40sp\" />\r\n\r\n\r\n        <ImageView\r\n            android:id=\"@+id/btn_admin_testdrive_logout\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_alignParentRight=\"true\"\r\n            android:src=\"@drawable/ic_baseline_account_circle_24\"\r\n            android:layout_alignParentEnd=\"true\"\r\n            android:layout_centerVertical=\"true\"/>\r\n    </RelativeLayout>\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\"\r\n        android:gravity=\"center\">\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\"\r\n        android:gravity=\"center\">\r\n        <Button\r\n            android:id=\"@+id/btn_gutebberg\"\r\n            android:layout_width=\"150dp\"\r\n            android:layout_height=\"100dp\"\r\n            android:text=\"Project\\nGutenberg\"\r\n            android:textAllCaps=\"false\"\r\n            android:fontFamily=\"sans-serif-medium\"\r\n            android:textColor=\"@color/white\"\r\n            android:backgroundTint=\"@color/dark_orange\"\r\n            android:layout_marginTop=\"30sp\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"15dp\"/>\r\n        <Button\r\n            android:id=\"@+id/btn_internet\"\r\n            android:layout_width=\"150dp\"\r\n            android:layout_height=\"100dp\"\r\n            android:text=\"Internet\\nArchive\"\r\n            android:backgroundTint=\"@color/dark_orange\"\r\n            android:textAllCaps=\"false\"\r\n            android:fontFamily=\"sans-serif-medium\"\r\n            android:textColor=\"@color/white\"\r\n            android:layout_marginTop=\"30sp\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"15dp\"/>\r\n    </LinearLayout>\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\"\r\n        android:gravity=\"center\">\r\n        <Button\r\n            android:id=\"@+id/btn_openlib\"\r\n            android:layout_width=\"150dp\"\r\n            android:layout_height=\"100dp\"\r\n            android:text=\"Open\\nLibrary\"\r\n            android:backgroundTint=\"@color/dark_orange\"\r\n            android:textAllCaps=\"false\"\r\n            android:fontFamily=\"sans-serif-medium\"\r\n            android:textColor=\"@color/white\"\r\n            android:layout_marginTop=\"30sp\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"15dp\"/>\r\n        <Button\r\n            android:id=\"@+id/btn_other\"\r\n            android:layout_width=\"150dp\"\r\n            android:layout_height=\"100dp\"\r\n            android:text=\"other\\nWebsites\"\r\n            android:backgroundTint=\"@color/dark_orange\"\r\n            android:textAllCaps=\"false\"\r\n            android:fontFamily=\"sans-serif-medium\"\r\n            android:textColor=\"@color/white\"\r\n            android:layout_marginTop=\"30sp\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"15dp\"/>\r\n    </LinearLayout>\r\n    <TextView\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Find/Buy Book\"\r\n        android:textColor=\"@color/dark_orange\"\r\n        android:layout_gravity=\"center\"\r\n        android:textSize=\"20sp\" />\r\n    <Button\r\n        android:id=\"@+id/btn_aut\"\r\n        android:layout_width=\"150dp\"\r\n        android:layout_height=\"100dp\"\r\n        android:text=\"AUT\\nLibrary\"\r\n        android:backgroundTint=\"@color/dark_orange\"\r\n        android:textAllCaps=\"false\"\r\n        android:fontFamily=\"sans-serif-medium\"\r\n        android:textColor=\"@color/white\"\r\n        android:layout_marginTop=\"30sp\"\r\n        android:layout_marginLeft=\"15dp\"\r\n        android:layout_marginRight=\"15dp\"\r\n        android:layout_marginBottom=\"15dp\"\r\n        android:layout_gravity=\"center\"/>\r\n    </LinearLayout>\r\n    <com.google.android.material.bottomnavigation.BottomNavigationView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:id=\"@+id/bottom_navigation\"\r\n        app:itemBackground=\"@color/light_orange\"\r\n        app:itemTextColor=\"@drawable/red_selector\"\r\n        app:itemIconTint=\"@drawable/red_selector\"\r\n        app:menu=\"@menu/menu_navigation\"\r\n        android:layout_alignParentBottom=\"true\"/>\r\n\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_library_page.xml	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/res/layout/activity_library_page.xml	(date 1619788195339)
+@@ -8,29 +8,7 @@
+     tools:context=".LibraryPage"
+     android:orientation="vertical"
+     >
+-    <RelativeLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:background="@color/dark_orange"
+-        android:layout_alignParentTop="true"
+-        >
+-        <TextView
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:text="Library"
+-            android:textColor="@color/white"
+-            android:textSize="40sp" />
+ 
+-
+-        <ImageView
+-            android:id="@+id/btn_admin_testdrive_logout"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_alignParentRight="true"
+-            android:src="@drawable/ic_baseline_account_circle_24"
+-            android:layout_alignParentEnd="true"
+-            android:layout_centerVertical="true"/>
+-    </RelativeLayout>
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+Index: app/src/main/java/com/example/studynook/FlashcardPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studynook;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.ActionBar;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.graphics.Color;\r\nimport android.graphics.drawable.ColorDrawable;\r\nimport android.os.Bundle;\r\nimport android.view.Menu;\r\nimport android.view.MenuItem;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\n\r\npublic class FlashcardPage extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_flashcard_page);\r\n\r\n        ActionBar bar = getSupportActionBar();\r\n        ColorDrawable color = new ColorDrawable(Color.parseColor(\"#A1C7A8\"));\r\n        bar.setBackgroundDrawable(color);\r\n        bar.setTitle(\"Flashcard\");\r\n\r\n        // Initialise and assign variable\r\n        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);\r\n\r\n        // Set home selected\r\n        bottomNavigationView.setSelectedItemId(R.id.create);\r\n\r\n        // Switch to different tab when selected\r\n        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n            @Override\r\n            public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n                switch(item.getItemId()) {\r\n                    case R.id.schedule:\r\n                        startActivity(new Intent(getApplicationContext(), SchedulingPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.resources:\r\n                        startActivity(new Intent(getApplicationContext(), ResourcesPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.home:\r\n                        startActivity(new Intent(getApplicationContext(), HomePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.wellbeing:\r\n                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.create:\r\n                        return true;\r\n                }\r\n                return false;\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public boolean onCreateOptionsMenu(Menu menu) {\r\n        getMenuInflater().inflate(R.menu.menu_top_bar, menu);\r\n        return super.onCreateOptionsMenu(menu);\r\n    }\r\n\r\n    @Override\r\n    public boolean onOptionsItemSelected(@NonNull MenuItem item) {\r\n        switch(item.getItemId()) {\r\n            case R.id.notibutton:\r\n                //startActivity(new Intent(this, ));\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n\r\n            case R.id.profilebutton:\r\n                startActivity(new Intent(getApplicationContext(), ProfilePage.class));\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n        }\r\n\r\n        return super.onOptionsItemSelected(item);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/FlashcardPage.java	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/java/com/example/studynook/FlashcardPage.java	(date 1619788195456)
+@@ -49,7 +49,7 @@
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.wellbeing:
+-                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
++                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.create:
+Index: app/src/main/res/layout/activity_resources_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".ResourcesPage\"\r\n    android:orientation=\"vertical\"\r\n    >\r\n    <RelativeLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:background=\"@color/dark_orange\"\r\n        android:layout_alignParentTop=\"true\"\r\n>\r\n            <TextView\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"Resources\"\r\n                android:textColor=\"@color/white\"\r\n                android:textSize=\"40sp\" />\r\n\r\n\r\n        <ImageView\r\n            android:id=\"@+id/btn_admin_testdrive_logout\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_alignParentRight=\"true\"\r\n            android:src=\"@drawable/ic_baseline_account_circle_24\"\r\n            android:layout_alignParentEnd=\"true\"\r\n            android:layout_centerVertical=\"true\"/>\r\n    </RelativeLayout>\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\"\r\n        android:padding=\"15dp\"\r\n        android:gravity=\"center\">\r\n        <Button\r\n            android:id=\"@+id/btn_references\"\r\n            android:layout_width=\"200sp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"References\"\r\n            android:layout_marginTop=\"10sp\"\r\n            android:textAllCaps=\"false\"\r\n            android:textColor=\"@color/white\"\r\n            android:backgroundTint=\"@color/dark_orange\"\r\n            tools:targetApi=\"lollipop\" />\r\n        <Button\r\n            android:id=\"@+id/btn_tutorials\"\r\n            android:layout_width=\"200sp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Tutorials\"\r\n            android:layout_marginTop=\"10sp\"\r\n            android:textAllCaps=\"false\"\r\n            android:textColor=\"@color/white\"\r\n            android:backgroundTint=\"@color/dark_orange\"\r\n            />\r\n        <Button\r\n            android:id=\"@+id/btn_library\"\r\n            android:layout_width=\"200sp\"\r\n            android:layout_height=\"44dp\"\r\n            android:text=\"Library\"\r\n            android:textAllCaps=\"false\"\r\n            android:layout_marginTop=\"10sp\"\r\n            android:textColor=\"@color/white\"\r\n            android:backgroundTint=\"@color/dark_orange\"\r\n            />\r\n    </LinearLayout>\r\n    <com.google.android.material.bottomnavigation.BottomNavigationView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:id=\"@+id/bottom_navigation\"\r\n        app:itemBackground=\"@color/light_orange\"\r\n        app:itemTextColor=\"@drawable/orange_selector\"\r\n        app:itemIconTint=\"@drawable/orange_selector\"\r\n        app:menu=\"@menu/menu_navigation\"\r\n        android:layout_alignParentBottom=\"true\"/>\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_resources_page.xml	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/res/layout/activity_resources_page.xml	(date 1619788195386)
+@@ -8,29 +8,7 @@
+     tools:context=".ResourcesPage"
+     android:orientation="vertical"
+     >
+-    <RelativeLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:background="@color/dark_orange"
+-        android:layout_alignParentTop="true"
+->
+-            <TextView
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:text="Resources"
+-                android:textColor="@color/white"
+-                android:textSize="40sp" />
+ 
+-
+-        <ImageView
+-            android:id="@+id/btn_admin_testdrive_logout"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_alignParentRight="true"
+-            android:src="@drawable/ic_baseline_account_circle_24"
+-            android:layout_alignParentEnd="true"
+-            android:layout_centerVertical="true"/>
+-    </RelativeLayout>
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+Index: app/src/main/res/layout/activity_fitness_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".FitnessPage\">\r\n\r\n    <TextView\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Wellbeing\"\r\n        android:textSize=\"50sp\"\r\n        android:textStyle=\"bold\"\r\n        android:layout_centerInParent=\"true\"/>\r\n\r\n    <com.google.android.material.bottomnavigation.BottomNavigationView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:id=\"@+id/bottom_navigation\"\r\n        app:itemBackground=\"@color/light_pink\"\r\n        app:itemTextColor=\"@drawable/pink_selector\"\r\n        app:itemIconTint=\"@drawable/pink_selector\"\r\n        app:menu=\"@menu/menu_navigation\"\r\n        android:layout_alignParentBottom=\"true\"/>\r\n\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_fitness_page.xml	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/res/layout/activity_fitness_page.xml	(date 1619788195338)
+@@ -1,27 +1,251 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/activity_dropdown"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
++    android:background="#FFAC8D"
+     tools:context=".FitnessPage">
+ 
++
++    <androidx.cardview.widget.CardView
++        android:id="@+id/ankle_card"
++        android:layout_width="100dp"
++        android:layout_height="100dp"
++        android:layout_marginStart="32dp"
++        android:layout_marginLeft="32dp"
++        android:layout_marginBottom="23dp"
++        app:cardBackgroundColor="#FFC300"
++        app:cardCornerRadius="10dp"
++        app:cardElevation="25dp"
++        app:cardMaxElevation="25dp"
++        app:layout_constraintBottom_toTopOf="@+id/neck_rolls_card"
++        app:layout_constraintStart_toStartOf="parent">
++
++        <ImageView
++            android:id="@+id/abcAnkle"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            app:srcCompat="@drawable/abc_ankle" />
++    </androidx.cardview.widget.CardView>
++
++    <Spinner
++        android:id="@+id/activity_type_dropdown"
++        android:layout_width="200dp"
++        android:layout_height="50dp"
++        android:layout_marginTop="56dp"
++        android:layout_marginEnd="52dp"
++        android:layout_marginRight="52dp"
++        android:background="#FFFFFF"
++        android:dropDownSelector="#000000"
++        android:spinnerMode="dropdown"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++
+     <TextView
++        android:id="@+id/type"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:text="Wellbeing"
+-        android:textSize="50sp"
++        android:layout_marginStart="16dp"
++        android:layout_marginLeft="16dp"
++        android:layout_marginTop="66dp"
++        android:text="Activity type:"
++        android:textColor="#FFFFFF"
++        android:textSize="20sp"
+         android:textStyle="bold"
+-        android:layout_centerInParent="true"/>
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++
++    <EditText
++        android:id="@+id/Hours"
++        android:layout_width="200dp"
++        android:layout_height="50dp"
++        android:layout_marginTop="35dp"
++        android:layout_marginEnd="52dp"
++        android:layout_marginRight="52dp"
++        android:background="#FFFFFF"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/activity_type_dropdown" />
++
++    <TextView
++        android:id="@+id/hours_count"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="16dp"
++        android:layout_marginLeft="16dp"
++        android:layout_marginTop="64dp"
++        android:fontFamily="sans-serif"
++        android:text="Hours spent:"
++        android:textColor="#FFFFFF"
++        android:textSize="20sp"
++        android:textStyle="bold"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/type" />
++
++    <TextView
++        android:id="@+id/log_title"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="140dp"
++        android:layout_marginLeft="140dp"
++        android:layout_marginTop="16dp"
++        android:text="Fitness Log:"
++        android:textColor="#581845"
++        android:textSize="20sp"
++        android:textStyle="bold"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
+ 
+-    <com.google.android.material.bottomnavigation.BottomNavigationView
++    <Button
++        android:id="@+id/log_button"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="27dp"
++        android:layout_marginEnd="160dp"
++        android:layout_marginRight="160dp"
++        android:onClick="openDialog"
++        android:text="Log"
++        app:backgroundTint="#FF5733"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/Hours" />
++
++    <View
++        android:id="@+id/divider"
+         android:layout_width="match_parent"
++        android:layout_height="1dp"
++        android:layout_marginTop="10dp"
++        android:background="?android:attr/listDivider"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/log_button" />
++
++    <androidx.cardview.widget.CardView
++        android:id="@+id/chair_bend_card"
++        android:layout_width="100dp"
++        android:layout_height="100dp"
++        android:layout_marginStart="29dp"
++        android:layout_marginLeft="29dp"
++        android:layout_marginEnd="25dp"
++        android:layout_marginRight="25dp"
++        android:layout_marginBottom="23dp"
++        app:cardBackgroundColor="#FFC300"
++        app:cardCornerRadius="10dp"
++        app:cardElevation="25dp"
++        app:cardMaxElevation="25dp"
++        app:layout_constraintBottom_toTopOf="@+id/seated_twist_card"
++        app:layout_constraintEnd_toStartOf="@+id/forward_fold_card"
++        app:layout_constraintStart_toEndOf="@+id/ankle_card">
++
++        <ImageView
++            android:id="@+id/chairBend"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center_vertical"
++            app:srcCompat="@drawable/seated_stretch" />
++    </androidx.cardview.widget.CardView>
++
++    <TextView
++        android:id="@+id/stretch_title"
++        android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:id="@+id/bottom_navigation"
+-        app:itemBackground="@color/light_pink"
+-        app:itemTextColor="@drawable/pink_selector"
+-        app:itemIconTint="@drawable/pink_selector"
+-        app:menu="@menu/menu_navigation"
+-        android:layout_alignParentBottom="true"/>
++        android:layout_marginTop="12dp"
++        android:layout_marginEnd="89dp"
++        android:layout_marginRight="89dp"
++        android:text="Stretches to keep you active:"
++        android:textColor="#581845"
++        android:textSize="18sp"
++        android:textStyle="bold"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/divider" />
++
++    <androidx.cardview.widget.CardView
++        android:id="@+id/seated_twist_card"
++        android:layout_width="100dp"
++        android:layout_height="100dp"
++        android:layout_marginStart="31dp"
++        android:layout_marginLeft="31dp"
++        android:layout_marginEnd="23dp"
++        android:layout_marginRight="23dp"
++        android:layout_marginBottom="46dp"
++        app:cardBackgroundColor="#FFC300"
++        app:cardCornerRadius="10dp"
++        app:cardElevation="25dp"
++        app:cardMaxElevation="25dp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toStartOf="@+id/standing_stretch_card"
++        app:layout_constraintStart_toEndOf="@+id/neck_rolls_card">
++
++        <ImageView
++            android:id="@+id/seatedTwist"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center_horizontal"
++            app:srcCompat="@drawable/seated_twist" />
++    </androidx.cardview.widget.CardView>
++
++    <androidx.cardview.widget.CardView
++        android:id="@+id/standing_stretch_card"
++        android:layout_width="100dp"
++        android:layout_height="100dp"
++        android:layout_marginEnd="25dp"
++        android:layout_marginRight="25dp"
++        android:layout_marginBottom="46dp"
++        app:cardBackgroundColor="#FFC300"
++        app:cardCornerRadius="10dp"
++        app:cardElevation="25dp"
++        app:cardMaxElevation="25dp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent">
++
++        <ImageView
++            android:id="@+id/standStretch"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center_horizontal"
++            app:srcCompat="@drawable/standing_stretch" />
++    </androidx.cardview.widget.CardView>
++
++    <androidx.cardview.widget.CardView
++        android:id="@+id/forward_fold_card"
++        android:layout_width="100dp"
++        android:layout_height="100dp"
++        android:layout_marginEnd="25dp"
++        android:layout_marginRight="25dp"
++        android:layout_marginBottom="21dp"
++        app:cardBackgroundColor="#FFC300"
++        app:cardCornerRadius="10dp"
++        app:cardElevation="25dp"
++        app:cardMaxElevation="25dp"
++        app:layout_constraintBottom_toTopOf="@+id/standing_stretch_card"
++        app:layout_constraintEnd_toEndOf="parent">
++
++        <ImageView
++            android:id="@+id/forwardFold"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center_vertical"
++            app:srcCompat="@drawable/forward_fold" />
++    </androidx.cardview.widget.CardView>
++
++    <androidx.cardview.widget.CardView
++        android:id="@+id/neck_rolls_card"
++        android:layout_width="100dp"
++        android:layout_height="100dp"
++        android:layout_marginStart="32dp"
++        android:layout_marginLeft="32dp"
++        android:layout_marginBottom="46dp"
++        app:cardBackgroundColor="#FFC300"
++        app:cardCornerRadius="10dp"
++        app:cardElevation="25dp"
++        app:cardMaxElevation="25dp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintStart_toStartOf="parent">
++
++        <ImageView
++            android:id="@+id/neckRolls"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            app:srcCompat="@drawable/neck_roll" />
++    </androidx.cardview.widget.CardView>
+ 
+-</RelativeLayout>
+\ No newline at end of file
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"com.example.studynook\">\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.StudyNook\">\r\n        <activity android:name=\".HomePage\"></activity>\r\n        <activity android:name=\".LoginPage\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity android:name=\".FoodPage\" />\r\n        <activity android:name=\".FitnessPage\" />\r\n        <activity android:name=\".MentalHealthPage\" />\r\n        <activity android:name=\".WellbeingPage\" />\r\n        <activity android:name=\".FlashcardPage\" />\r\n        <activity android:name=\".NotePage\" />\r\n        <activity android:name=\".CreatePage\" />\r\n        <activity android:name=\".TutorialPage\" />\r\n        <activity android:name=\".ReferencePage\" />\r\n        <activity android:name=\".LibraryPage\" />\r\n        <activity android:name=\".ResourcesPage\" />\r\n        <activity android:name=\".TimerPage\" />\r\n        <activity android:name=\".AlarmPage\" />\r\n        <activity android:name=\".PlannerPage\" />\r\n        <activity android:name=\".CalendarPage\" />\r\n        <activity android:name=\".SchedulingPage\" />\r\n        <activity android:name=\".SignUpPage\" />\r\n        <activity android:name=\".ProfilePage\" />\r\n        <activity android:name=\".MainActivity\"></activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/AndroidManifest.xml	(date 1619788335991)
+@@ -9,7 +9,6 @@
+         android:roundIcon="@mipmap/ic_launcher_round"
+         android:supportsRtl="true"
+         android:theme="@style/Theme.StudyNook">
+-        <activity android:name=".HomePage"></activity>
+         <activity android:name=".LoginPage">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+@@ -17,12 +16,15 @@
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+         </activity>
+-        <activity android:name=".FoodPage" />
+-        <activity android:name=".FitnessPage" />
++        <activity android:name=".WellBeingPage"></activity>
+         <activity android:name=".MentalHealthPage" />
+-        <activity android:name=".WellbeingPage" />
++        <activity android:name=".FitnessPage" />
++        <activity android:name=".HomePage" />
+         <activity android:name=".FlashcardPage" />
+         <activity android:name=".NotePage" />
++        <activity android:name=".EditText" />
++        <activity android:name=".CountdownPage" />
++        <activity android:name=".SetAlarm" />
+         <activity android:name=".CreatePage" />
+         <activity android:name=".TutorialPage" />
+         <activity android:name=".ReferencePage" />
+@@ -35,7 +37,12 @@
+         <activity android:name=".SchedulingPage" />
+         <activity android:name=".SignUpPage" />
+         <activity android:name=".ProfilePage" />
+-        <activity android:name=".MainActivity"></activity>
++        <activity android:name=".MainActivity">
++        </activity>
++
++        <meta-data
++            android:name="preloaded_fonts"
++            android:resource="@array/preloaded_fonts" />
+     </application>
+ 
+ </manifest>
+\ No newline at end of file
+Index: app/src/main/java/com/example/studynook/WellbeingPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studynook;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.ActionBar;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.graphics.Color;\r\nimport android.graphics.drawable.ColorDrawable;\r\nimport android.os.Bundle;\r\nimport android.view.Menu;\r\nimport android.view.MenuItem;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\n\r\npublic class WellbeingPage extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_wellbeing_page);\r\n\r\n        ActionBar bar = getSupportActionBar();\r\n        ColorDrawable color = new ColorDrawable(Color.parseColor(\"#FF8386\"));\r\n        bar.setBackgroundDrawable(color);\r\n        bar.setTitle(\"Wellbeing\");\r\n\r\n        // Initialise and assign variable\r\n        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);\r\n\r\n        // Set home selected\r\n        bottomNavigationView.setSelectedItemId(R.id.wellbeing);\r\n\r\n        // Switch to different tabs when clicked\r\n        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n            @Override\r\n            public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n                switch(item.getItemId()) {\r\n                    case R.id.schedule:\r\n                        startActivity(new Intent(getApplicationContext(), SchedulingPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.resources:\r\n                        startActivity(new Intent(getApplicationContext(), ResourcesPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.home:\r\n                        startActivity(new Intent(getApplicationContext(), HomePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.wellbeing:\r\n                        return true;\r\n                    case R.id.create:\r\n                        startActivity(new Intent(getApplicationContext(), CreatePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                }\r\n                return false;\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public boolean onCreateOptionsMenu(Menu menu) {\r\n        getMenuInflater().inflate(R.menu.menu_top_bar, menu);\r\n        return super.onCreateOptionsMenu(menu);\r\n    }\r\n\r\n    @Override\r\n    public boolean onOptionsItemSelected(@NonNull MenuItem item) {\r\n        switch(item.getItemId()) {\r\n            case R.id.notibutton:\r\n                //startActivity(new Intent(this, ));\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n\r\n            case R.id.profilebutton:\r\n                startActivity(new Intent(getApplicationContext(), ProfilePage.class));\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n        }\r\n\r\n        return super.onOptionsItemSelected(item);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/WellbeingPage.java	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/java/com/example/studynook/WellBeingPage.java	(date 1619790515713)
+@@ -8,22 +8,30 @@
+ import android.graphics.Color;
+ import android.graphics.drawable.ColorDrawable;
+ import android.os.Bundle;
+-import android.view.Menu;
+ import android.view.MenuItem;
++import android.view.View;
++import android.widget.Button;
++import android.widget.TextView;
+ 
+ import com.google.android.material.bottomnavigation.BottomNavigationView;
+ 
+-public class WellbeingPage extends AppCompatActivity {
++public class WellBeingPage extends AppCompatActivity {
++   public TextView text;
++    public Button m_button;
++    public Button b_button;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_wellbeing_page);
+ 
++        text =findViewById(R.id.wellbeing_title);
++        m_button = (Button) findViewById(R.id.mind_button);
++        b_button = (Button) findViewById(R.id.body_button);
++
+         ActionBar bar = getSupportActionBar();
+         ColorDrawable color = new ColorDrawable(Color.parseColor("#FF8386"));
+         bar.setBackgroundDrawable(color);
+-        bar.setTitle("Wellbeing");
+ 
+         // Initialise and assign variable
+         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+@@ -31,14 +39,14 @@
+         // Set home selected
+         bottomNavigationView.setSelectedItemId(R.id.wellbeing);
+ 
+-        // Switch to different tabs when clicked
++        // Perform ItemSelectedListener
+         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+             @Override
+             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                 switch(item.getItemId()) {
+                     case R.id.schedule:
+                         startActivity(new Intent(getApplicationContext(), SchedulingPage.class));
+-                        overridePendingTransition(0, 0);
++                        overridePendingTransition(0, 0); // Animation to switch between pages
+                         return true;
+                     case R.id.resources:
+                         startActivity(new Intent(getApplicationContext(), ResourcesPage.class));
+@@ -58,28 +66,21 @@
+                 return false;
+             }
+         });
+-    }
+ 
+-    @Override
+-    public boolean onCreateOptionsMenu(Menu menu) {
+-        getMenuInflater().inflate(R.menu.menu_top_bar, menu);
+-        return super.onCreateOptionsMenu(menu);
+-    }
++        m_button.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                Intent intent = new Intent(WellBeingPage.this,MentalHealthPage.class);
++                startActivity(intent);
++            }
++        } );
+ 
+-    @Override
+-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+-        switch(item.getItemId()) {
+-            case R.id.notibutton:
+-                //startActivity(new Intent(this, ));
+-                overridePendingTransition(0, 0);
+-                return true;
+-
+-            case R.id.profilebutton:
+-                startActivity(new Intent(getApplicationContext(), ProfilePage.class));
+-                overridePendingTransition(0, 0);
+-                return true;
+-        }
+-
+-        return super.onOptionsItemSelected(item);
++        b_button.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                Intent intent = new Intent(WellBeingPage.this,FitnessPage.class);
++                startActivity(intent);
++            }
++        } );
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/studynook/FitnessPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studynook;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.ActionBar;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.graphics.Color;\r\nimport android.graphics.drawable.ColorDrawable;\r\nimport android.os.Bundle;\r\nimport android.view.Menu;\r\nimport android.view.MenuItem;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\n\r\npublic class FitnessPage extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_fitness_page);\r\n\r\n        ActionBar bar = getSupportActionBar();\r\n        ColorDrawable color = new ColorDrawable(Color.parseColor(\"#A1C7A8\"));\r\n        bar.setBackgroundDrawable(color);\r\n        bar.setTitle(\"Fitness\");\r\n\r\n        // Initialise and assign variable\r\n        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);\r\n\r\n        // Set home selected\r\n        bottomNavigationView.setSelectedItemId(R.id.wellbeing);\r\n\r\n        // Switch to different tab when selected\r\n        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n            @Override\r\n            public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n                switch(item.getItemId()) {\r\n                    case R.id.schedule:\r\n                        startActivity(new Intent(getApplicationContext(), SchedulingPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.resources:\r\n                        startActivity(new Intent(getApplicationContext(), ResourcesPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.home:\r\n                        startActivity(new Intent(getApplicationContext(), HomePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.wellbeing:\r\n                        return true;\r\n                    case R.id.create:\r\n                        startActivity(new Intent(getApplicationContext(), CreatePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                }\r\n                return false;\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public boolean onCreateOptionsMenu(Menu menu) {\r\n        getMenuInflater().inflate(R.menu.menu_top_bar, menu);\r\n        return super.onCreateOptionsMenu(menu);\r\n    }\r\n\r\n    @Override\r\n    public boolean onOptionsItemSelected(@NonNull MenuItem item) {\r\n        switch(item.getItemId()) {\r\n            case R.id.notibutton:\r\n                //startActivity(new Intent(this, ));\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n\r\n            case R.id.profilebutton:\r\n                startActivity(new Intent(getApplicationContext(), ProfilePage.class));\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n        }\r\n\r\n        return super.onOptionsItemSelected(item);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/FitnessPage.java	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/java/com/example/studynook/FitnessPage.java	(date 1619790137427)
+@@ -1,85 +1,79 @@
+ package com.example.studynook;
+ 
+-import androidx.annotation.NonNull;
+-import androidx.appcompat.app.ActionBar;
++import androidx.appcompat.app.AlertDialog;
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+-import android.content.Intent;
+-import android.graphics.Color;
+-import android.graphics.drawable.ColorDrawable;
++import android.content.DialogInterface;
+ import android.os.Bundle;
+-import android.view.Menu;
+-import android.view.MenuItem;
++import android.view.View;
++import android.widget.ArrayAdapter;
++import android.widget.Spinner;
++import android.widget.AdapterView;
++import android.widget.Toast;
+ 
+-import com.google.android.material.bottomnavigation.BottomNavigationView;
++import com.google.android.material.snackbar.Snackbar;
+ 
+-public class FitnessPage extends AppCompatActivity {
++public class FitnessPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_fitness_page);
+ 
+-        ActionBar bar = getSupportActionBar();
+-        ColorDrawable color = new ColorDrawable(Color.parseColor("#A1C7A8"));
+-        bar.setBackgroundDrawable(color);
+-        bar.setTitle("Fitness");
++        //get the spinner from the xml.
++        Spinner dropdown = (Spinner) findViewById(R.id.activity_type_dropdown);
++
++        //create a list of items for the spinner.
++        String[] items = new String[]{"Select item","Walking", "Running", "Cardio","Strength training","Dance","Sport"};
++
++        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
++        //There are multiple variations of this, but this is the basic variant.
++        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
++
++        //set the spinners adapter to the previously created one.
++        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
++        dropdown.setAdapter(adapter);
++        dropdown.setOnItemSelectedListener(this);
+ 
+-        // Initialise and assign variable
+-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
++        // Hides the top bar
++        getSupportActionBar().hide();
+ 
+-        // Set home selected
+-        bottomNavigationView.setSelectedItemId(R.id.wellbeing);
+ 
+-        // Switch to different tab when selected
+-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
++    }
++
++    public void openDialog(View v)
++    {
++        AlertDialog.Builder alert = new AlertDialog.Builder(this);
++        alert.setTitle("Log");
++        alert.setMessage("Save activity log?");
++        alert.setPositiveButton("Yes",new DialogInterface.OnClickListener(){
++            public void onClick(DialogInterface dialogInterface, int i){
++                Toast.makeText(FitnessPage.this,"Saved!",Toast.LENGTH_SHORT).show();
++            }
++        });
++        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+             @Override
+-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+-                switch(item.getItemId()) {
+-                    case R.id.schedule:
+-                        startActivity(new Intent(getApplicationContext(), SchedulingPage.class));
+-                        overridePendingTransition(0, 0);
+-                        return true;
+-                    case R.id.resources:
+-                        startActivity(new Intent(getApplicationContext(), ResourcesPage.class));
+-                        overridePendingTransition(0, 0);
+-                        return true;
+-                    case R.id.home:
+-                        startActivity(new Intent(getApplicationContext(), HomePage.class));
+-                        overridePendingTransition(0, 0);
+-                        return true;
+-                    case R.id.wellbeing:
+-                        return true;
+-                    case R.id.create:
+-                        startActivity(new Intent(getApplicationContext(), CreatePage.class));
+-                        overridePendingTransition(0, 0);
+-                        return true;
+-                }
+-                return false;
++            public void onClick(DialogInterface dialog, int which) {
++                Toast.makeText(FitnessPage.this,"Cancelled!",Toast.LENGTH_SHORT).show();
+             }
+         });
++        alert.create().show();
+     }
+ 
+     @Override
+-    public boolean onCreateOptionsMenu(Menu menu) {
+-        getMenuInflater().inflate(R.menu.menu_top_bar, menu);
+-        return super.onCreateOptionsMenu(menu);
++    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
++        String text = parent.getItemAtPosition(position).toString();
++        Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT);
++
+     }
+ 
+     @Override
+-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+-        switch(item.getItemId()) {
+-            case R.id.notibutton:
+-                //startActivity(new Intent(this, ));
+-                overridePendingTransition(0, 0);
+-                return true;
++    public void onNothingSelected(AdapterView<?> parent) {
+ 
+-            case R.id.profilebutton:
+-                startActivity(new Intent(getApplicationContext(), ProfilePage.class));
+-                overridePendingTransition(0, 0);
+-                return true;
+-        }
++    }
+ 
+-        return super.onOptionsItemSelected(item);
++    @Override
++    public void onPointerCaptureChanged(boolean hasCapture) {
++
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/studynook/HomePage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studynook;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.ActionBar;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.graphics.Color;\r\nimport android.graphics.drawable.ColorDrawable;\r\nimport android.os.Bundle;\r\nimport android.view.Menu;\r\nimport android.view.MenuItem;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\n\r\npublic class HomePage extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_home_page);\r\n\r\n        ActionBar bar = getSupportActionBar();\r\n        ColorDrawable color = new ColorDrawable(Color.parseColor(\"#3E7396\"));\r\n        bar.setBackgroundDrawable(color);\r\n\r\n        // Initialise and assign variable\r\n        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);\r\n\r\n        // Set home selected\r\n        bottomNavigationView.setSelectedItemId(R.id.home);\r\n\r\n        // Perform ItemSelectedListener\r\n        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n            @Override\r\n            public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n                switch(item.getItemId()) {\r\n                    case R.id.schedule:\r\n                        startActivity(new Intent(getApplicationContext(), SchedulingPage.class));\r\n                        overridePendingTransition(0, 0); // Animation to switch between pages\r\n                        return true;\r\n                    case R.id.resources:\r\n                        startActivity(new Intent(getApplicationContext(), ResourcesPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.home:\r\n                        return true;\r\n                    case R.id.wellbeing:\r\n                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.create:\r\n                        startActivity(new Intent(getApplicationContext(), CreatePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                }\r\n                return false;\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public boolean onCreateOptionsMenu(Menu menu) {\r\n        getMenuInflater().inflate(R.menu.menu_top_bar, menu);\r\n        return super.onCreateOptionsMenu(menu);\r\n    }\r\n\r\n    @Override\r\n    public boolean onOptionsItemSelected(@NonNull MenuItem item) {\r\n        switch(item.getItemId()) {\r\n            case R.id.notibutton:\r\n                //startActivity(new Intent(this, ));\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n\r\n            case R.id.profilebutton:\r\n                Intent data = getIntent();\r\n                String userId = data.getStringExtra(\"userId\");\r\n                String userPw = data.getStringExtra(\"userPw\");\r\n\r\n                Intent profile = new Intent(getApplicationContext(), ProfilePage.class);\r\n                profile.putExtra(\"userId\",userId);\r\n                profile.putExtra(\"userPw\",userPw);\r\n                startActivity(profile);\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n        }\r\n\r\n        return super.onOptionsItemSelected(item);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/HomePage.java	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/java/com/example/studynook/HomePage.java	(date 1619788195446)
+@@ -46,7 +46,7 @@
+                     case R.id.home:
+                         return true;
+                     case R.id.wellbeing:
+-                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
++                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.create:
+Index: app/src/main/java/com/example/studynook/TimerPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studynook;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.ActionBar;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.graphics.Color;\r\nimport android.graphics.drawable.ColorDrawable;\r\nimport android.os.Bundle;\r\nimport android.view.Menu;\r\nimport android.view.MenuItem;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\n\r\npublic class TimerPage extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_timer_page);\r\n\r\n        ActionBar actionBar = getSupportActionBar();\r\n        ColorDrawable color = new ColorDrawable(Color.parseColor(\"#FFA49C\"));\r\n        actionBar.setBackgroundDrawable(color);\r\n        actionBar.setTitle(\"Timer\");\r\n\r\n        // Initialise and assign variable\r\n        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);\r\n\r\n        // Set home selected\r\n        bottomNavigationView.setSelectedItemId(R.id.schedule);\r\n\r\n        // Switch to different tab when selected\r\n        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n            @Override\r\n            public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n                switch(item.getItemId()) {\r\n                    case R.id.schedule:\r\n                        return true;\r\n                    case R.id.resources:\r\n                        startActivity(new Intent(getApplicationContext(), ResourcesPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.home:\r\n                        startActivity(new Intent(getApplicationContext(), HomePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.wellbeing:\r\n                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.create:\r\n                        startActivity(new Intent(getApplicationContext(), CreatePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                }\r\n                return false;\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public boolean onCreateOptionsMenu(Menu menu) {\r\n        getMenuInflater().inflate(R.menu.menu_top_bar, menu);\r\n        return super.onCreateOptionsMenu(menu);\r\n    }\r\n\r\n    @Override\r\n    public boolean onOptionsItemSelected(@NonNull MenuItem item) {\r\n        switch(item.getItemId()) {\r\n            case R.id.notibutton:\r\n                //startActivity(new Intent(this, ));\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n\r\n            case R.id.profilebutton:\r\n                startActivity(new Intent(getApplicationContext(), ProfilePage.class));\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n        }\r\n\r\n        return super.onOptionsItemSelected(item);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/TimerPage.java	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/java/com/example/studynook/TimerPage.java	(date 1619788195314)
+@@ -10,11 +10,18 @@
+ import android.os.Bundle;
+ import android.view.Menu;
+ import android.view.MenuItem;
++import android.view.View;
++import android.widget.Button;
++import android.widget.NumberPicker;
+ 
+ import com.google.android.material.bottomnavigation.BottomNavigationView;
+ 
+ public class TimerPage extends AppCompatActivity {
+ 
++    protected NumberPicker hour, minutes, seconds;
++    private Button start;
++    protected boolean isStart;
++
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+@@ -47,7 +54,7 @@
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.wellbeing:
+-                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
++                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.create:
+@@ -58,6 +65,32 @@
+                 return false;
+             }
+         });
++
++        hour = findViewById(R.id.hourPicker);
++        hour.setMinValue(0);
++        hour.setMaxValue(99);
++
++        minutes = findViewById(R.id.minutePicker);
++        minutes.setMinValue(0);
++        minutes.setMaxValue(59);
++
++        seconds = findViewById(R.id.secondPicker);
++        seconds.setMinValue(0);
++        seconds.setMaxValue(59);
++
++        isStart = false;
++        start = findViewById(R.id.startTimerButton);
++        start.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                isStart = true;
++                long time = (long) hour.getValue() * 3600000 + (long) minutes.getValue() * 60000 + (long) seconds.getValue() * 1000;
++                Intent intent = new Intent(TimerPage.this, CountdownPage.class);
++                intent.putExtra("isStart", isStart);
++                intent.putExtra("Countdown", time);
++                startActivity(intent);
++            }
++        });
+     }
+ 
+     @Override
+Index: app/src/main/java/com/example/studynook/NotePage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studynook;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AlertDialog;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Context;\r\nimport android.content.DialogInterface;\r\nimport android.content.Intent;\r\nimport android.content.SharedPreferences;\r\nimport android.os.Bundle;\r\nimport android.view.Menu;\r\nimport android.view.MenuInflater;\r\nimport android.view.MenuItem;\r\nimport android.view.View;\r\nimport android.widget.AdapterView;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.ListView;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.HashSet;\r\n\r\npublic class NotePage extends AppCompatActivity {\r\n\r\n    static ArrayList<String> notes = new ArrayList<>();\r\n    static ArrayAdapter arrayAdapter;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_note_page);\r\n\r\n        ListView listView = findViewById(R.id.list);\r\n        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(\"com.example.notes\", Context.MODE_PRIVATE);\r\n        HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet(\"notes\", null);\r\n\r\n        if (set == null) {\r\n            notes.add(\"Example note\");\r\n        } else {\r\n            notes = new ArrayList(set);\r\n        }\r\n\r\n        // Using custom listView Provided by Android Studio\r\n        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, notes);\r\n\r\n        listView.setAdapter(arrayAdapter);\r\n\r\n        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {\r\n            @Override\r\n            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {\r\n                // Going from MainActivity to NotesEditorActivity\r\n                Intent intent = new Intent(getApplicationContext(), EditText.class);\r\n                intent.putExtra(\"noteId\", position);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {\r\n            @Override\r\n            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {\r\n\r\n                final int itemToDelete = i;\r\n                // To delete the data from the App\r\n                new AlertDialog.Builder(NotePage.this)\r\n                        .setIcon(android.R.drawable.ic_dialog_alert)\r\n                        .setTitle(\"Are you sure?\")\r\n                        .setMessage(\"Do you want to delete this note?\")\r\n                        .setPositiveButton(\"Yes\", new DialogInterface.OnClickListener() {\r\n                            @Override\r\n                            public void onClick(DialogInterface dialogInterface, int i) {\r\n                                notes.remove(itemToDelete);\r\n                                arrayAdapter.notifyDataSetChanged();\r\n                                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(\"com.example.notes\", Context.MODE_PRIVATE);\r\n                                HashSet<String> set = new HashSet(NotePage.notes);\r\n                                sharedPreferences.edit().putStringSet(\"notes\", set).apply();\r\n                            }\r\n                        }).setNegativeButton(\"No\", null).show();\r\n                return true;\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public boolean onCreateOptionsMenu(Menu menu) {\r\n        MenuInflater menuInflater = getMenuInflater();\r\n        menuInflater.inflate(R.menu.menu_add_note, menu);\r\n\r\n        return super.onCreateOptionsMenu(menu);\r\n    }\r\n\r\n    @Override\r\n    public boolean onOptionsItemSelected(@NonNull MenuItem item) {\r\n        super.onOptionsItemSelected(item);\r\n\r\n        if (item.getItemId() == R.id.addnote) {\r\n            Intent intent = new Intent(getApplicationContext(), EditText.class);\r\n            startActivity(intent);\r\n            return true;\r\n        }\r\n\r\n        return false;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/NotePage.java	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/java/com/example/studynook/NotePage.java	(date 1619788195307)
+@@ -22,8 +22,8 @@
+ 
+ public class NotePage extends AppCompatActivity {
+ 
+-    static ArrayList<String> notes = new ArrayList<>();
+-    static ArrayAdapter arrayAdapter;
++    protected static ArrayList<String> notes = new ArrayList<>();
++    protected static ArrayAdapter arrayAdapter;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -40,7 +40,7 @@
+             notes = new ArrayList(set);
+         }
+ 
+-        // Using custom listView Provided by Android Studio
++        // Using custom listView provided by Android Studio
+         arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, notes);
+ 
+         listView.setAdapter(arrayAdapter);
+@@ -48,7 +48,7 @@
+         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+             @Override
+             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+-                // Going from MainActivity to NotesEditorActivity
++                // Going from NotePage to EditText
+                 Intent intent = new Intent(getApplicationContext(), EditText.class);
+                 intent.putExtra("noteId", position);
+                 startActivity(intent);
+@@ -83,7 +83,7 @@
+     @Override
+     public boolean onCreateOptionsMenu(Menu menu) {
+         MenuInflater menuInflater = getMenuInflater();
+-        menuInflater.inflate(R.menu.menu_add_note, menu);
++        menuInflater.inflate(R.menu.menu_add, menu);
+ 
+         return super.onCreateOptionsMenu(menu);
+     }
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_1_8\" default=\"false\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ .idea/misc.xml	(date 1619788195296)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+   <component name="ProjectType">
+Index: app/src/main/java/com/example/studynook/LibraryPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studynook;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.ActionBar;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.graphics.Color;\r\nimport android.graphics.drawable.ColorDrawable;\r\nimport android.net.Uri;\r\nimport android.os.Bundle;\r\nimport android.view.MenuItem;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\n\r\npublic class LibraryPage extends AppCompatActivity {\r\n    Button gutt,internet,liba,otherweb,at;\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_library_page);\r\n        gutt = findViewById(R.id.btn_gutebberg);\r\n        internet = findViewById(R.id.btn_internet);\r\n        liba = findViewById(R.id.btn_openlib);\r\n        otherweb = findViewById(R.id.btn_other);\r\n        at = findViewById(R.id.btn_aut);\r\n\r\n        ActionBar actionBar = getSupportActionBar();\r\n        ColorDrawable color = new ColorDrawable(Color.parseColor(\"#FFBB3E\"));\r\n        actionBar.setBackgroundDrawable(color);\r\n        actionBar.setTitle(\"Library\");\r\n\r\n        // Initialise and assign variable\r\n        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);\r\n\r\n        // Set home selected\r\n        bottomNavigationView.setSelectedItemId(R.id.resources);\r\n\r\n        // Perform ItemSelectedListener\r\n        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n            @Override\r\n            public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n                switch(item.getItemId()) {\r\n                    case R.id.schedule:\r\n                        startActivity(new Intent(getApplicationContext(), SchedulingPage.class));\r\n                        overridePendingTransition(0, 0); // Animation to switch between pages\r\n                        return true;\r\n                    case R.id.resources:\r\n                        return true;\r\n                    case R.id.home:\r\n                        startActivity(new Intent(getApplicationContext(), HomePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.wellbeing:\r\n                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.create:\r\n                        startActivity(new Intent(getApplicationContext(), CreatePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                }\r\n                return false;\r\n            }\r\n        });\r\n\r\n        gutt.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Uri uri = Uri.parse(\"https://www.gutenberg.org/ebooks\"); // missing 'http://' will cause crashed\r\n                Intent intent = new Intent(Intent.ACTION_VIEW, uri);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        internet.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Uri uri = Uri.parse(\"https://archive.org/\"); // missing 'http://' will cause crashed\r\n                Intent intent = new Intent(Intent.ACTION_VIEW, uri);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        liba.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Uri uri = Uri.parse(\"https://openlibrary.org/\"); // missing 'http://' will cause crashed\r\n                Intent intent = new Intent(Intent.ACTION_VIEW, uri);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        otherweb.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Uri uri = Uri.parse(\"https://www.google.co.nz/amp/s/ebookfriendly.com/sites-where-you-can-read-books-online/amp\"); // missing 'http://' will cause crashed\r\n                Intent intent = new Intent(Intent.ACTION_VIEW, uri);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n        at.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Uri uri = Uri.parse(\"https://library.aut.ac.nz/\"); // missing 'http://' will cause crashed\r\n                Intent intent = new Intent(Intent.ACTION_VIEW, uri);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/LibraryPage.java	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/java/com/example/studynook/LibraryPage.java	(date 1619788195437)
+@@ -54,7 +54,7 @@
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.wellbeing:
+-                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
++                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.create:
+Index: app/src/main/res/layout/activity_timer_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".TimerPage\">\r\n\r\n    <TextView\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Schedule\"\r\n        android:textSize=\"50sp\"\r\n        android:textStyle=\"bold\"\r\n        android:layout_centerInParent=\"true\"/>\r\n\r\n    <com.google.android.material.bottomnavigation.BottomNavigationView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:id=\"@+id/bottom_navigation\"\r\n        app:itemBackground=\"@color/light_red\"\r\n        app:itemTextColor=\"@drawable/red_selector\"\r\n        app:itemIconTint=\"@drawable/red_selector\"\r\n        app:menu=\"@menu/menu_navigation\"\r\n        android:layout_alignParentBottom=\"true\"/>\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_timer_page.xml	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/res/layout/activity_timer_page.xml	(date 1619788195346)
+@@ -6,14 +6,6 @@
+     android:layout_height="match_parent"
+     tools:context=".TimerPage">
+ 
+-    <TextView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Schedule"
+-        android:textSize="50sp"
+-        android:textStyle="bold"
+-        android:layout_centerInParent="true"/>
+-
+     <com.google.android.material.bottomnavigation.BottomNavigationView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+@@ -23,4 +15,58 @@
+         app:itemIconTint="@drawable/red_selector"
+         app:menu="@menu/menu_navigation"
+         android:layout_alignParentBottom="true"/>
++
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:layout_alignParentStart="true"
++        android:layout_alignParentTop="true"
++        android:layout_alignParentLeft="true">
++
++        <NumberPicker
++            android:id="@+id/hourPicker"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_marginStart="80dp"
++            android:layout_marginLeft="80dp"
++            android:layout_marginTop="120dp"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent"
++            tools:ignore="MissingConstraints" />
++
++        <NumberPicker
++            android:id="@+id/minutePicker"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_marginStart="24dp"
++            android:layout_marginLeft="24dp"
++            android:layout_marginTop="120dp"
++            app:layout_constraintStart_toEndOf="@+id/hourPicker"
++            app:layout_constraintTop_toTopOf="parent"
++            tools:ignore="MissingConstraints" />
++
++        <NumberPicker
++            android:id="@+id/secondPicker"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_marginStart="24dp"
++            android:layout_marginLeft="24dp"
++            android:layout_marginTop="120dp"
++            app:layout_constraintStart_toEndOf="@+id/minutePicker"
++            app:layout_constraintTop_toTopOf="parent"
++            tools:ignore="MissingConstraints" />
++
++        <Button
++            android:id="@+id/startTimerButton"
++            android:layout_width="243dp"
++            android:layout_height="69dp"
++            android:layout_marginStart="80dp"
++            android:layout_marginLeft="80dp"
++            android:layout_marginTop="388dp"
++            android:text="Start"
++            app:backgroundTint="#FF5053"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent" />
++
++    </androidx.constraintlayout.widget.ConstraintLayout>
+ </RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/studynook/EditText.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studynook;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.content.SharedPreferences;\r\nimport android.os.Bundle;\r\nimport android.text.Editable;\r\nimport android.text.TextWatcher;\r\n\r\nimport java.util.HashSet;\r\n\r\npublic class EditText extends AppCompatActivity {\r\n\r\n    int noteId;\r\n    private android.widget.EditText editText;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_edit_text);\r\n\r\n        editText = findViewById(R.id.editText);\r\n\r\n        Intent intent = getIntent();\r\n\r\n        noteId = intent.getIntExtra(\"noteId\", -1);\r\n        if (noteId != -1)\r\n            editText.setText(NotePage.notes.get(noteId));\r\n        else {\r\n            NotePage.notes.add(\"\");\r\n            noteId = NotePage.notes.size() - 1;\r\n            NotePage.arrayAdapter.notifyDataSetChanged();\r\n        }\r\n\r\n        editText.addTextChangedListener(new TextWatcher() {\r\n            @Override\r\n            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {\r\n\r\n            }\r\n\r\n            @Override\r\n            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {\r\n                NotePage.notes.set(noteId, String.valueOf(charSequence));\r\n                NotePage.arrayAdapter.notifyDataSetChanged();\r\n                // Creating Object of SharedPreferences to store data in the phone\r\n                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(\"com.example.notes\", Context.MODE_PRIVATE);\r\n                HashSet<String> set = new HashSet(NotePage.notes);\r\n                sharedPreferences.edit().putStringSet(\"notes\", set).apply();\r\n            }\r\n\r\n            @Override\r\n            public void afterTextChanged(Editable s) {\r\n\r\n            }\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/EditText.java	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/java/com/example/studynook/EditText.java	(date 1619788195304)
+@@ -13,7 +13,7 @@
+ 
+ public class EditText extends AppCompatActivity {
+ 
+-    int noteId;
++    protected int noteId;
+     private android.widget.EditText editText;
+ 
+     @Override
+Index: .idea/render.experimental.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/render.experimental.xml	(date 1619788195297)
++++ .idea/render.experimental.xml	(date 1619788195297)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RenderSettings">
++    <option name="showDecorations" value="true" />
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_wellbeing_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".WellbeingPage\">\r\n\r\n    <TextView\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Wellbeing\"\r\n        android:textSize=\"50sp\"\r\n        android:textStyle=\"bold\"\r\n        android:layout_centerInParent=\"true\"/>\r\n\r\n    <com.google.android.material.bottomnavigation.BottomNavigationView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:id=\"@+id/bottom_navigation\"\r\n        app:itemBackground=\"@color/light_pink\"\r\n        app:itemTextColor=\"@drawable/pink_selector\"\r\n        app:itemIconTint=\"@drawable/pink_selector\"\r\n        app:menu=\"@menu/menu_navigation\"\r\n        android:layout_alignParentBottom=\"true\"/>\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_wellbeing_page.xml	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/res/layout/activity_wellbeing_page.xml	(date 1619788195351)
+@@ -4,15 +4,55 @@
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    tools:context=".WellbeingPage">
++    android:background="#FF7B84"
++    tools:context=".WellBeingPage">
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:orientation="vertical">
+ 
+-    <TextView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Wellbeing"
+-        android:textSize="50sp"
+-        android:textStyle="bold"
+-        android:layout_centerInParent="true"/>
++        <TextView
++            android:id="@+id/wellbeing_title"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:fontFamily="@font/convergence"
++            android:text="Choose your wellbeing topic:"
++            android:textAllCaps="false"
++            android:textColor="#FFFFFF"
++            android:textIsSelectable="false"
++            android:textSize="24sp"
++            android:textStyle="bold"
++            android:typeface="normal"
++            app:layout_constraintBottom_toTopOf="@+id/body_button"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent" />
++
++        <Button
++            android:id="@+id/body_button"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Body"
++            android:textColor="#FFFFFF"
++            app:backgroundTint="#C70039"
++            app:layout_constraintBottom_toBottomOf="parent"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintStart_toStartOf="parent" />
++
++        <Button
++            android:id="@+id/mind_button"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:elevation="10dp"
++            android:text="Mind"
++            android:textColor="#000000"
++            app:backgroundTint="#FF5733"
++            app:layout_constraintBottom_toBottomOf="parent"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintStart_toStartOf="parent" />
++
++    </LinearLayout>
+ 
+     <com.google.android.material.bottomnavigation.BottomNavigationView
+         android:layout_width="match_parent"
+Index: app/src/main/res/layout/activity_note_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".NotePage\">\r\n\r\n    <ListView\r\n        android:id=\"@+id/list\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\" />\r\n\r\n    <TextView\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Create\"\r\n        android:textSize=\"50sp\"\r\n        android:textStyle=\"bold\"\r\n        android:layout_centerInParent=\"true\"/>\r\n\r\n    <com.google.android.material.bottomnavigation.BottomNavigationView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:id=\"@+id/bottom_navigation\"\r\n        app:itemBackground=\"@color/light_green\"\r\n        app:itemTextColor=\"@drawable/green_selector\"\r\n        app:itemIconTint=\"@drawable/green_selector\"\r\n        app:menu=\"@menu/menu_navigation\"\r\n        android:layout_alignParentBottom=\"true\"/>\r\n\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_note_page.xml	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/res/layout/activity_note_page.xml	(date 1619788195342)
+@@ -11,14 +11,6 @@
+         android:layout_width="match_parent"
+         android:layout_height="match_parent" />
+ 
+-    <TextView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Create"
+-        android:textSize="50sp"
+-        android:textStyle="bold"
+-        android:layout_centerInParent="true"/>
+-
+     <com.google.android.material.bottomnavigation.BottomNavigationView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+Index: app/src/main/res/layout/activity_create_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".CreatePage\">\r\n\r\n    <TextView\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Create\"\r\n        android:textSize=\"50sp\"\r\n        android:textStyle=\"bold\"\r\n        android:layout_centerInParent=\"true\"/>\r\n\r\n    <com.google.android.material.bottomnavigation.BottomNavigationView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:id=\"@+id/bottom_navigation\"\r\n        app:itemBackground=\"@color/light_green\"\r\n        app:itemTextColor=\"@drawable/green_selector\"\r\n        app:itemIconTint=\"@drawable/green_selector\"\r\n        app:menu=\"@menu/menu_navigation\"\r\n        android:layout_alignParentBottom=\"true\"/>\r\n\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_create_page.xml	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/res/layout/activity_create_page.xml	(date 1619788195335)
+@@ -6,14 +6,6 @@
+     android:layout_height="match_parent"
+     tools:context=".CreatePage">
+ 
+-    <TextView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Create"
+-        android:textSize="50sp"
+-        android:textStyle="bold"
+-        android:layout_centerInParent="true"/>
+-
+     <com.google.android.material.bottomnavigation.BottomNavigationView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+@@ -24,4 +16,35 @@
+         app:menu="@menu/menu_navigation"
+         android:layout_alignParentBottom="true"/>
+ 
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++
++        <Button
++            android:id="@+id/noteButton"
++            android:layout_width="246dp"
++            android:layout_height="89dp"
++            android:layout_marginTop="236dp"
++            android:text="Note"
++            android:textSize="30sp"
++            app:backgroundTint="#A1C7A8"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintHorizontal_bias="0.498"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent" />
++
++        <Button
++            android:id="@+id/flashcardButton"
++            android:layout_width="246dp"
++            android:layout_height="89dp"
++            android:layout_marginTop="408dp"
++            android:text="Flashcard"
++            android:textSize="30sp"
++            app:backgroundTint="#A1C7A8"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintHorizontal_bias="0.499"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent" />
++    </androidx.constraintlayout.widget.ConstraintLayout>
++
+ </RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/studynook/SetAlarm.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/SetAlarm.java	(date 1619788195311)
++++ app/src/main/java/com/example/studynook/SetAlarm.java	(date 1619788195311)
+@@ -0,0 +1,119 @@
++package com.example.studynook;
++
++import androidx.annotation.NonNull;
++import androidx.annotation.RequiresApi;
++import androidx.appcompat.app.ActionBar;
++import androidx.appcompat.app.AppCompatActivity;
++
++import android.content.Intent;
++import android.graphics.Color;
++import android.graphics.drawable.ColorDrawable;
++import android.os.Build;
++import android.os.Bundle;
++import android.view.Menu;
++import android.view.MenuItem;
++import android.widget.Button;
++import android.widget.CheckBox;
++import android.widget.TextView;
++import android.widget.TimePicker;
++
++import com.google.android.material.bottomnavigation.BottomNavigationView;
++
++public class SetAlarm extends AppCompatActivity {
++
++    private TimePicker alarmTime;
++    private Button setAlarm;
++    private Integer hour, minute;
++//    protected int alarmId;
++//    private TextView alarmTitle;
++//    private CheckBox recurring, mon, tue, wed, thu, fri, sat, sun;
++
++    @RequiresApi(api = Build.VERSION_CODES.M)
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_set_alarm);
++
++        ActionBar actionBar = getSupportActionBar();
++        ColorDrawable color = new ColorDrawable(Color.parseColor("#FFA49C"));
++        actionBar.setBackgroundDrawable(color);
++        actionBar.setTitle("Set Alarm");
++
++        // Initialise and assign variable
++        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
++
++        // Set home selected
++        bottomNavigationView.setSelectedItemId(R.id.schedule);
++
++        // Switch to different tab when selected
++        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
++            @Override
++            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
++                switch(item.getItemId()) {
++                    case R.id.schedule:
++                        return true;
++                    case R.id.resources:
++                        startActivity(new Intent(getApplicationContext(), ResourcesPage.class));
++                        overridePendingTransition(0, 0);
++                        return true;
++                    case R.id.home:
++                        startActivity(new Intent(getApplicationContext(), HomePage.class));
++                        overridePendingTransition(0, 0);
++                        return true;
++                    case R.id.wellbeing:
++                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
++                        overridePendingTransition(0, 0);
++                        return true;
++                    case R.id.create:
++                        startActivity(new Intent(getApplicationContext(), CreatePage.class));
++                        overridePendingTransition(0, 0);
++                        return true;
++                }
++                return false;
++            }
++        });
++
++        alarmTime = findViewById(R.id.timePick);
++        setAlarm = findViewById(R.id.setAlarm);
++
++        hour = alarmTime.getCurrentHour();
++        minute = alarmTime.getCurrentMinute();
++
++        Intent intent = getIntent();
++        intent.putExtra("hour", hour);
++        intent.putExtra("minute", minute);
++
++//        alarmTitle = findViewById(R.id.alarmTitle);
++//        recurring = findViewById(R.id.recurring);
++//        mon = findViewById(R.id.monday);
++//        tue = findViewById(R.id.tuesday);
++//        wed = findViewById(R.id.wednesday);
++//        thu = findViewById(R.id.thursday);
++//        fri = findViewById(R.id.friday);
++//        sat = findViewById(R.id.saturday);
++//        sun = findViewById(R.id.sunday);
++    }
++
++    @Override
++    public boolean onCreateOptionsMenu(Menu menu) {
++        getMenuInflater().inflate(R.menu.menu_top_bar, menu);
++        return super.onCreateOptionsMenu(menu);
++    }
++
++    @Override
++    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
++        switch(item.getItemId()) {
++            case R.id.notibutton:
++                //startActivity(new Intent(this, ));
++                overridePendingTransition(0, 0);
++                return true;
++
++            case R.id.profilebutton:
++                startActivity(new Intent(getApplicationContext(), ProfilePage.class));
++                overridePendingTransition(0, 0);
++                return true;
++        }
++
++        return super.onOptionsItemSelected(item);
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_tutorial_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".TutorialPage\"\r\n    android:orientation=\"vertical\"\r\n    >\r\n\r\n    <RelativeLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:background=\"@color/dark_orange\"\r\n        android:layout_alignParentTop=\"true\"\r\n        >\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Tutorials\"\r\n            android:textColor=\"@color/white\"\r\n            android:textSize=\"40sp\" />\r\n\r\n\r\n        <ImageView\r\n            android:id=\"@+id/btn_admin_testdrive_logout\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_alignParentRight=\"true\"\r\n            android:src=\"@drawable/ic_baseline_account_circle_24\"\r\n            android:layout_alignParentEnd=\"true\"\r\n            android:layout_centerVertical=\"true\"/>\r\n    </RelativeLayout>\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\"\r\n        android:gravity=\"center\">\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\"\r\n            android:gravity=\"center\">\r\n\r\n            <Button\r\n                android:id=\"@+id/btn_algebra\"\r\n                android:layout_width=\"150dp\"\r\n                android:layout_height=\"100dp\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginTop=\"30sp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"15dp\"\r\n                android:backgroundTint=\"@color/dark_orange\"\r\n                android:fontFamily=\"sans-serif-medium\"\r\n                android:text=\"Khan\\nAcademy \"\r\n                android:textAllCaps=\"false\"\r\n                android:textColor=\"@color/white\" />\r\n\r\n            <Button\r\n                android:id=\"@+id/btn_programming\"\r\n                android:layout_width=\"150dp\"\r\n                android:layout_height=\"100dp\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginTop=\"30sp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"15dp\"\r\n                android:backgroundTint=\"@color/dark_orange\"\r\n                android:fontFamily=\"sans-serif-medium\"\r\n                android:text=\"Harvard\\nUniversity \"\r\n                android:textAllCaps=\"false\"\r\n                android:textColor=\"@color/white\" />\r\n        </LinearLayout>\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\"\r\n            android:gravity=\"center\">\r\n\r\n            <Button\r\n                android:id=\"@+id/btn_sql\"\r\n                android:layout_width=\"150dp\"\r\n                android:layout_height=\"100dp\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginTop=\"30sp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"15dp\"\r\n                android:backgroundTint=\"@color/dark_orange\"\r\n                android:fontFamily=\"sans-serif-medium\"\r\n                android:text=\"Edx\"\r\n                android:textAllCaps=\"false\"\r\n                android:textColor=\"@color/white\" />\r\n\r\n            <Button\r\n                android:id=\"@+id/btn_limits\"\r\n                android:layout_width=\"150dp\"\r\n                android:layout_height=\"100dp\"\r\n                android:layout_marginLeft=\"15dp\"\r\n                android:layout_marginTop=\"30sp\"\r\n                android:layout_marginRight=\"15dp\"\r\n                android:layout_marginBottom=\"15dp\"\r\n                android:backgroundTint=\"@color/dark_orange\"\r\n                android:fontFamily=\"sans-serif-medium\"\r\n                android:text=\"Linkedin\\nLearning\"\r\n                android:textAllCaps=\"false\"\r\n                android:textColor=\"@color/white\" />\r\n        </LinearLayout>\r\n    </LinearLayout>\r\n    <com.google.android.material.bottomnavigation.BottomNavigationView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:id=\"@+id/bottom_navigation\"\r\n        app:itemBackground=\"@color/light_orange\"\r\n        app:itemTextColor=\"@drawable/red_selector\"\r\n        app:itemIconTint=\"@drawable/red_selector\"\r\n        app:menu=\"@menu/menu_navigation\"\r\n        android:layout_alignParentBottom=\"true\"/>\r\n\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_tutorial_page.xml	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/res/layout/activity_tutorial_page.xml	(date 1619788195348)
+@@ -9,29 +9,6 @@
+     android:orientation="vertical"
+     >
+ 
+-    <RelativeLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:background="@color/dark_orange"
+-        android:layout_alignParentTop="true"
+-        >
+-        <TextView
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:text="Tutorials"
+-            android:textColor="@color/white"
+-            android:textSize="40sp" />
+-
+-
+-        <ImageView
+-            android:id="@+id/btn_admin_testdrive_logout"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_alignParentRight="true"
+-            android:src="@drawable/ic_baseline_account_circle_24"
+-            android:layout_alignParentEnd="true"
+-            android:layout_centerVertical="true"/>
+-    </RelativeLayout>
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+Index: app/src/main/java/com/example/studynook/AlarmSound.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/AlarmSound.java	(date 1619788195300)
++++ app/src/main/java/com/example/studynook/AlarmSound.java	(date 1619788195300)
+@@ -0,0 +1,19 @@
++package com.example.studynook;
++
++import androidx.appcompat.app.AppCompatActivity;
++
++import android.content.BroadcastReceiver;
++import android.content.Context;
++import android.content.Intent;
++import android.media.MediaPlayer;
++import android.os.Bundle;
++import android.provider.Settings;
++
++public class AlarmSound extends  BroadcastReceiver {
++
++    @Override
++    public void onReceive(Context context, Intent intent) {
++        MediaPlayer media = MediaPlayer.create(context, Settings.System.DEFAULT_ALARM_ALERT_URI);
++        media.start();
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/studynook/CountdownPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/CountdownPage.java	(date 1619788195301)
++++ app/src/main/java/com/example/studynook/CountdownPage.java	(date 1619788195301)
+@@ -0,0 +1,186 @@
++package com.example.studynook;
++
++import androidx.annotation.NonNull;
++import androidx.appcompat.app.ActionBar;
++import androidx.appcompat.app.AppCompatActivity;
++
++import android.content.Intent;
++import android.graphics.Color;
++import android.graphics.drawable.ColorDrawable;
++import android.os.Bundle;
++import android.os.CountDownTimer;
++import android.view.Menu;
++import android.view.MenuItem;
++import android.view.View;
++import android.widget.Button;
++import android.widget.TextView;
++
++import com.google.android.material.bottomnavigation.BottomNavigationView;
++
++import java.util.Locale;
++
++public class CountdownPage extends AppCompatActivity {
++
++    private TextView countdown;
++    private Button pause, reset, resume;
++    private CountDownTimer countTimer;
++    private boolean isRunning;
++    private long countdownTime, pauseTimeLeft;
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_countdown_page);
++
++        ActionBar actionBar = getSupportActionBar();
++        ColorDrawable color = new ColorDrawable(Color.parseColor("#FFA49C"));
++        actionBar.setBackgroundDrawable(color);
++        actionBar.setTitle("Countdown");
++
++        // Initialise and assign variable
++        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
++
++        // Set home selected
++        bottomNavigationView.setSelectedItemId(R.id.schedule);
++
++        // Switch to different tab when selected
++        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
++            @Override
++            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
++                switch(item.getItemId()) {
++                    case R.id.schedule:
++                        return true;
++                    case R.id.resources:
++                        startActivity(new Intent(getApplicationContext(), ResourcesPage.class));
++                        overridePendingTransition(0, 0);
++                        return true;
++                    case R.id.home:
++                        startActivity(new Intent(getApplicationContext(), HomePage.class));
++                        overridePendingTransition(0, 0);
++                        return true;
++                    case R.id.wellbeing:
++                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
++                        overridePendingTransition(0, 0);
++                        return true;
++                    case R.id.create:
++                        startActivity(new Intent(getApplicationContext(), CreatePage.class));
++                        overridePendingTransition(0, 0);
++                        return true;
++                }
++                return false;
++            }
++        });
++
++        countdown = findViewById(R.id.countdownText);
++        pause = findViewById(R.id.pauseButton);
++        reset = findViewById(R.id.resetButton);
++        resume = findViewById(R.id.resumeButton);
++
++        Bundle extras = getIntent().getExtras();
++
++        if (extras != null)
++        {
++            isRunning = extras.getBoolean("isStart");
++            countdownTime = extras.getLong("Countdown");
++        }
++
++        startTimer();
++
++        pause.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                pauseTimer();
++            }
++        });
++
++        reset.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                resetTimer();
++            }
++        });
++
++        resume.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                resumeTimer();
++            }
++        });
++    }
++
++    public void startTimer() {
++        countTimer = new CountDownTimer(countdownTime, 1000) {
++            @Override
++            public void onTick(long millisUntilFinished) {
++                countdownTime = millisUntilFinished;
++                updateCountdownText();
++            }
++
++            @Override
++            public void onFinish() {
++                isRunning = false;
++                countdown.setText("Finish!!");
++                pause.setVisibility(View.INVISIBLE);
++                reset.setVisibility(View.VISIBLE);
++            }
++        };
++
++        countTimer.start();
++        isRunning = true;
++        pause.setVisibility(View.VISIBLE);
++        reset.setVisibility(View.INVISIBLE);
++        resume.setVisibility(View.INVISIBLE);
++    }
++
++    public void pauseTimer() {
++        pauseTimeLeft = countdownTime;
++        countTimer.cancel();
++        isRunning = false;
++        pause.setVisibility(View.INVISIBLE);
++        reset.setVisibility(View.VISIBLE);
++        resume.setVisibility(View.VISIBLE);
++    }
++
++    public void resetTimer() {
++        Intent intent = new Intent(CountdownPage.this, TimerPage.class);
++        startActivity(intent);
++    }
++
++    public void resumeTimer() {
++        isRunning = true;
++        countdownTime = pauseTimeLeft;
++        startTimer();
++    }
++
++    public void updateCountdownText() {
++        int hour = (int) (countdownTime / 1000) / 3600;
++        int minute = (int) ((countdownTime / 1000) % 3600) / 60;
++        int second = (int) (countdownTime / 1000) % 60;
++        String timeLeft = String.format(Locale.getDefault(), "%02d : %02d : %02d", hour, minute, second);
++
++        countdown.setText(timeLeft);
++    }
++
++    @Override
++    public boolean onCreateOptionsMenu(Menu menu) {
++        getMenuInflater().inflate(R.menu.menu_top_bar, menu);
++        return super.onCreateOptionsMenu(menu);
++    }
++
++    @Override
++    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
++        switch(item.getItemId()) {
++            case R.id.notibutton:
++                //startActivity(new Intent(this, ));
++                overridePendingTransition(0, 0);
++                return true;
++
++            case R.id.profilebutton:
++                startActivity(new Intent(getApplicationContext(), ProfilePage.class));
++                overridePendingTransition(0, 0);
++                return true;
++        }
++
++        return super.onOptionsItemSelected(item);
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/font/convergence.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/font/convergence.xml	(date 1619788195328)
++++ app/src/main/res/font/convergence.xml	(date 1619788195328)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<font-family xmlns:app="http://schemas.android.com/apk/res-auto"
++        app:fontProviderAuthority="com.google.android.gms.fonts"
++        app:fontProviderPackage="com.google.android.gms"
++        app:fontProviderQuery="Convergence"
++        app:fontProviderCerts="@array/com_google_android_gms_fonts_certs">
++</font-family>
+Index: app/src/main/res/values/preloaded_fonts.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/preloaded_fonts.xml	(date 1619788195356)
++++ app/src/main/res/values/preloaded_fonts.xml	(date 1619788195356)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <array name="preloaded_fonts" translatable="false">
++        <item>@font/convergence</item>
++    </array>
++</resources>
+Index: app/src/main/res/values/font_certs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/font_certs.xml	(date 1619788195354)
++++ app/src/main/res/values/font_certs.xml	(date 1619788195354)
+@@ -0,0 +1,17 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <array name="com_google_android_gms_fonts_certs">
++        <item>@array/com_google_android_gms_fonts_certs_dev</item>
++        <item>@array/com_google_android_gms_fonts_certs_prod</item>
++    </array>
++    <string-array name="com_google_android_gms_fonts_certs_dev">
++        <item>
++            MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTAeFw0wODA0MTUyMzM2NTZaFw0zNTA5MDEyMzM2NTZaMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBANbOLggKv+IxTdGNs8/TGFy0PTP6DHThvbbR24kT9ixcOd9W+EaBPWW+wPPKQmsHxajtWjmQwWfna8mZuSeJS48LIgAZlKkpFeVyxW0qMBujb8X8ETrWy550NaFtI6t9+u7hZeTfHwqNvacKhp1RbE6dBRGWynwMVX8XW8N1+UjFaq6GCJukT4qmpN2afb8sCjUigq0GuMwYXrFVee74bQgLHWGJwPmvmLHC69EH6kWr22ijx4OKXlSIx2xT1AsSHee70w5iDBiK4aph27yH3TxkXy9V89TDdexAcKk/cVHYNnDBapcavl7y0RiQ4biu8ymM8Ga/nmzhRKya6G0cGw8CAQOjgfwwgfkwHQYDVR0OBBYEFI0cxb6VTEM8YYY6FbBMvAPyT+CyMIHJBgNVHSMEgcEwgb6AFI0cxb6VTEM8YYY6FbBMvAPyT+CyoYGapIGXMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbYIJANWFuGx90071MAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEEBQADggEBABnTDPEF+3iSP0wNfdIjIz1AlnrPzgAIHVvXxunW7SBrDhEglQZBbKJEk5kT0mtKoOD1JMrSu1xuTKEBahWRbqHsXclaXjoBADb0kkjVEJu/Lh5hgYZnOjvlba8Ld7HCKePCVePoTJBdI4fvugnL8TsgK05aIskyY0hKI9L8KfqfGTl1lzOv2KoWD0KWwtAWPoGChZxmQ+nBli+gwYMzM1vAkP+aayLe0a1EQimlOalO762r0GXO0ks+UeXde2Z4e+8S/pf7pITEI/tP+MxJTALw9QUWEv9lKTk+jkbqxbsh8nfBUapfKqYn0eidpwq2AzVp3juYl7//fKnaPhJD9gs=
++        </item>
++    </string-array>
++    <string-array name="com_google_android_gms_fonts_certs_prod">
++        <item>
++            MIIEQzCCAyugAwIBAgIJAMLgh0ZkSjCNMA0GCSqGSIb3DQEBBAUAMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDAeFw0wODA4MjEyMzEzMzRaFw0zNjAxMDcyMzEzMzRaMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBAKtWLgDYO6IIrgqWbxJOKdoR8qtW0I9Y4sypEwPpt1TTcvZApxsdyxMJZ2JORland2qSGT2y5b+3JKkedxiLDmpHpDsz2WCbdxgxRczfey5YZnTJ4VZbH0xqWVW/8lGmPav5xVwnIiJS6HXk+BVKZF+JcWjAsb/GEuq/eFdpuzSqeYTcfi6idkyugwfYwXFU1+5fZKUaRKYCwkkFQVfcAs1fXA5V+++FGfvjJ/CxURaSxaBvGdGDhfXE28LWuT9ozCl5xw4Yq5OGazvV24mZVSoOO0yZ31j7kYvtwYK6NeADwbSxDdJEqO4k//0zOHKrUiGYXtqw/A0LFFtqoZKFjnkCAQOjgdkwgdYwHQYDVR0OBBYEFMd9jMIhF1Ylmn/Tgt9r45jk14alMIGmBgNVHSMEgZ4wgZuAFMd9jMIhF1Ylmn/Tgt9r45jk14aloXikdjB0MQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLR29vZ2xlIEluYy4xEDAOBgNVBAsTB0FuZHJvaWQxEDAOBgNVBAMTB0FuZHJvaWSCCQDC4IdGZEowjTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBAUAA4IBAQBt0lLO74UwLDYKqs6Tm8/yzKkEu116FmH4rkaymUIE0P9KaMftGlMexFlaYjzmB2OxZyl6euNXEsQH8gjwyxCUKRJNexBiGcCEyj6z+a1fuHHvkiaai+KL8W1EyNmgjmyy8AW7P+LLlkR+ho5zEHatRbM/YAnqGcFh5iZBqpknHf1SKMXFh4dd239FJ1jWYfbMDMy3NS5CTMQ2XFI1MvcyUTdZPErjQfTbQe3aDQsQcafEQPD+nqActifKZ0Np0IS9L9kR/wbNvyz6ENwPiTrjV2KRkEjH78ZMcUQXg0L3BYHJ3lc69Vs5Ddf9uUGGMYldX3WfMBEmh/9iFBDAaTCK
++        </item>
++    </string-array>
++</resources>
+Index: app/src/main/res/layout/activity_alarm_sound.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_alarm_sound.xml	(date 1619788195331)
++++ app/src/main/res/layout/activity_alarm_sound.xml	(date 1619788195331)
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".AlarmSound">
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_set_alarm.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_set_alarm.xml	(date 1619788195345)
++++ app/src/main/res/layout/activity_set_alarm.xml	(date 1619788195345)
+@@ -0,0 +1,149 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".AlarmPage">
++
++    <com.google.android.material.bottomnavigation.BottomNavigationView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:id="@+id/bottom_navigation"
++        app:itemBackground="@color/light_red"
++        app:itemTextColor="@drawable/red_selector"
++        app:itemIconTint="@drawable/red_selector"
++        app:menu="@menu/menu_navigation"
++        android:layout_alignParentBottom="true"/>
++
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++
++        <TimePicker
++            android:id="@+id/timePick"
++            android:layout_width="432dp"
++            android:layout_height="207dp"
++            android:layout_weight="0.6"
++            android:timePickerMode="spinner"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent" />
++
++
++<!--    <EditText-->
++<!--        android:id="@+id/alarmTitle"-->
++<!--        android:layout_width="match_parent"-->
++<!--        android:layout_height="wrap_content"-->
++<!--        android:layout_centerHorizontal="true"-->
++<!--        android:layout_marginEnd="4dp"-->
++<!--        android:layout_marginRight="4dp"-->
++<!--        android:hint="Alarm Title"-->
++<!--        app:layout_constraintEnd_toEndOf="parent"-->
++<!--        app:layout_constraintStart_toStartOf="parent"-->
++<!--        app:layout_constraintTop_toBottomOf="@+id/timePick"-->
++<!--        tools:ignore="MissingConstraints" />-->
++
++<!--    <CheckBox-->
++<!--        android:id="@+id/recurring"-->
++<!--        android:layout_width="match_parent"-->
++<!--        android:layout_height="wrap_content"-->
++<!--        android:layout_alignParentStart="true"-->
++<!--        android:checked="false"-->
++<!--        android:text="Recurring Alarm"-->
++<!--        app:layout_constraintStart_toStartOf="parent"-->
++<!--        app:layout_constraintTop_toBottomOf="@+id/alarmTitle"-->
++<!--        android:layout_alignParentLeft="true" />-->
++
++        <Button
++            android:id="@+id/setAlarm"
++            android:layout_width="346dp"
++            android:layout_height="60dp"
++            android:layout_alignParentTop="true"
++            android:layout_centerHorizontal="true"
++            android:layout_gravity="center"
++            android:layout_marginEnd="32dp"
++            android:layout_marginRight="32dp"
++            android:layout_marginBottom="100dp"
++            android:text="Set Alarm"
++            app:backgroundTint="#FF5053"
++            app:layout_constraintBottom_toBottomOf="parent"
++            app:layout_constraintEnd_toEndOf="parent" />
++
++<!--    <CheckBox-->
++<!--            android:id="@+id/monday"-->
++<!--            android:layout_width="wrap_content"-->
++<!--            android:layout_height="wrap_content"-->
++<!--            android:text="Mon"-->
++<!--            app:layout_constraintStart_toStartOf="parent"-->
++<!--            app:layout_constraintTop_toBottomOf="@+id/recurring" />-->
++
++<!--        <CheckBox-->
++<!--            android:id="@+id/tuesday"-->
++<!--            android:layout_width="wrap_content"-->
++<!--            android:layout_height="wrap_content"-->
++<!--            android:layout_marginStart="20dp"-->
++<!--            android:layout_marginLeft="20dp"-->
++<!--            android:checked="false"-->
++<!--            android:text="Tue"-->
++<!--            app:layout_constraintStart_toEndOf="@+id/monday"-->
++<!--            app:layout_constraintTop_toBottomOf="@+id/recurring" />-->
++
++<!--        <CheckBox-->
++<!--            android:id="@+id/wednesday"-->
++<!--            android:layout_width="wrap_content"-->
++<!--            android:layout_height="wrap_content"-->
++<!--            android:layout_marginStart="20dp"-->
++<!--            android:layout_marginLeft="20dp"-->
++<!--            android:checked="false"-->
++<!--            android:text="Wed"-->
++<!--            app:layout_constraintStart_toEndOf="@+id/tuesday"-->
++<!--            app:layout_constraintTop_toBottomOf="@+id/recurring" />-->
++
++<!--        <CheckBox-->
++<!--            android:id="@+id/thursday"-->
++<!--            android:layout_width="wrap_content"-->
++<!--            android:layout_height="wrap_content"-->
++<!--            android:layout_marginStart="20dp"-->
++<!--            android:layout_marginLeft="20dp"-->
++<!--            android:checked="false"-->
++<!--            android:text="Thu"-->
++<!--            app:layout_constraintStart_toEndOf="@+id/wednesday"-->
++<!--            app:layout_constraintTop_toBottomOf="@+id/recurring" />-->
++
++<!--        <CheckBox-->
++<!--            android:id="@+id/friday"-->
++<!--            android:layout_width="wrap_content"-->
++<!--            android:layout_height="wrap_content"-->
++<!--            android:layout_marginStart="20dp"-->
++<!--            android:layout_marginLeft="20dp"-->
++<!--            android:checked="false"-->
++<!--            android:text="Fri"-->
++<!--            app:layout_constraintStart_toEndOf="@+id/thursday"-->
++<!--            app:layout_constraintTop_toBottomOf="@+id/recurring" />-->
++
++<!--        <CheckBox-->
++<!--            android:id="@+id/saturday"-->
++<!--            android:layout_width="wrap_content"-->
++<!--            android:layout_height="wrap_content"-->
++<!--            android:layout_marginTop="50dp"-->
++<!--            android:checked="false"-->
++<!--            android:text="Sat"-->
++<!--            app:layout_constraintStart_toStartOf="parent"-->
++<!--            app:layout_constraintTop_toTopOf="@+id/monday" />-->
++
++<!--        <CheckBox-->
++<!--            android:id="@+id/sunday"-->
++<!--            android:layout_width="wrap_content"-->
++<!--            android:layout_height="wrap_content"-->
++<!--            android:layout_marginStart="20dp"-->
++<!--            android:layout_marginLeft="20dp"-->
++<!--            android:layout_marginTop="50dp"-->
++<!--            android:checked="false"-->
++<!--            android:text="Sun"-->
++<!--            app:layout_constraintStart_toEndOf="@+id/saturday"-->
++<!--            app:layout_constraintTop_toTopOf="@+id/tuesday" />-->
++
++    </androidx.constraintlayout.widget.ConstraintLayout>
++
++</RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_countdown_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_countdown_page.xml	(date 1619788195333)
++++ app/src/main/res/layout/activity_countdown_page.xml	(date 1619788195333)
+@@ -0,0 +1,75 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".TimerPage">
++
++    <com.google.android.material.bottomnavigation.BottomNavigationView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:id="@+id/bottom_navigation"
++        app:itemBackground="@color/light_red"
++        app:itemTextColor="@drawable/red_selector"
++        app:itemIconTint="@drawable/red_selector"
++        app:menu="@menu/menu_navigation"
++        android:layout_alignParentBottom="true"/>
++
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++
++        <TextView
++            android:id="@+id/countdownText"
++            android:layout_width="289dp"
++            android:layout_height="120dp"
++            android:layout_marginStart="60dp"
++            android:layout_marginLeft="60dp"
++            android:layout_marginTop="140dp"
++            android:text="00 : 00 : 00"
++            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent" />
++
++        <Button
++            android:id="@+id/pauseButton"
++            android:layout_width="244dp"
++            android:layout_height="55dp"
++            android:layout_marginStart="80dp"
++            android:layout_marginLeft="80dp"
++            android:layout_marginTop="288dp"
++            android:text="Pause"
++            android:textSize="24sp"
++            app:backgroundTint="#FF5053"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent" />
++
++        <Button
++            android:id="@+id/resetButton"
++            android:layout_width="244dp"
++            android:layout_height="55dp"
++            android:layout_marginStart="80dp"
++            android:layout_marginLeft="80dp"
++            android:layout_marginTop="428dp"
++            android:text="Reset"
++            android:textSize="24sp"
++            app:backgroundTint="#FF5053"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent" />
++
++        <Button
++            android:id="@+id/resumeButton"
++            android:layout_width="244dp"
++            android:layout_height="55dp"
++            android:layout_marginStart="80dp"
++            android:layout_marginLeft="80dp"
++            android:layout_marginTop="356dp"
++            android:text="Resume"
++            android:textSize="24sp"
++            app:backgroundTint="#FF5053"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent" />
++    </androidx.constraintlayout.widget.ConstraintLayout>
++
++</RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/studynook/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studynook;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.os.Bundle;\r\n\r\npublic class MainActivity extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_main);\r\n\r\n        // Hides the top bar\r\n        getSupportActionBar().hide();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/MainActivity.java	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/java/com/example/studynook/MainActivity.java	(date 1619788195305)
+@@ -1,11 +1,17 @@
+ package com.example.studynook;
+ 
+-import androidx.appcompat.app.AppCompatActivity;
++
+ 
+ import android.os.Bundle;
++import android.view.View;
++import android.widget.AdapterView;
++import android.widget.ArrayAdapter;
++import android.widget.Spinner;
++import android.widget.Toast;
+ 
+-public class MainActivity extends AppCompatActivity {
++import androidx.appcompat.app.AppCompatActivity;
+ 
++public class MainActivity<adapter> extends AppCompatActivity {
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+Index: app/src/main/java/com/example/studynook/TutorialPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studynook;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.net.Uri;\r\nimport android.os.Bundle;\r\nimport android.view.MenuItem;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\n\r\npublic class TutorialPage extends AppCompatActivity {\r\n    Button limit,sql,comp,algebra;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_tutorial_page);\r\n        limit = findViewById(R.id.btn_limits);\r\n        sql = findViewById(R.id.btn_sql);\r\n        comp = findViewById(R.id.btn_programming);\r\n        algebra = findViewById(R.id.btn_algebra);\r\n\r\n\r\n        // Initialise and assign variable\r\n        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);\r\n\r\n        // Set home selected\r\n        bottomNavigationView.setSelectedItemId(R.id.resources);\r\n\r\n        // Perform ItemSelectedListener\r\n        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n            @Override\r\n            public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n                switch(item.getItemId()) {\r\n                    case R.id.schedule:\r\n                        startActivity(new Intent(getApplicationContext(), SchedulingPage.class));\r\n                        overridePendingTransition(0, 0); // Animation to switch between pages\r\n                        return true;\r\n                    case R.id.resources:\r\n                        startActivity(new Intent(getApplicationContext(), ResourcesPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.home:\r\n                        startActivity(new Intent(getApplicationContext(), HomePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.wellbeing:\r\n                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.create:\r\n                        startActivity(new Intent(getApplicationContext(), CreatePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                }\r\n                return false;\r\n            }\r\n        });\r\n\r\n        limit.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Uri uri = Uri.parse(\"https://www.linkedin.com/learning/\");\r\n                Intent intent = new Intent(Intent.ACTION_VIEW, uri);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        comp.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Uri uri = Uri.parse(\"https://www.edx.org/\");\r\n                Intent intent = new Intent(Intent.ACTION_VIEW, uri);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        sql.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Uri uri = Uri.parse(\"https://online-learning.harvard.edu/catalog/free\");\r\n                Intent intent = new Intent(Intent.ACTION_VIEW, uri);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        algebra.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Uri uri = Uri.parse(\"https://www.khanacademy.org/search?referer=%2F&page_search_query=tutorials\");\r\n                Intent intent = new Intent(Intent.ACTION_VIEW, uri);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/TutorialPage.java	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/java/com/example/studynook/TutorialPage.java	(date 1619788195403)
+@@ -49,7 +49,7 @@
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.wellbeing:
+-                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
++                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.create:
+Index: app/src/main/java/com/example/studynook/PlannerPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studynook;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.ActionBar;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.graphics.Color;\r\nimport android.graphics.drawable.ColorDrawable;\r\nimport android.os.Bundle;\r\nimport android.view.Menu;\r\nimport android.view.MenuItem;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\n\r\npublic class PlannerPage extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_planner_page);\r\n\r\n        //ActionBar actionBar = getSupportActionBar();\r\n        //ColorDrawable color = new ColorDrawable(Color.parseColor(\"@color/light_red\"));\r\n        //actionBar.setBackgroundDrawable(color);\r\n\r\n        // Initialise and assign variable\r\n        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);\r\n\r\n        // Set home selected\r\n        bottomNavigationView.setSelectedItemId(R.id.schedule);\r\n\r\n        // Switch to different tab when selected\r\n        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n            @Override\r\n            public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n                switch(item.getItemId()) {\r\n                    case R.id.schedule:\r\n                        return true;\r\n                    case R.id.resources:\r\n                        startActivity(new Intent(getApplicationContext(), ResourcesPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.home:\r\n                        startActivity(new Intent(getApplicationContext(), HomePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.wellbeing:\r\n                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.create:\r\n                        startActivity(new Intent(getApplicationContext(), CreatePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                }\r\n                return false;\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public boolean onCreateOptionsMenu(Menu menu) {\r\n        getMenuInflater().inflate(R.menu.menu_top_bar, menu);\r\n        return super.onCreateOptionsMenu(menu);\r\n    }\r\n\r\n    @Override\r\n    public boolean onOptionsItemSelected(@NonNull MenuItem item) {\r\n        switch(item.getItemId()) {\r\n            case R.id.notibutton:\r\n                //startActivity(new Intent(this, ));\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n\r\n            case R.id.profilebutton:\r\n                startActivity(new Intent(getApplicationContext(), ProfilePage.class));\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n        }\r\n\r\n        return super.onOptionsItemSelected(item);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/PlannerPage.java	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/java/com/example/studynook/PlannerPage.java	(date 1619788195310)
+@@ -1,12 +1,9 @@
+ package com.example.studynook;
+ 
+ import androidx.annotation.NonNull;
+-import androidx.appcompat.app.ActionBar;
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+ import android.content.Intent;
+-import android.graphics.Color;
+-import android.graphics.drawable.ColorDrawable;
+ import android.os.Bundle;
+ import android.view.Menu;
+ import android.view.MenuItem;
+@@ -46,7 +43,7 @@
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.wellbeing:
+-                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
++                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.create:
+Index: app/src/main/java/com/example/studynook/CreatePage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studynook;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.ActionBar;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.graphics.Color;\r\nimport android.graphics.drawable.ColorDrawable;\r\nimport android.os.Bundle;\r\nimport android.view.Menu;\r\nimport android.view.MenuItem;\r\nimport android.widget.Button;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\n\r\npublic class CreatePage extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_create_page);\r\n\r\n        ActionBar bar = getSupportActionBar();\r\n        ColorDrawable color = new ColorDrawable(Color.parseColor(\"#A1C7A8\"));\r\n        bar.setBackgroundDrawable(color);\r\n        bar.setTitle(\"Create\");\r\n\r\n        // Initialise and assign variable\r\n        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);\r\n\r\n        // Set home selected\r\n        bottomNavigationView.setSelectedItemId(R.id.create);\r\n\r\n        // Switch to different tab when selected\r\n        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n            @Override\r\n            public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n                switch(item.getItemId()) {\r\n                    case R.id.schedule:\r\n                        startActivity(new Intent(getApplicationContext(), SchedulingPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.resources:\r\n                        startActivity(new Intent(getApplicationContext(), ResourcesPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.home:\r\n                        startActivity(new Intent(getApplicationContext(), HomePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.wellbeing:\r\n                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.create:\r\n                      return true;\r\n                }\r\n                return false;\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public boolean onCreateOptionsMenu(Menu menu) {\r\n        getMenuInflater().inflate(R.menu.menu_top_bar, menu);\r\n        return super.onCreateOptionsMenu(menu);\r\n    }\r\n\r\n    @Override\r\n    public boolean onOptionsItemSelected(@NonNull MenuItem item) {\r\n        switch(item.getItemId()) {\r\n            case R.id.notibutton:\r\n                //startActivity(new Intent(this, ));\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n\r\n            case R.id.profilebutton:\r\n                startActivity(new Intent(getApplicationContext(), ProfilePage.class));\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n        }\r\n\r\n        return super.onOptionsItemSelected(item);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/CreatePage.java	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/java/com/example/studynook/CreatePage.java	(date 1619788195474)
+@@ -10,12 +10,15 @@
+ import android.os.Bundle;
+ import android.view.Menu;
+ import android.view.MenuItem;
++import android.view.View;
+ import android.widget.Button;
+ 
+ import com.google.android.material.bottomnavigation.BottomNavigationView;
+ 
+ public class CreatePage extends AppCompatActivity {
+ 
++    private Button note, flashcard;
++
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+@@ -26,6 +29,9 @@
+         bar.setBackgroundDrawable(color);
+         bar.setTitle("Create");
+ 
++        note = findViewById(R.id.noteButton);
++        flashcard = findViewById(R.id.flashcardButton);
++
+         // Initialise and assign variable
+         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+ 
+@@ -50,7 +56,7 @@
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.wellbeing:
+-                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
++                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.create:
+@@ -59,6 +65,24 @@
+                 return false;
+             }
+         });
++
++        note.setOnClickListener(new View.OnClickListener() {
++
++            @Override
++            public void onClick(View v) {
++                Intent intent = new Intent(CreatePage.this, NotePage.class);
++                startActivity(intent);
++            }
++        });
++
++        flashcard.setOnClickListener(new View.OnClickListener() {
++
++            @Override
++            public void onClick(View v) {
++                Intent intent = new Intent(CreatePage.this, FlashcardPage.class);
++                startActivity(intent);
++            }
++        });
+     }
+ 
+     @Override
+Index: app/src/main/java/com/example/studynook/AlarmPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studynook;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.ActionBar;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.graphics.Color;\r\nimport android.graphics.drawable.ColorDrawable;\r\nimport android.os.Bundle;\r\nimport android.view.Menu;\r\nimport android.view.MenuItem;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\n\r\npublic class AlarmPage extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_alarm_page);\r\n\r\n        ActionBar actionBar = getSupportActionBar();\r\n        ColorDrawable color = new ColorDrawable(Color.parseColor(\"#FF5053\"));\r\n        actionBar.setBackgroundDrawable(color);\r\n        actionBar.setTitle(\"Alarm\");\r\n\r\n        // Initialise and assign variable\r\n        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);\r\n\r\n        // Set home selected\r\n        bottomNavigationView.setSelectedItemId(R.id.schedule);\r\n\r\n        // Switch to different tab when selected\r\n        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n            @Override\r\n            public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n                switch(item.getItemId()) {\r\n                    case R.id.schedule:\r\n                        return true;\r\n                    case R.id.resources:\r\n                        startActivity(new Intent(getApplicationContext(), ResourcesPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.home:\r\n                        startActivity(new Intent(getApplicationContext(), HomePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.wellbeing:\r\n                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.create:\r\n                        startActivity(new Intent(getApplicationContext(), CreatePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                }\r\n                return false;\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public boolean onCreateOptionsMenu(Menu menu) {\r\n        getMenuInflater().inflate(R.menu.menu_top_bar, menu);\r\n        return super.onCreateOptionsMenu(menu);\r\n    }\r\n\r\n    @Override\r\n    public boolean onOptionsItemSelected(@NonNull MenuItem item) {\r\n        switch(item.getItemId()) {\r\n            case R.id.notibutton:\r\n                //startActivity(new Intent(this, ));\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n\r\n            case R.id.profilebutton:\r\n                startActivity(new Intent(getApplicationContext(), ProfilePage.class));\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n        }\r\n\r\n        return super.onOptionsItemSelected(item);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/AlarmPage.java	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/java/com/example/studynook/AlarmPage.java	(date 1619788195486)
+@@ -1,20 +1,36 @@
+ package com.example.studynook;
+ 
+ import androidx.annotation.NonNull;
++import androidx.annotation.RequiresApi;
+ import androidx.appcompat.app.ActionBar;
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import android.app.AlarmManager;
++import android.app.PendingIntent;
++import android.content.Context;
+ import android.content.Intent;
+ import android.graphics.Color;
+ import android.graphics.drawable.ColorDrawable;
++import android.os.Build;
+ import android.os.Bundle;
+ import android.view.Menu;
+ import android.view.MenuItem;
++import android.view.View;
++import android.widget.ArrayAdapter;
++import android.widget.Button;
++import android.widget.TimePicker;
++import android.widget.Toast;
+ 
+ import com.google.android.material.bottomnavigation.BottomNavigationView;
+ 
++import java.util.ArrayList;
++import java.util.Calendar;
++
+ public class AlarmPage extends AppCompatActivity {
+ 
++    private TimePicker timePicker;
++    private Button setAlarm, cancelAlarm;
++
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+@@ -23,7 +39,27 @@
+         ActionBar actionBar = getSupportActionBar();
+         ColorDrawable color = new ColorDrawable(Color.parseColor("#FF5053"));
+         actionBar.setBackgroundDrawable(color);
+-        actionBar.setTitle("Alarm");
++        actionBar.setTitle("Alarm");;
++
++        setAlarm = findViewById(R.id.setalarmButton);
++        cancelAlarm = findViewById(R.id.cancelalarmButton);
++
++        setAlarm.setOnClickListener(new View.OnClickListener() {
++            @RequiresApi(api = Build.VERSION_CODES.M)
++            @Override
++            public void onClick(View v) {
++                Calendar calendar = Calendar.getInstance();
++                calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH),
++                        timePicker.getHour(), timePicker.getMinute(), 0);
++                alarmSet(calendar);
++            }
++        });
++        cancelAlarm.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                alarmCancel();
++            }
++        });
+ 
+         // Initialise and assign variable
+         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+@@ -47,7 +83,7 @@
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.wellbeing:
+-                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
++                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.create:
+@@ -82,4 +118,21 @@
+ 
+         return super.onOptionsItemSelected(item);
+     }
++
++    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
++    private void alarmSet(Calendar calendar) {
++        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
++        Intent intent = new Intent(this, AlarmSound.class);
++        PendingIntent pending = PendingIntent.getBroadcast(this, 1, intent, 0);
++        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pending);
++//        Toast.makeText(this, "Your alarm is set", Toast.LENGTH_LONG).show();
++    }
++
++    private void alarmCancel() {
++        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
++        Intent intent = new Intent(this, AlarmSound.class);
++        PendingIntent pending = PendingIntent.getBroadcast(this, 1, intent, 0);
++        alarmManager.cancel(pending);
++//        Toast.makeText(this, "Your alarm is cancelled", Toast.LENGTH_LONG).show();
++    }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/studynook/ResourcesPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studynook;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.MenuItem;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\n\r\npublic class ResourcesPage extends AppCompatActivity {\r\n    Button tuts,lib,ref;\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_resources_page);\r\n        tuts = findViewById(R.id.btn_tutorials);\r\n        lib = findViewById(R.id.btn_library);\r\n        ref = findViewById(R.id.btn_references);\r\n\r\n        // Initialise and assign variable\r\n        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);\r\n\r\n        // Set home selected\r\n        bottomNavigationView.setSelectedItemId(R.id.resources);\r\n\r\n        // Perform ItemSelectedListener\r\n        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n            @Override\r\n            public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n                switch(item.getItemId()) {\r\n                    case R.id.schedule:\r\n                        startActivity(new Intent(getApplicationContext(), SchedulingPage.class));\r\n                        overridePendingTransition(0, 0); // Animation to switch between pages\r\n                        return true;\r\n                    case R.id.resources:\r\n                        return true;\r\n                    case R.id.home:\r\n                        startActivity(new Intent(getApplicationContext(), HomePage.class));\r\n                        overridePendingTransition(0, 0); // Animation to switch between pages\r\n                        return true;\r\n                    case R.id.wellbeing:\r\n                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.create:\r\n                        startActivity(new Intent(getApplicationContext(), CreatePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                }\r\n                return false;\r\n            }\r\n        });\r\n\r\n\r\n        tuts.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent i = new Intent(ResourcesPage.this, TutorialPage.class);\r\n                startActivity(i);\r\n            }\r\n        });\r\n        lib.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent i = new Intent(ResourcesPage.this, LibraryPage.class);\r\n                startActivity(i);\r\n            }\r\n        });\r\n        ref.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent i = new Intent(ResourcesPage.this, ReferencePage.class);\r\n                startActivity(i);\r\n            }\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/ResourcesPage.java	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/java/com/example/studynook/ResourcesPage.java	(date 1619788195420)
+@@ -1,9 +1,12 @@
+ package com.example.studynook;
+ 
+ import androidx.annotation.NonNull;
++import androidx.appcompat.app.ActionBar;
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+ import android.content.Intent;
++import android.graphics.Color;
++import android.graphics.drawable.ColorDrawable;
+ import android.os.Bundle;
+ import android.view.MenuItem;
+ import android.view.View;
+@@ -21,6 +24,10 @@
+         lib = findViewById(R.id.btn_library);
+         ref = findViewById(R.id.btn_references);
+ 
++        ActionBar bar = getSupportActionBar();
++        ColorDrawable color = new ColorDrawable(Color.parseColor("#FFBB3E"));
++        bar.setBackgroundDrawable(color);
++
+         // Initialise and assign variable
+         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+ 
+@@ -43,7 +50,7 @@
+                         overridePendingTransition(0, 0); // Animation to switch between pages
+                         return true;
+                     case R.id.wellbeing:
+-                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
++                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.create:
+Index: app/src/main/res/layout/activity_alarm_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".AlarmPage\">\r\n\r\n    <TextView\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Schedule\"\r\n        android:textSize=\"50sp\"\r\n        android:textStyle=\"bold\"\r\n        android:layout_centerInParent=\"true\"/>\r\n\r\n    <com.google.android.material.bottomnavigation.BottomNavigationView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:id=\"@+id/bottom_navigation\"\r\n        app:itemBackground=\"@color/light_red\"\r\n        app:itemTextColor=\"@drawable/red_selector\"\r\n        app:itemIconTint=\"@drawable/red_selector\"\r\n        app:menu=\"@menu/menu_navigation\"\r\n        android:layout_alignParentBottom=\"true\"/>\r\n\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_alarm_page.xml	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/res/layout/activity_alarm_page.xml	(date 1619788195330)
+@@ -6,14 +6,6 @@
+     android:layout_height="match_parent"
+     tools:context=".AlarmPage">
+ 
+-    <TextView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Schedule"
+-        android:textSize="50sp"
+-        android:textStyle="bold"
+-        android:layout_centerInParent="true"/>
+-
+     <com.google.android.material.bottomnavigation.BottomNavigationView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+@@ -24,4 +16,42 @@
+         app:menu="@menu/menu_navigation"
+         android:layout_alignParentBottom="true"/>
+ 
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++
++        <TimePicker
++            android:id="@+id/timePick"
++            android:layout_width="432dp"
++            android:layout_height="207dp"
++            android:layout_marginTop="92dp"
++            android:layout_weight="0.6"
++            android:timePickerMode="spinner"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintHorizontal_bias="0.0"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent" />
++
++        <Button
++            android:id="@+id/setalarmButton"
++            android:layout_width="439dp"
++            android:layout_height="53dp"
++            android:layout_marginTop="352dp"
++            android:text="Set Alarm"
++            app:backgroundTint="#FF5053"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent" />
++
++        <Button
++            android:id="@+id/cancelalarmButton"
++            android:layout_width="439dp"
++            android:layout_height="53dp"
++            android:layout_marginTop="424dp"
++            android:text="Cancel alarm"
++            app:backgroundTint="#FF5053"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent" />
++
++    </androidx.constraintlayout.widget.ConstraintLayout>
++
+ </RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/studynook/SchedulingPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studynook;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.ActionBar;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.graphics.Color;\r\nimport android.graphics.drawable.ColorDrawable;\r\nimport android.os.Bundle;\r\nimport android.view.Menu;\r\nimport android.view.MenuItem;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\n\r\npublic class SchedulingPage extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_scheduling_page);\r\n\r\n        ActionBar actionBar = getSupportActionBar();\r\n        ColorDrawable color = new ColorDrawable(Color.parseColor(\"#FF5053\"));\r\n        actionBar.setBackgroundDrawable(color);\r\n        actionBar.setTitle(\"Schedule\");\r\n\r\n        // Initialise and assign variable\r\n        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);\r\n\r\n        // Set home selected\r\n        bottomNavigationView.setSelectedItemId(R.id.schedule);\r\n\r\n        // Switch to different tab when selected\r\n        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n            @Override\r\n            public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n                switch(item.getItemId()) {\r\n                    case R.id.schedule:\r\n                        return true;\r\n                    case R.id.resources:\r\n                        startActivity(new Intent(getApplicationContext(), ResourcesPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.home:\r\n                        startActivity(new Intent(getApplicationContext(), HomePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.wellbeing:\r\n                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.create:\r\n                        startActivity(new Intent(getApplicationContext(), CreatePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                }\r\n                return false;\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public boolean onCreateOptionsMenu(Menu menu) {\r\n        getMenuInflater().inflate(R.menu.menu_top_bar, menu);\r\n        return super.onCreateOptionsMenu(menu);\r\n    }\r\n\r\n    @Override\r\n    public boolean onOptionsItemSelected(@NonNull MenuItem item) {\r\n        switch(item.getItemId()) {\r\n            case R.id.notibutton:\r\n                //startActivity(new Intent(this, ));\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n\r\n            case R.id.profilebutton:\r\n                startActivity(new Intent(getApplicationContext(), ProfilePage.class));\r\n                overridePendingTransition(0, 0);\r\n                return true;\r\n        }\r\n\r\n        return super.onOptionsItemSelected(item);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/SchedulingPage.java	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/java/com/example/studynook/SchedulingPage.java	(date 1619788195411)
+@@ -47,7 +47,7 @@
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.wellbeing:
+-                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
++                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.create:
+Index: app/src/main/res/layout/activity_reference_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".ReferencePage\"\r\n    android:orientation=\"vertical\"\r\n    android:theme=\"@style/Theme.Design.Light.NoActionBar\">\r\n\r\n    <RelativeLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:background=\"@color/dark_orange\"\r\n        android:layout_alignParentTop=\"true\"\r\n        >\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"References\"\r\n            android:textColor=\"@color/white\"\r\n            android:textSize=\"40sp\" />\r\n\r\n\r\n        <ImageView\r\n            android:id=\"@+id/btn_admin_testdrive_logout\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_alignParentRight=\"true\"\r\n            android:src=\"@drawable/ic_baseline_account_circle_24\"\r\n            android:layout_alignParentEnd=\"true\"\r\n            android:layout_centerVertical=\"true\"/>\r\n    </RelativeLayout>\r\n\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\"\r\n        android:gravity=\"center\">\r\n        <Button\r\n            android:id=\"@+id/btn_mla\"\r\n            android:layout_width=\"200sp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"MLA\"\r\n            android:textAllCaps=\"false\"\r\n            android:fontFamily=\"sans-serif-medium\"\r\n            android:textColor=\"@color/white\"\r\n            android:backgroundTint=\"@color/dark_orange\"\r\n            android:layout_marginTop=\"30sp\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"15dp\"/>\r\n        <Button\r\n            android:id=\"@+id/btn_apa\"\r\n            android:layout_width=\"200sp\"\r\n            android:layout_height=\"wrap_content\"\r\n\r\n            android:text=\"APA\"\r\n            android:textAllCaps=\"false\"\r\n            android:fontFamily=\"sans-serif-medium\"\r\n            android:textColor=\"@color/white\"\r\n            android:backgroundTint=\"@color/dark_orange\"\r\n            android:layout_marginTop=\"30sp\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"15dp\"/>\r\n        <Button\r\n            android:id=\"@+id/btn_sql\"\r\n            android:layout_width=\"200sp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginTop=\"30sp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"15dp\"\r\n            android:backgroundTint=\"@color/dark_orange\"\r\n            android:fontFamily=\"sans-serif-medium\"\r\n            android:text=\"Harvard\"\r\n            android:textAllCaps=\"false\"\r\n            android:textColor=\"@color/white\" />\r\n        <Button\r\n            android:id=\"@+id/btn_chicago\"\r\n            android:layout_width=\"200sp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:backgroundTint=\"@color/dark_orange\"\r\n            android:text=\"Chicago\"\r\n            android:textAllCaps=\"false\"\r\n            android:fontFamily=\"sans-serif-medium\"\r\n            android:textColor=\"@color/white\"\r\n            android:layout_marginTop=\"30sp\"\r\n            android:layout_marginLeft=\"15dp\"\r\n            android:layout_marginRight=\"15dp\"\r\n            android:layout_marginBottom=\"15dp\"/>\r\n    </LinearLayout>\r\n\r\n    <com.google.android.material.bottomnavigation.BottomNavigationView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:id=\"@+id/bottom_navigation\"\r\n        app:itemBackground=\"@color/light_orange\"\r\n        app:itemTextColor=\"@drawable/red_selector\"\r\n        app:itemIconTint=\"@drawable/red_selector\"\r\n        app:menu=\"@menu/menu_navigation\"\r\n        android:layout_alignParentBottom=\"true\"/>\r\n\r\n\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_reference_page.xml	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/res/layout/activity_reference_page.xml	(date 1619788195344)
+@@ -9,30 +9,6 @@
+     android:orientation="vertical"
+     android:theme="@style/Theme.Design.Light.NoActionBar">
+ 
+-    <RelativeLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:background="@color/dark_orange"
+-        android:layout_alignParentTop="true"
+-        >
+-        <TextView
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:text="References"
+-            android:textColor="@color/white"
+-            android:textSize="40sp" />
+-
+-
+-        <ImageView
+-            android:id="@+id/btn_admin_testdrive_logout"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_alignParentRight="true"
+-            android:src="@drawable/ic_baseline_account_circle_24"
+-            android:layout_alignParentEnd="true"
+-            android:layout_centerVertical="true"/>
+-    </RelativeLayout>
+-
+ 
+     <LinearLayout
+         android:layout_width="match_parent"
+Index: app/src/main/java/com/example/studynook/ReferencePage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studynook;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.net.Uri;\r\nimport android.os.Bundle;\r\nimport android.view.MenuItem;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\n\r\npublic class ReferencePage extends AppCompatActivity {\r\n    Button mla,sql,apa,chica;\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_reference_page);\r\n        mla = findViewById(R.id.btn_mla);\r\n        sql = findViewById(R.id.btn_sql);\r\n        apa = findViewById(R.id.btn_apa);\r\n        chica = findViewById(R.id.btn_chicago);\r\n\r\n        // Initialise and assign variable\r\n        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);\r\n\r\n        // Set home selected\r\n        bottomNavigationView.setSelectedItemId(R.id.resources);\r\n\r\n        // Perform ItemSelectedListener\r\n        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n            @Override\r\n            public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n                switch(item.getItemId()) {\r\n                    case R.id.schedule:\r\n                        startActivity(new Intent(getApplicationContext(), SchedulingPage.class));\r\n                        overridePendingTransition(0, 0); // Animation to switch between pages\r\n                        return true;\r\n                    case R.id.resources:\r\n                        return true;\r\n                    case R.id.home:\r\n                        startActivity(new Intent(getApplicationContext(), HomePage.class));\r\n                        overridePendingTransition(0, 0); // Animation to switch between pages\r\n                        return true;\r\n                    case R.id.wellbeing:\r\n                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                    case R.id.create:\r\n                        startActivity(new Intent(getApplicationContext(), CreatePage.class));\r\n                        overridePendingTransition(0, 0);\r\n                        return true;\r\n                }\r\n                return false;\r\n            }\r\n        });\r\n\r\n        mla.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Uri uri = Uri.parse(\"https://www.scribbr.com/category/mla\");\r\n                Intent intent = new Intent(Intent.ACTION_VIEW, uri);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        apa.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Uri uri = Uri.parse(\"https://www.scribbr.com/category/apa-style\");\r\n                Intent intent = new Intent(Intent.ACTION_VIEW, uri);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        sql.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Uri uri = Uri.parse(\"https://www.library.auckland.ac.nz/subject-guides/ref/harvard.htm\");\r\n                Intent intent = new Intent(Intent.ACTION_VIEW, uri);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        chica.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Uri uri = Uri.parse(\"https://www.scribbr.com/chicago-style/footnotes\");\r\n                Intent intent = new Intent(Intent.ACTION_VIEW, uri);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/studynook/ReferencePage.java	(revision e88f7867db4ae04f23329b793316e02602c461c1)
++++ app/src/main/java/com/example/studynook/ReferencePage.java	(date 1619788195429)
+@@ -45,7 +45,7 @@
+                         overridePendingTransition(0, 0); // Animation to switch between pages
+                         return true;
+                     case R.id.wellbeing:
+-                        startActivity(new Intent(getApplicationContext(), WellbeingPage.class));
++                        startActivity(new Intent(getApplicationContext(), WellBeingPage.class));
+                         overridePendingTransition(0, 0);
+                         return true;
+                     case R.id.create:
+diff --git app/src/main/res/menu/menu_add_note.xml app/src/main/res/menu/menu_add.xml
+rename from app/src/main/res/menu/menu_add_note.xml
+rename to app/src/main/res/menu/menu_add.xml

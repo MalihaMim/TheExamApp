@@ -13,7 +13,7 @@ import java.util.HashSet;
 
 public class EditText extends AppCompatActivity {
 
-    int noteId;
+    protected int noteId;
     private android.widget.EditText editText;
 
     @Override
