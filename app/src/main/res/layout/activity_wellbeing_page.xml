@@ -64,9 +64,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:itemBackground="@color/light_orange"
-        app:itemTextColor="@drawable/orange_selector"
-        app:itemIconTint="@drawable/orange_selector"
+        app:itemBackground="@color/light_pink"
+        app:itemTextColor="@drawable/pink_selector"
+        app:itemIconTint="@drawable/pink_selector"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/menu_navigation"
         />
