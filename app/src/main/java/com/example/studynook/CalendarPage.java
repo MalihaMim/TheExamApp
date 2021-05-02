@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.CalendarContract;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -21,6 +22,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -54,6 +56,7 @@ public class CalendarPage extends AppCompatActivity {
         viewEvent = findViewById(R.id.viewEvent);
 
         //View eventContent = findViewById(R.id.eventContents);
+        // User selects date and inputs their event details
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -84,6 +87,7 @@ public class CalendarPage extends AppCompatActivity {
             }
         });
 
+        // When the user clicks on the save button, add event to the array list
         addEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,10 +98,17 @@ public class CalendarPage extends AppCompatActivity {
                 index++;
                 userInput.setText("");
                 userInput.setVisibility(View.GONE);
+
                 addEvent.setVisibility(View.GONE);
                 Intent intent = new Intent(CalendarPage.this, ViewCalendarEvents.class);
                 intent.putExtra("test", userEvents);
                 startActivity(intent);
+
+                /**Intent i = new Intent(CalendarPage.this, ViewCalendarEvents.class);
+                Bundle bundle = new Bundle();
+                bundle.putExtras("Date", calendarView.getDate());
+                i.putExtras(bundle);
+                startActivity(i);**/
 
             }
         });

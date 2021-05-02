@@ -23,14 +23,19 @@ public class ViewCalendarEvents extends AppCompatActivity {
         actionBar.setBackgroundDrawable(color);
         actionBar.setTitle("My Events");
 
+        // Get the arraylist of events created from the user from the Calendar page
         ArrayList<String> resultArray = getIntent().getStringArrayListExtra("test");
         text.setText(String.valueOf(resultArray));
 
+        Bundle bundle = getIntent().getExtras();
+
+        //String date = bundle.getString("Date");
+
+        // Display the user events
         StringBuilder builder = new StringBuilder();
         for (String details : resultArray) {
             builder.append(details + "\n");
         }
-
         text.setText(builder.toString());
     }
 }
