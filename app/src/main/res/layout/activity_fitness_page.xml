@@ -1,251 +1,274 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_dropdown"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFAC8D"
+    android:background="#FF7B84"
     tools:context=".FitnessPage">
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/ankle_card"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginBottom="23dp"
-        app:cardBackgroundColor="#FFC300"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="25dp"
-        app:cardMaxElevation="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/neck_rolls_card"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:id="@+id/abcAnkle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/abc_ankle" />
-    </androidx.cardview.widget.CardView>
-
-    <Spinner
-        android:id="@+id/activity_type_dropdown"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
-        android:background="#FFFFFF"
-        android:dropDownSelector="#000000"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="66dp"
-        android:text="Activity type:"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/Hours"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
-        android:background="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_type_dropdown" />
-
-    <TextView
-        android:id="@+id/hours_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="64dp"
-        android:fontFamily="sans-serif"
-        android:text="Hours spent:"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/type" />
-
-    <TextView
-        android:id="@+id/log_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="16dp"
-        android:text="Fitness Log:"
-        android:textColor="#581845"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/log_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginRight="160dp"
-        android:onClick="openDialog"
-        android:text="Log"
-        app:backgroundTint="#FF5733"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Hours" />
-
-    <View
-        android:id="@+id/divider"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_dropdown"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/log_button" />
+        android:layout_height="match_parent"
+        android:background="#FFAC8D"
+        tools:context=".FitnessPage">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/chair_bend_card"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginLeft="29dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginBottom="23dp"
-        app:cardBackgroundColor="#FFC300"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="25dp"
-        app:cardMaxElevation="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/seated_twist_card"
-        app:layout_constraintEnd_toStartOf="@+id/forward_fold_card"
-        app:layout_constraintStart_toEndOf="@+id/ankle_card">
 
-        <ImageView
-            android:id="@+id/chairBend"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/ankle_card"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginBottom="23dp"
+            app:cardBackgroundColor="#FFC300"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="25dp"
+            app:cardMaxElevation="25dp"
+            app:layout_constraintBottom_toTopOf="@+id/neck_rolls_card"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/abcAnkle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/abc_ankle" />
+        </androidx.cardview.widget.CardView>
+
+        <Spinner
+            android:id="@+id/activity_type_dropdown"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="52dp"
+            android:layout_marginRight="52dp"
+            android:background="#FFFFFF"
+            android:dropDownSelector="#000000"
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            app:srcCompat="@drawable/seated_stretch" />
-    </androidx.cardview.widget.CardView>
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="66dp"
+            android:text="Activity type:"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/stretch_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="89dp"
-        android:layout_marginRight="89dp"
-        android:text="Stretches to keep you active:"
-        android:textColor="#581845"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        <EditText
+            android:id="@+id/Hours"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="52dp"
+            android:layout_marginRight="52dp"
+            android:background="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_type_dropdown" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/seated_twist_card"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="31dp"
-        android:layout_marginLeft="31dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginRight="23dp"
-        android:layout_marginBottom="46dp"
-        app:cardBackgroundColor="#FFC300"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="25dp"
-        app:cardMaxElevation="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/standing_stretch_card"
-        app:layout_constraintStart_toEndOf="@+id/neck_rolls_card">
-
-        <ImageView
-            android:id="@+id/seatedTwist"
+        <TextView
+            android:id="@+id/hours_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/seated_twist" />
-    </androidx.cardview.widget.CardView>
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="64dp"
+            android:fontFamily="sans-serif"
+            android:text="Hours spent:"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/type" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/standing_stretch_card"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginBottom="46dp"
-        app:cardBackgroundColor="#FFC300"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="25dp"
-        app:cardMaxElevation="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageView
-            android:id="@+id/standStretch"
+        <TextView
+            android:id="@+id/log_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/standing_stretch" />
-    </androidx.cardview.widget.CardView>
+            android:layout_marginStart="140dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="16dp"
+            android:text="Fitness Log:"
+            android:textColor="#581845"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/forward_fold_card"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginBottom="21dp"
-        app:cardBackgroundColor="#FFC300"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="25dp"
-        app:cardMaxElevation="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/standing_stretch_card"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageView
-            android:id="@+id/forwardFold"
+        <Button
+            android:id="@+id/log_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            app:srcCompat="@drawable/forward_fold" />
-    </androidx.cardview.widget.CardView>
+            android:layout_marginTop="27dp"
+            android:layout_marginEnd="160dp"
+            android:layout_marginRight="160dp"
+            android:onClick="openDialog"
+            android:text="Log"
+            app:backgroundTint="#FF5733"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Hours" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/neck_rolls_card"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginBottom="46dp"
-        app:cardBackgroundColor="#FFC300"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="25dp"
-        app:cardMaxElevation="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/log_button" />
 
-        <ImageView
-            android:id="@+id/neckRolls"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/chair_bend_card"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginLeft="29dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="23dp"
+            app:cardBackgroundColor="#FFC300"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="25dp"
+            app:cardMaxElevation="25dp"
+            app:layout_constraintBottom_toTopOf="@+id/seated_twist_card"
+            app:layout_constraintEnd_toStartOf="@+id/forward_fold_card"
+            app:layout_constraintStart_toEndOf="@+id/ankle_card">
+
+            <ImageView
+                android:id="@+id/chairBend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/seated_stretch" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/stretch_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/neck_roll" />
-    </androidx.cardview.widget.CardView>
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="89dp"
+            android:layout_marginRight="89dp"
+            android:text="Stretches to keep you active:"
+            android:textColor="#581845"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/seated_twist_card"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="31dp"
+            android:layout_marginLeft="31dp"
+            android:layout_marginEnd="23dp"
+            android:layout_marginRight="23dp"
+            android:layout_marginBottom="46dp"
+            app:cardBackgroundColor="#FFC300"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="25dp"
+            app:cardMaxElevation="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/standing_stretch_card"
+            app:layout_constraintStart_toEndOf="@+id/neck_rolls_card">
+
+            <ImageView
+                android:id="@+id/seatedTwist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:srcCompat="@drawable/seated_twist" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/standing_stretch_card"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="46dp"
+            app:cardBackgroundColor="#FFC300"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="25dp"
+            app:cardMaxElevation="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/standStretch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:srcCompat="@drawable/standing_stretch" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/forward_fold_card"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="21dp"
+            app:cardBackgroundColor="#FFC300"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="25dp"
+            app:cardMaxElevation="25dp"
+            app:layout_constraintBottom_toTopOf="@+id/standing_stretch_card"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/forwardFold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/forward_fold" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/neck_rolls_card"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginBottom="46dp"
+            app:cardBackgroundColor="#FFC300"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="25dp"
+            app:cardMaxElevation="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/neckRolls"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/neck_roll" />
+        </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<com.google.android.material.bottomnavigation.BottomNavigationView
+android:id="@+id/bottom_navigation"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_alignParentBottom="true"
+app:itemBackground="@color/light_orange"
+app:itemTextColor="@drawable/orange_selector"
+app:itemIconTint="@drawable/orange_selector"
+app:labelVisibilityMode="labeled"
+app:menu="@menu/menu_navigation"
+    />
+
+</RelativeLayout>

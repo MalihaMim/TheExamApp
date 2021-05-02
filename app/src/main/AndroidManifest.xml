@@ -12,11 +12,11 @@
         <activity android:name=".LoginPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WellBeingPage"></activity>
+
+        <activity android:name=".WellBeingPage"/>
         <activity android:name=".MentalHealthPage" />
         <activity android:name=".FitnessPage" />
         <activity android:name=".HomePage" />

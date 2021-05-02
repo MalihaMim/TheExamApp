@@ -21,7 +21,7 @@ public class FitnessPage extends AppCompatActivity implements AdapterView.OnItem
         setContentView(R.layout.activity_fitness_page);
 
         //get the spinner from the xml.
-        Spinner dropdown = findViewById(R.id.activity_dropdown);
+        Spinner dropdown = (Spinner) findViewById(R.id.activity_type_dropdown);
 
         //create a list of items for the spinner.
         String[] items = new String[]{"Select item","Walking", "Running", "Cardio","Strength training","Dance","Sport"};
