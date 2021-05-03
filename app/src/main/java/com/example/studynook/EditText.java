@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.HashSet;
 
@@ -15,6 +17,7 @@ public class EditText extends AppCompatActivity {
 
     protected int noteId;
     private android.widget.EditText editText;
+    private Button saveNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,7 @@ public class EditText extends AppCompatActivity {
         setContentView(R.layout.activity_edit_text);
 
         editText = findViewById(R.id.editText);
+        saveNote = findViewById(R.id.saveButton);
 
         Intent intent = getIntent();
 
@@ -53,6 +57,14 @@ public class EditText extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+
+        saveNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), NotePage.class);
+                startActivity(intent);
             }
         });
     }
