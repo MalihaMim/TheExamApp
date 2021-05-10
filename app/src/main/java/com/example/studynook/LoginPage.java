@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginPage extends AppCompatActivity {
 
     private EditText username, password;
     private Button login, signup;
+    private TextView forgotPw;
     DBHelper db;
 
     @Override
@@ -24,6 +26,7 @@ public class LoginPage extends AppCompatActivity {
         password = findViewById(R.id.password);
         login = findViewById(R.id.login);
         signup = findViewById(R.id.signup);
+        forgotPw = findViewById(R.id.forgotPw);
 
         db = new DBHelper(this);
 
@@ -63,6 +66,14 @@ public class LoginPage extends AppCompatActivity {
                         Toast.makeText(LoginPage.this, "Log in failed", Toast.LENGTH_SHORT).show();
                     }
                 }
+            }
+        });
+
+        forgotPw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent reset = new Intent(LoginPage.this, ResetPasswordPage.class);
+                startActivity(reset);
             }
         });
     }
