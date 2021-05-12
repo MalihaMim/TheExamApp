@@ -1,11 +1,14 @@
 package com.example.studynook;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +26,12 @@ public class FitnessPage extends AppCompatActivity implements AdapterView.OnItem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fitness_page);
 
+        ActionBar actionBar = getSupportActionBar();
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#FF8386"));
+        actionBar.setBackgroundDrawable(color);
+        actionBar.setDisplayHomeAsUpEnabled(true); // Displays the back button on top action bar
+        actionBar.setTitle("Fitness");
+
         //get the spinner from the xml.
         Spinner dropdown = (Spinner) findViewById(R.id.activity_type_dropdown);
 
@@ -37,11 +46,6 @@ public class FitnessPage extends AppCompatActivity implements AdapterView.OnItem
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown.setAdapter(adapter);
         dropdown.setOnItemSelectedListener(this);
-
-        // Hides the top bar
-       // getSupportActionBar().hide();
-
-
     }
 
     public void openDialog(View v)
