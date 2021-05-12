@@ -1,6 +1,8 @@
 package com.example.studynook;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,9 +11,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,6 +36,12 @@ public class ProfilePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
+
+        ActionBar bar = getSupportActionBar();
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#8B5DB8"));
+        bar.setDisplayHomeAsUpEnabled(true); // Displays the back button
+        bar.setBackgroundDrawable(color);
+        bar.setTitle("Profile");
 
         userPicture = (ImageView) findViewById(R.id.userPicture);
         changePicture = findViewById(R.id.changePicture);
@@ -102,5 +113,17 @@ public class ProfilePage extends AppCompatActivity {
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             userPicture.setImageBitmap(bitmap);
         }
+    }
+    // Go back to previous page when user clicks the top back button
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        startActivity(new Intent(ProfilePage.this, HomePage.class));
+        onPause();
+        return super.onOptionsItemSelected(item);
+    }
+    // Gets rid of back button animation
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 }

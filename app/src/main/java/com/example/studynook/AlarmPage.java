@@ -39,6 +39,7 @@ public class AlarmPage extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#FF5053"));
         actionBar.setBackgroundDrawable(color);
+        actionBar.setDisplayHomeAsUpEnabled(true); // Displays the back button
         actionBar.setTitle("Alarm");;
 
         setAlarm = findViewById(R.id.setalarmButton);
@@ -115,6 +116,8 @@ public class AlarmPage extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 return true;
         }
+        startActivity(new Intent(AlarmPage.this, SchedulingPage.class)); // This adds the top back button
+        onPause(); // Removes back button animation
 
         return super.onOptionsItemSelected(item);
     }
@@ -134,5 +137,11 @@ public class AlarmPage extends AppCompatActivity {
         PendingIntent pending = PendingIntent.getBroadcast(this, 1, intent, 0);
         alarmManager.cancel(pending);
 //        Toast.makeText(this, "Your alarm is cancelled", Toast.LENGTH_LONG).show();
+    }
+
+    // Gets rid of back button animation
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 }

@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyNook">
-        <activity android:name=".ViewCalendarEvents"></activity>
+
         <activity android:name=".LoginPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,6 +39,7 @@
         <activity android:name=".SignUpPage" />
         <activity android:name=".ProfilePage" />
         <activity android:name=".MainActivity"></activity>
+        <activity android:name=".ViewCalendarEvents"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

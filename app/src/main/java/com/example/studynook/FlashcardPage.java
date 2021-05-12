@@ -23,6 +23,7 @@ public class FlashcardPage extends AppCompatActivity {
         ActionBar bar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#A1C7A8"));
         bar.setBackgroundDrawable(color);
+        bar.setDisplayHomeAsUpEnabled(true); // Displays the back button
         bar.setTitle("Flashcard");
 
         // Initialise and assign variable
@@ -79,7 +80,14 @@ public class FlashcardPage extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 return true;
         }
+        startActivity(new Intent(FlashcardPage.this, CreatePage.class));
+        onPause();
 
         return super.onOptionsItemSelected(item);
+    }
+    // Gets rid of back button animation
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 }

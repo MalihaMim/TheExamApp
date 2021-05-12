@@ -5,7 +5,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.util.GregorianCalendar;
@@ -15,6 +17,7 @@ import android.os.Parcelable;
 import android.provider.CalendarContract;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -25,13 +28,19 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 
 public class CalendarPage extends AppCompatActivity {
     TextView dateSelected;
     private Button addEvent, viewEvent;
     private int curYear = 0, curMonth = 0, curDay = 0;
     private int index = 0;
+    protected static ArrayList<String> userEvents = new ArrayList<>();
+    private long newDate;
+    String selectedDate;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -42,13 +51,13 @@ public class CalendarPage extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#FF5053"));
         actionBar.setBackgroundDrawable(color);
+        actionBar.setDisplayHomeAsUpEnabled(true); // Displays the back button
         actionBar.setTitle("Calendar");
 
-        ArrayList<String> userEvents = new ArrayList<>();
-        int numDays = 2000;
+        /**int numDays = 2000;
         int[] curDate = new int[numDays];
         int[] months = new int[numDays];
-        int[] eventYear = new int[numDays];
+        int[] eventYear = new int[numDays];**/
 
         EditText userInput = findViewById(R.id.userInput);
         CalendarView calendarView = findViewById(R.id.calendar);
@@ -56,34 +65,50 @@ public class CalendarPage extends AppCompatActivity {
         viewEvent = findViewById(R.id.viewEvent);
 
         //View eventContent = findViewById(R.id.eventContents);
+
         // User selects date and inputs their event details
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                curYear = year;
-                curMonth = month;
-                curDay = dayOfMonth;
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int day) {
+                //curYear = year;
+                //curMonth = month;
+                //curDay = dayOfMonth;
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(year, month, day);
+                newDate = calendar.getTimeInMillis();
+
+                int mYear = calendar.get(Calendar.YEAR);
+                int mMonth = calendar.get(Calendar.MONTH);
+                int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                //String selectedDate = sdf.format(new Date(calendarView.getDate()));
+                selectedDate = sdf.format(newDate);
+                //userInput.setText((selectedDate));
+                //userEvents.add(selectedDate);
 
                 // Hides the visibility of the add event content until the user clicks a date
                 if (userInput.getVisibility() == View.GONE && addEvent.getVisibility() == View.GONE) {
                     userInput.setVisibility(View.VISIBLE);
                     addEvent.setVisibility(View.VISIBLE);
                 }
-                for(int h = 0; h < index; h++) {
+                /**for(int h = 0; h < index; h++) {
                     if(eventYear[h] == curYear) {
                         for (int i = 0; i < index; i++) {
                             if(curDate[i] == curDay) {
                                 for (int k = 0; k < index; k++) {
                                     if(months[k] == curMonth && curDate[k] == curDay && eventYear[k] == curYear) {
-                                        userInput.setText(userEvents.get(h));
+                                        userInput.setText(userEvents.get(k));
+                                        //userInput.setText();
                                         return;
                                     }
                                 }
                             }
                         }
                     }
-                }
-                userInput.setText("");
+                }**/
+                //userInput.setText("");
             }
         });
 
@@ -91,28 +116,35 @@ public class CalendarPage extends AppCompatActivity {
         addEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                curDate[index] = curDay;
-                months[index] = curMonth;
-                eventYear[index] = curYear;
-                userEvents.add(index, userInput.getText().toString());
-                index++;
-                userInput.setText("");
-                userInput.setVisibility(View.GONE);
+                //curDate[index] = curDay;
+                //months[index] = curMonth;
+                //eventYear[index] = curYear;
+               // userInput.setText(userEvents);
+                //userEvents.add(userInput.getText().toString() + calendarView.getDate());
+                //String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                userEvents.add("Event Date: " + selectedDate + "\n" + userInput.getText().toString());
+                //userEvents.add(index, String.valueOf(calendarView.getDate()));
+               // userEvents.add(index, String.valueOf(Log.e("date",curDate+"/"+months+"/"+curDate)));
+                //index++;
+                //userInput.setText("");
+                //userInput.setVisibility(View.GONE);
 
-                addEvent.setVisibility(View.GONE);
+                //addEvent.setVisibility(View.GONE);
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calendarpage", Context.MODE_PRIVATE);
+                HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("savedEvent", null);
+
+                /**if (set == null) {
+                    userEvents.add("Example note");
+                } else {
+                    userEvents = new ArrayList(set);
+                }**/
+
                 Intent intent = new Intent(CalendarPage.this, ViewCalendarEvents.class);
-                intent.putExtra("test", userEvents);
+                intent.putExtra("savedEvent", userEvents);
                 startActivity(intent);
-
-                /**Intent i = new Intent(CalendarPage.this, ViewCalendarEvents.class);
-                Bundle bundle = new Bundle();
-                bundle.putExtras("Date", calendarView.getDate());
-                i.putExtras(bundle);
-                startActivity(i);**/
-
             }
         });
-
+        // Go to view my events page
         viewEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,6 +152,18 @@ public class CalendarPage extends AppCompatActivity {
                 startActivity(intent);
             }
         } );
+    }
+    // Go back to previous page when user clicks the top back button
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        startActivity(new Intent(CalendarPage.this, SchedulingPage.class));
+        onPause();
+        return super.onOptionsItemSelected(item);
+    }
+    // Gets rid of back button animation
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 }
 

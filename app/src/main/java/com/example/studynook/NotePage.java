@@ -38,6 +38,7 @@ public class NotePage extends AppCompatActivity {
         ActionBar bar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#A1C7A8"));
         bar.setBackgroundDrawable(color);
+        bar.setDisplayHomeAsUpEnabled(true); // Displays the back button
         bar.setTitle("Notes");
 
         ListView listView = findViewById(R.id.list);
@@ -140,7 +141,14 @@ public class NotePage extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
+        startActivity(new Intent(NotePage.this, CreatePage.class));
+        onPause();
 
         return false;
+    }
+    // Gets rid of back button animation
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 }

@@ -23,6 +23,7 @@ public class MentalHealthPage extends AppCompatActivity {
         ActionBar bar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#FF8386"));
         bar.setBackgroundDrawable(color);
+        bar.setDisplayHomeAsUpEnabled(true); // Displays the back button
         bar.setTitle("Mental Health");
 
         // Initialise and assign variable
@@ -79,7 +80,13 @@ public class MentalHealthPage extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 return true;
         }
-
+        startActivity(new Intent(MentalHealthPage.this, WellBeingPage.class));
+        onPause();
         return super.onOptionsItemSelected(item);
+    }
+    // Gets rid of back button animation
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 }

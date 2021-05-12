@@ -1,10 +1,13 @@
 package com.example.studynook;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -75,5 +78,17 @@ public class FitnessPage extends AppCompatActivity implements AdapterView.OnItem
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+    // Go back to previous page when user clicks the top back button
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        startActivity(new Intent(FitnessPage.this, WellBeingPage.class));
+        onPause();
+        return super.onOptionsItemSelected(item);
+    }
+    // Gets rid of back button animation
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 }
