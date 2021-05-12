@@ -18,7 +18,7 @@ public class SignUpPage extends AppCompatActivity {
     private View view;
     private EditText name, email, password;
     private Button regButton;
-    DBHelper db;
+    //DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class SignUpPage extends AppCompatActivity {
         password = findViewById(R.id.regPassword);
         regButton = findViewById(R.id.regAccountButton);
 
-        db = new DBHelper(this);
+        //db = new DBHelper(this);
 
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +88,7 @@ public class SignUpPage extends AppCompatActivity {
             String username = name.getText().toString();
             String pw = password.getText().toString();
 
-            Boolean checkUser = db.checkUsername(username);
+            /*Boolean checkUser = db.checkUsername(username);
             if(checkUser==false){
                 Boolean insert = db.insertData(username,pw);
                 if(insert==true){
@@ -100,7 +100,7 @@ public class SignUpPage extends AppCompatActivity {
                 }
             } else {
                 Toast.makeText(SignUpPage.this, "User already exists",Toast.LENGTH_SHORT).show();
-            }
+            }*/
         }
     }
 }
