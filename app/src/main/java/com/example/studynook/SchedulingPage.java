@@ -36,7 +36,7 @@ public class SchedulingPage extends AppCompatActivity {
         alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SchedulingPage.this, AlarmPage.class);
+                Intent intent = new Intent(SchedulingPage.this, BreakPage.class);
                 startActivity(intent);
             }
         } );

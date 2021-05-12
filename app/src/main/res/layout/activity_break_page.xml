@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AlarmPage">
+    tools:context=".BreakPage">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:id="@+id/timePick"
             android:layout_width="432dp"
             android:layout_height="207dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="84dp"
             android:layout_weight="0.6"
             android:timePickerMode="spinner"
             app:layout_constraintEnd_toEndOf="parent"

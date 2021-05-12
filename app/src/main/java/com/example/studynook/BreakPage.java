@@ -16,17 +16,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
-public class AlarmPage extends AppCompatActivity {
+public class BreakPage extends AppCompatActivity {
 
     private TimePicker timePicker;
     private Button setAlarm, cancelAlarm;
@@ -34,7 +31,7 @@ public class AlarmPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_alarm_page);
+        setContentView(R.layout.activity_break_page);
 
         ActionBar actionBar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#FF5053"));
