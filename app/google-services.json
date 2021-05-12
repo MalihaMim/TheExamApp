@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "56809463138",
+    "project_id": "studynook-ff8a7",
+    "storage_bucket": "studynook-ff8a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56809463138:android:a2691c754fdd9ba66fe03b",
+        "android_client_info": {
+          "package_name": "com.example.studynook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56809463138-n5svaobdo33f53rhcj9515uk3dfqim33.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.studynook",
+            "certificate_hash": "3a021fca4c5ca3b4be64ed6e83ac3b23c4da9bb9"
+          }
+        },
+        {
+          "client_id": "56809463138-1svhish7s0p1j0d0m3v1lf1a524u0i1e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_U8zpYmMlDB-vdZsujMA_6y9l0BvLTD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56809463138-1svhish7s0p1j0d0m3v1lf1a524u0i1e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
