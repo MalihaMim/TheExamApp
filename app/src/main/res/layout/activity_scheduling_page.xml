@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".SchedulingPage">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Resources"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,4 +15,62 @@
         app:itemIconTint="@drawable/red_selector"
         app:menu="@menu/menu_navigation"
         android:layout_alignParentBottom="true"/>
+
+    <Button
+        android:id="@+id/alarmButton"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="166dp"
+        android:layout_marginBottom="338dp"
+        android:text="Alarm"
+        android:textSize="20dp"
+        app:backgroundTint="#FF5053" />
+
+    <Button
+        android:id="@+id/calendarButton"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="207dp"
+        android:text="Calendar"
+        android:textSize="20dp"
+        app:backgroundTint="#FF5053" />
+
+    <Button
+        android:id="@+id/plannerButton"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="225dp"
+        android:layout_marginLeft="225dp"
+        android:layout_marginBottom="210dp"
+        android:text="Planner"
+        android:textSize="20dp"
+        app:backgroundTint="#FF5053" />
+
+    <Button
+        android:id="@+id/timerButton"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="225dp"
+        android:layout_marginLeft="225dp"
+        android:layout_marginBottom="335dp"
+        android:text="Timer"
+        android:textSize="20dp"
+        app:backgroundTint="#FF5053" />
+
 </RelativeLayout>
