@@ -1,15 +1,18 @@
 package com.example.studynook;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
-import android.widget.Button;
+import android.view.MenuItem;
 
 import java.util.HashSet;
 
@@ -17,15 +20,19 @@ public class EditText extends AppCompatActivity {
 
     protected int noteId;
     private android.widget.EditText editText;
-    private Button saveNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_text);
 
+        ActionBar actionBar = getSupportActionBar();
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#A1C7A8"));
+        actionBar.setBackgroundDrawable(color);
+        actionBar.setDisplayHomeAsUpEnabled(true); // Displays the back button
+        actionBar.setTitle("Edit Note");
+
         editText = findViewById(R.id.editText);
-        saveNote = findViewById(R.id.saveButton);
 
         Intent intent = getIntent();
 
@@ -59,13 +66,17 @@ public class EditText extends AppCompatActivity {
 
             }
         });
-
-        saveNote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), NotePage.class);
-                startActivity(intent);
-            }
-        });
+    }
+    // Go back to previous page when user clicks the top back button
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        startActivity(new Intent(EditText.this, NotePage.class));
+        onPause();
+        return super.onOptionsItemSelected(item);
+    }
+    // Gets rid of back button animation
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 }

@@ -28,8 +28,9 @@ public class TimerPage extends AppCompatActivity {
         setContentView(R.layout.activity_timer_page);
 
         ActionBar actionBar = getSupportActionBar();
-        ColorDrawable color = new ColorDrawable(Color.parseColor("#FFA49C"));
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#FF5053"));
         actionBar.setBackgroundDrawable(color);
+        actionBar.setDisplayHomeAsUpEnabled(true); // Displays the back button
         actionBar.setTitle("Timer");
 
         // Initialise and assign variable
@@ -112,7 +113,13 @@ public class TimerPage extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 return true;
         }
-
+        startActivity(new Intent(TimerPage.this, SchedulingPage.class));
+        onPause();
         return super.onOptionsItemSelected(item);
+    }
+    // Gets rid of back button animation
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 }

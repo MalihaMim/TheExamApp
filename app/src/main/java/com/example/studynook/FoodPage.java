@@ -23,6 +23,7 @@ public class FoodPage extends AppCompatActivity {
         ActionBar bar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#FF8386"));
         bar.setBackgroundDrawable(color);
+        bar.setDisplayHomeAsUpEnabled(true); // Displays the back button
         bar.setTitle("Food");
 
         // Initialise and assign variable
