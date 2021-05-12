@@ -44,11 +44,11 @@ public class NotePage extends AppCompatActivity {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
         HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
 
-        if (set == null) {
-            notes.add("Example note");
-        } else {
+//        if (set == null) {
+//            notes.add("Example note");
+//        } else {
             notes = new ArrayList(set);
-        }
+//        }
 
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
