@@ -39,7 +39,7 @@ public class FitnessPage extends AppCompatActivity implements AdapterView.OnItem
         dropdown.setOnItemSelectedListener(this);
 
         // Hides the top bar
-        getSupportActionBar().hide();
+       // getSupportActionBar().hide();
 
 
     }
