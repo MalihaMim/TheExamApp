@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,24 +13,44 @@ import android.widget.Toast;
 
 public class ResetPasswordPage extends AppCompatActivity {
 
-    private TextView resetPwView, currentPwView, newPwView, confirmPwView;
-    private EditText currentPw, newPw, confirmPw;
-    private Button resetPwBtn;
+    private TextView resetPw, resetPwText, backLogin;
+    private EditText email;
+    private Button submitBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password_page);
 
-        currentPw = findViewById(R.id.currentPw);
-        newPw = findViewById(R.id.newPw);
-        confirmPw = findViewById(R.id.confirmPw);
-        resetPwBtn = findViewById(R.id.ResetPwBtn);
+        email = findViewById(R.id.EmailAddress);
+        backLogin = findViewById(R.id.backLogin);
+        submitBtn = findViewById(R.id.SubmitBtn);
 
-        resetPwBtn.setOnClickListener(new View.OnClickListener() {
+        submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String currentPassword = currentPw.getText().toString();
+                String emailAddress = email.getText().toString();
+
+                if(!emailAddress.isEmpty()&& Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches()){
+                    //send email using firebase
+                    Toast.makeText(ResetPasswordPage.this, "Email sent", Toast.LENGTH_SHORT).show();
+                } else {
+                    email.setError("Please enter your email address");
+                }
+            }
+        });
+
+        backLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent back = new Intent(ResetPasswordPage.this, LoginPage.class);
+                startActivity(back);
+            }
+        });
+    }
+}
+
+ /*String currentPassword = currentPw.getText().toString();
                 String newPassword = newPw.getText().toString();
                 String confirmPassword = confirmPw.getText().toString();
 
@@ -50,10 +71,4 @@ public class ResetPasswordPage extends AppCompatActivity {
                     } else {
                         Toast.makeText(ResetPasswordPage.this, "Confirm your password again", Toast.LENGTH_SHORT).show();
                     }
-                }
-
-
-            }
-        });
-    }
-}
+                }*/

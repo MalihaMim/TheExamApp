@@ -15,20 +15,20 @@ public class LoginPage extends AppCompatActivity {
     private EditText username, password;
     private Button login, signup;
     private TextView forgotPw;
-    DBHelper db;
+    //DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-        username = findViewById(R.id.username);
+        username = findViewById(R.id.email);
         password = findViewById(R.id.password);
         login = findViewById(R.id.login);
         signup = findViewById(R.id.signup);
         forgotPw = findViewById(R.id.forgotPw);
 
-        db = new DBHelper(this);
+        //db = new DBHelper(this);
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +55,7 @@ public class LoginPage extends AppCompatActivity {
                     password.setError("Enter a valid password");
                 }
                 else if (!userId.isEmpty() && !userPw.isEmpty()) {
-                    Boolean checkuserpass = db.checkUsernamePassword(userId,userPw);
+                    /*Boolean checkuserpass = db.checkUsernamePassword(userId,userPw);
                     if(checkuserpass==true){
                         Toast.makeText(LoginPage.this, "Log in successful", Toast.LENGTH_SHORT).show();
                         Intent in = new Intent(LoginPage.this, HomePage.class);
@@ -64,7 +64,7 @@ public class LoginPage extends AppCompatActivity {
                         startActivity(in);
                     } else {
                         Toast.makeText(LoginPage.this, "Log in failed", Toast.LENGTH_SHORT).show();
-                    }
+                    }*/
                 }
             }
         });
