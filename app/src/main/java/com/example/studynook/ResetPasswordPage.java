@@ -1,5 +1,6 @@
 package com.example.studynook;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,9 +12,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class ResetPasswordPage extends AppCompatActivity {
 
-    private TextView resetPw, resetPwText, backLogin;
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDbRef;
+
+    private TextView backLogin;
     private EditText email;
     private Button submitBtn;
 
@@ -21,6 +31,9 @@ public class ResetPasswordPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password_page);
+
+        mAuth = FirebaseAuth.getInstance();
+        mDbRef = FirebaseDatabase.getInstance().getReference("StudyNook");
 
         email = findViewById(R.id.EmailAddress);
         backLogin = findViewById(R.id.backLogin);
@@ -32,8 +45,16 @@ public class ResetPasswordPage extends AppCompatActivity {
                 String emailAddress = email.getText().toString();
 
                 if(!emailAddress.isEmpty()&& Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches()){
-                    //send email using firebase
-                    Toast.makeText(ResetPasswordPage.this, "Email sent", Toast.LENGTH_SHORT).show();
+                    mAuth.sendPasswordResetEmail(email.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()) {
+                                Toast.makeText(ResetPasswordPage.this, "Email sent", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(ResetPasswordPage.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 } else {
                     email.setError("Please enter your email address");
                 }

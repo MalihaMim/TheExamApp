@@ -38,6 +38,7 @@
         <activity android:name=".SchedulingPage" />
         <activity android:name=".SignUpPage" />
         <activity android:name=".ProfilePage" />
+        <activity android:name=".ViewCalendarEvents" />
         <activity android:name=".MainActivity"></activity>
 
         <meta-data

@@ -51,27 +51,48 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/userId"
+        android:id="@+id/userEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Email"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/nameData"
+        app:layout_constraintTop_toBottomOf="@+id/nameData" />
+
+    <TextView
+        android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="250dp"
-        android:text="Username"
+        android:text="Name"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/IdData"
+        android:id="@+id/emailData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@color/purple_200"
-        android:text="testID"
+        android:text="testEmail"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/userId"
-        app:layout_constraintTop_toBottomOf="@+id/userId" />
+        app:layout_constraintStart_toStartOf="@+id/userEmail"
+        app:layout_constraintTop_toBottomOf="@+id/userEmail" />
+
+    <TextView
+        android:id="@+id/nameData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/purple_200"
+        android:text="testName"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/userName"
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
 
     <TextView
         android:id="@+id/userPw"
@@ -80,8 +101,8 @@
         android:layout_marginTop="8dp"
         android:text="Password"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/IdData"
-        app:layout_constraintTop_toBottomOf="@+id/IdData" />
+        app:layout_constraintStart_toStartOf="@+id/emailData"
+        app:layout_constraintTop_toBottomOf="@+id/emailData" />
 
     <TextView
         android:id="@+id/pwData"
