@@ -19,11 +19,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginPage extends AppCompatActivity {
-    private FirebaseAuth mAuth;
-    private DatabaseReference mDbRef;
+//    private FirebaseAuth mAuth;
+//    private DatabaseReference mDbRef;
     private EditText email, password;
     private Button login, signup;
     private TextView forgotPw;
+
+    private Firebase firebase;
     //DBHelper db;
 
     @Override
@@ -31,8 +33,9 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-        mAuth = FirebaseAuth.getInstance();
-        mDbRef = FirebaseDatabase.getInstance().getReference("StudyNook");
+//        mAuth = FirebaseAuth.getInstance();
+//        mDbRef = FirebaseDatabase.getInstance().getReference("StudyNook");
+        firebase = new Firebase();
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
@@ -67,7 +70,7 @@ public class LoginPage extends AppCompatActivity {
                     password.setError("Enter a valid password");
                 }
                 else if (!userEmail.isEmpty() && !userPw.isEmpty()) {
-                    mAuth.signInWithEmailAndPassword(userEmail, userPw).addOnCompleteListener(LoginPage.this, new OnCompleteListener<AuthResult>() {
+                    firebase.getmAuth().signInWithEmailAndPassword(userEmail, userPw).addOnCompleteListener(LoginPage.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()) {
