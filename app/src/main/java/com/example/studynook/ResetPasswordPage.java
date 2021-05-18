@@ -50,6 +50,7 @@ public class ResetPasswordPage extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()) {
                                 Toast.makeText(ResetPasswordPage.this, "Email sent", Toast.LENGTH_SHORT).show();
+                                //need to update password in database
                             } else {
                                 Toast.makeText(ResetPasswordPage.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
