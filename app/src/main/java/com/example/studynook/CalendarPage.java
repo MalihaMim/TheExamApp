@@ -25,6 +25,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -39,8 +44,11 @@ public class CalendarPage extends AppCompatActivity {
     private int curYear = 0, curMonth = 0, curDay = 0;
     private int index = 0;
     protected static ArrayList<String> userEvents = new ArrayList<>();
+    protected static ArrayList<String> saveDate = new ArrayList<>();
+    //private HashSet<String>set = new HashSet<String>();
     private long newDate;
     String selectedDate;
+    private DatabaseReference dateReference;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -85,6 +93,22 @@ public class CalendarPage extends AppCompatActivity {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 //String selectedDate = sdf.format(new Date(calendarView.getDate()));
                 selectedDate = sdf.format(newDate);
+                saveDate.add(selectedDate);
+
+                dateReference = FirebaseDatabase.getInstance().getReference("StudyNook").child("selectedDate");
+
+                // Save to the database
+                dateReference.setValue(saveDate)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()) {
+                                    Toast.makeText(getApplicationContext(), "Date Saved", Toast.LENGTH_LONG);
+                                }
+                            }
+                        });
+
+                //startActivity(intent);
                 //userInput.setText((selectedDate));
                 //userEvents.add(selectedDate);
 
@@ -122,6 +146,15 @@ public class CalendarPage extends AppCompatActivity {
                // userInput.setText(userEvents);
                 //userEvents.add(userInput.getText().toString() + calendarView.getDate());
                 //String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.test", Context.MODE_PRIVATE);
+                HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("savedEvent", null);
+                //set.add(String.valueOf(userEvents));
+                //set.add("Event Date: " + selectedDate + "\n" + userInput.getText().toString());
+                //userEvents = new ArrayList<>(set);
+                Intent intentDate = new Intent(CalendarPage.this, EditCalendarEvent.class);
+                intentDate.putExtra("saveDate", saveDate);
+                startActivity(intentDate);
+
                 userEvents.add("Event Date: " + selectedDate + "\n" + userInput.getText().toString());
                 //userEvents.add(index, String.valueOf(calendarView.getDate()));
                // userEvents.add(index, String.valueOf(Log.e("date",curDate+"/"+months+"/"+curDate)));
@@ -130,11 +163,9 @@ public class CalendarPage extends AppCompatActivity {
                 //userInput.setVisibility(View.GONE);
 
                 //addEvent.setVisibility(View.GONE);
-                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.calendarpage", Context.MODE_PRIVATE);
-                HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("savedEvent", null);
 
                 /**if (set == null) {
-                    userEvents.add("Example note");
+                    Toast.makeText(CalendarPage.this,"No events!",Toast.LENGTH_LONG).show();
                 } else {
                     userEvents = new ArrayList(set);
                 }**/
@@ -164,6 +195,10 @@ public class CalendarPage extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         overridePendingTransition(0, 0);
+    }
+
+    public ArrayList<String> getDateList() {
+        return saveDate;
     }
 }
 
