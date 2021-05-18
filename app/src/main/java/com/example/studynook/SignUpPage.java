@@ -88,19 +88,19 @@ public class SignUpPage extends AppCompatActivity {
             String username = name.getText().toString();
             String pw = password.getText().toString();
 
-            /*Boolean checkUser = db.checkUsername(username);
-            if(checkUser==false){
-                Boolean insert = db.insertData(username,pw);
-                if(insert==true){
+//            Boolean checkUser = db.checkUsername(username);
+//            if(checkUser==false){
+//                Boolean insert = db.insertData(username,pw);
+//                if(insert==true){
                     Toast.makeText(SignUpPage.this, "Register successful",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(SignUpPage.this, HomePage.class);
                     startActivity(intent);
-                } else {
-                    Toast.makeText(SignUpPage.this, "Register failed",Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                Toast.makeText(SignUpPage.this, "User already exists",Toast.LENGTH_SHORT).show();
-            }*/
+//                } else {
+//                    Toast.makeText(SignUpPage.this, "Register failed",Toast.LENGTH_SHORT).show();
+//                }
+//            } else {
+//                Toast.makeText(SignUpPage.this, "User already exists",Toast.LENGTH_SHORT).show();
+//            }
         }
     }
 }
