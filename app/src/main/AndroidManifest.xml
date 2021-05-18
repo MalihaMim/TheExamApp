@@ -11,13 +11,8 @@
         android:theme="@style/Theme.StudyNook">
         <activity android:name=".EditCalendarEvent"></activity>
         <activity android:name=".ResetPasswordPage" />
-        <activity android:name=".CalendarPage">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".CalendarPage" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".WellBeingPage" />
         <activity android:name=".MentalHealthPage" />
         <activity android:name=".FitnessPage" />
@@ -35,7 +30,13 @@
         <activity android:name=".TimerPage" />
         <activity android:name=".AlarmPage" />
         <activity android:name=".PlannerPage" />
-        <activity android:name=".LoginPage" />
+        <activity android:name=".LoginPage" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".SchedulingPage" />
         <activity android:name=".SignUpPage" />
         <activity android:name=".ProfilePage" />

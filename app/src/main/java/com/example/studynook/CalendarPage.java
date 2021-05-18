@@ -48,13 +48,17 @@ public class CalendarPage extends AppCompatActivity {
     //private HashSet<String>set = new HashSet<String>();
     private long newDate;
     String selectedDate;
-    private DatabaseReference dateReference;
+//    private DatabaseReference dateReference;
+    private Firebase firebase;
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar_page);
+
+        firebase = new Firebase();
 
         ActionBar actionBar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#FF5053"));
@@ -95,10 +99,10 @@ public class CalendarPage extends AppCompatActivity {
                 selectedDate = sdf.format(newDate);
                 saveDate.add(selectedDate);
 
-                dateReference = FirebaseDatabase.getInstance().getReference("StudyNook").child("selectedDate");
+//                dateReference = FirebaseDatabase.getInstance().getReference("StudyNook").child("selectedDate");
 
                 // Save to the database
-                dateReference.setValue(saveDate)
+                firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("selectedDate").setValue(saveDate)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
