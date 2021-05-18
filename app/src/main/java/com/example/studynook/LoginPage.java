@@ -19,31 +19,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginPage extends AppCompatActivity {
-//    private FirebaseAuth mAuth;
-//    private DatabaseReference mDbRef;
     private EditText email, password;
     private Button login, signup;
     private TextView forgotPw;
 
     private Firebase firebase;
-    //DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-//        mAuth = FirebaseAuth.getInstance();
-//        mDbRef = FirebaseDatabase.getInstance().getReference("StudyNook");
         firebase = new Firebase();
-
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         login = findViewById(R.id.login);
         signup = findViewById(R.id.signup);
         forgotPw = findViewById(R.id.forgotPw);
-
-        //db = new DBHelper(this);
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,15 +75,6 @@ public class LoginPage extends AppCompatActivity {
                             }
                         }
                     });
-
-                    /*Boolean checkuserpass = db.checkUsernamePassword(userId,userPw);
-                    if(checkuserpass==true){
-                        Toast.makeText(LoginPage.this, "Log in successful", Toast.LENGTH_SHORT).show();
-                        Intent in = new Intent(LoginPage.this, HomePage.class);
-                        startActivity(in);
-                    } else {
-                        Toast.makeText(LoginPage.this, "Log in failed", Toast.LENGTH_SHORT).show();
-                    }*/
                 }
             }
         });

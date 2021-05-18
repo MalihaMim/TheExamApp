@@ -21,28 +21,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpPage extends AppCompatActivity {
-    private FirebaseAuth mAuth;
-    private DatabaseReference mDbRef;
 
+    private Firebase firebase;
     private View view;
     private EditText name, email, password;
     private Button regButton;
-    //DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_page);
 
-        mAuth = FirebaseAuth.getInstance();
-        mDbRef = FirebaseDatabase.getInstance().getReference("StudyNook");
-
+        firebase = new Firebase();
         name = findViewById(R.id.regName);
         email = findViewById(R.id.regEmail);
         password = findViewById(R.id.regPassword);
         regButton = findViewById(R.id.regAccountButton);
-
-        //db = new DBHelper(this);
 
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,18 +96,17 @@ public class SignUpPage extends AppCompatActivity {
             String userPw = password.getText().toString();
 
 
-            mAuth.createUserWithEmailAndPassword(userEmail, userPw).addOnCompleteListener(SignUpPage.this, new OnCompleteListener<AuthResult>() {
+            firebase.getmAuth().createUserWithEmailAndPassword(userEmail, userPw).addOnCompleteListener(SignUpPage.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        FirebaseUser user = mAuth.getCurrentUser();
+                        FirebaseUser user = firebase.getmAuth().getCurrentUser();
                         UserAccount account = new UserAccount();
                         account.setIdToken(user.getUid());
                         account.setEmail(user.getEmail());
-                        account.setPassword(userPw);
                         account.setName(userName);
 
-                        mDbRef.child("UserAccount").child(user.getUid()).setValue(account);
+                        firebase.getmDbRef().child("UserAccount").child(user.getUid()).setValue(account);
 
                         Toast.makeText(SignUpPage.this, "Register successful",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SignUpPage.this, HomePage.class);

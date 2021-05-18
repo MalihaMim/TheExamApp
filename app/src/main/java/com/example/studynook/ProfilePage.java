@@ -29,15 +29,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class ProfilePage extends AppCompatActivity {
-    private FirebaseAuth mAuth;
-    private DatabaseReference mDbRef;
-
     private static final int PICK_FROM_CAMERA = 0;
     private static final int PICK_FROM_ALBUM = 1;
 
+    private Firebase firebase;
     private ImageView userPicture;
     private TextView changePicture;
-    private TextView name, email, pw,userName, userEmail, userpw;
+    private TextView name, email,userName, userEmail;
     private Button signout;
 
     @Override
@@ -45,8 +43,7 @@ public class ProfilePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
 
-        mAuth = FirebaseAuth.getInstance();
-        mDbRef = FirebaseDatabase.getInstance().getReference("StudyNook");
+        firebase = new Firebase();
 
         ActionBar bar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#8B5DB8"));
@@ -61,18 +58,15 @@ public class ProfilePage extends AppCompatActivity {
         userName = findViewById(R.id.nameData);
         email = findViewById(R.id.userEmail);
         userEmail = findViewById(R.id.emailData);
-        pw = findViewById(R.id.userPw);
-        userpw = findViewById(R.id.pwData);
         signout = findViewById(R.id.signout);
 
-        mDbRef.addValueEventListener(new ValueEventListener() {
+        firebase.getmDbRef().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String idToken = mAuth.getCurrentUser().getUid();
+                String idToken = firebase.getmAuth().getCurrentUser().getUid();
                 UserAccount user = snapshot.child("UserAccount").child(idToken).getValue(UserAccount.class);
                 userName.setText(user.getName());
                 userEmail.setText(user.getEmail());
-                userpw.setText(user.getPassword());
             }
 
             @Override
@@ -118,11 +112,11 @@ public class ProfilePage extends AppCompatActivity {
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAuth.signOut();
+                firebase.getmAuth().signOut();
                 Intent i = new Intent(ProfilePage.this, LoginPage.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(i);
-//                finish();
+                finish();
             }
         });
     }
