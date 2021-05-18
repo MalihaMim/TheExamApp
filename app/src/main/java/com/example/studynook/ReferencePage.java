@@ -1,9 +1,12 @@
 package com.example.studynook;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -22,6 +25,12 @@ public class ReferencePage extends AppCompatActivity {
         sql = findViewById(R.id.btn_sql);
         apa = findViewById(R.id.btn_apa);
         chica = findViewById(R.id.btn_chicago);
+
+        ActionBar bar = getSupportActionBar();
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#FFBB3E"));
+        bar.setDisplayHomeAsUpEnabled(true); // Displays the back button
+        bar.setBackgroundDrawable(color);
+        bar.setTitle("References");
 
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -92,5 +101,17 @@ public class ReferencePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    // Go back to previous page when user clicks the top back button
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        startActivity(new Intent(ReferencePage.this, ResourcesPage.class));
+        onPause();
+        return super.onOptionsItemSelected(item);
+    }
+    // Gets rid of back button animation
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 }

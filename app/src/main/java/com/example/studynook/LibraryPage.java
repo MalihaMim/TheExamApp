@@ -29,6 +29,7 @@ public class LibraryPage extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#FFBB3E"));
         actionBar.setBackgroundDrawable(color);
+        actionBar.setDisplayHomeAsUpEnabled(true); // Displays the back button
         actionBar.setTitle("Library");
 
         // Initialise and assign variable
@@ -101,5 +102,17 @@ public class LibraryPage extends AppCompatActivity {
             }
         });
 
+    }
+    // Go back to previous page when user clicks the top back button
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        startActivity(new Intent(LibraryPage.this, ResourcesPage.class));
+        onPause();
+        return super.onOptionsItemSelected(item);
+    }
+    // Gets rid of back button animation
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 }

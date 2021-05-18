@@ -1,9 +1,12 @@
 package com.example.studynook;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,9 +20,11 @@ public class PlannerPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planner_page);
 
-        //ActionBar actionBar = getSupportActionBar();
-        //ColorDrawable color = new ColorDrawable(Color.parseColor("@color/light_red"));
-        //actionBar.setBackgroundDrawable(color);
+        ActionBar actionBar = getSupportActionBar();
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#FF5053"));
+        actionBar.setBackgroundDrawable(color);
+        actionBar.setDisplayHomeAsUpEnabled(true); // Displays the back button
+        actionBar.setTitle("Planner");
 
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -75,7 +80,14 @@ public class PlannerPage extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 return true;
         }
-
+        startActivity(new Intent(PlannerPage.this, SchedulingPage.class));
+        onPause();
         return super.onOptionsItemSelected(item);
+    }
+
+    // Gets rid of back button animation
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 }

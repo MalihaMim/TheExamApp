@@ -1,30 +1,43 @@
 package com.example.studynook;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ProfilePage extends AppCompatActivity {
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDbRef;
+
     private static final int PICK_FROM_CAMERA = 0;
     private static final int PICK_FROM_ALBUM = 1;
 
     private ImageView userPicture;
     private TextView changePicture;
-    private TextView id, pw, userid, userpw;
+    private TextView name, email, pw,userName, userEmail, userpw;
     private Button signout;
 
     @Override
@@ -32,19 +45,42 @@ public class ProfilePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
 
+        mAuth = FirebaseAuth.getInstance();
+        mDbRef = FirebaseDatabase.getInstance().getReference("StudyNook");
+
+        ActionBar bar = getSupportActionBar();
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#8B5DB8"));
+        bar.setDisplayHomeAsUpEnabled(true); // Displays the back button
+        bar.setBackgroundDrawable(color);
+        bar.setTitle("Profile");
+
         userPicture = (ImageView) findViewById(R.id.userPicture);
         changePicture = findViewById(R.id.changePicture);
 
-        id = findViewById(R.id.userId);
-        userid = findViewById(R.id.IdData);
+        name = findViewById(R.id.userName);
+        userName = findViewById(R.id.nameData);
+        email = findViewById(R.id.userEmail);
+        userEmail = findViewById(R.id.emailData);
         pw = findViewById(R.id.userPw);
         userpw = findViewById(R.id.pwData);
-
-        Intent userInfo = getIntent();
-        userid.setText(userInfo.getStringExtra("userId"));
-        userpw.setText(userInfo.getStringExtra("userPw"));
-
         signout = findViewById(R.id.signout);
+
+        mDbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String idToken = mAuth.getCurrentUser().getUid();
+                UserAccount user = snapshot.child("UserAccount").child(idToken).getValue(UserAccount.class);
+                userName.setText(user.getName());
+                userEmail.setText(user.getEmail());
+                userpw.setText(user.getPassword());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         changePicture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,9 +118,11 @@ public class ProfilePage extends AppCompatActivity {
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mAuth.signOut();
                 Intent i = new Intent(ProfilePage.this, LoginPage.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(i);
+//                finish();
             }
         });
     }
@@ -102,5 +140,17 @@ public class ProfilePage extends AppCompatActivity {
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             userPicture.setImageBitmap(bitmap);
         }
+    }
+    // Go back to previous page when user clicks the top back button
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        startActivity(new Intent(ProfilePage.this, HomePage.class));
+        onPause();
+        return super.onOptionsItemSelected(item);
+    }
+    // Gets rid of back button animation
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 }

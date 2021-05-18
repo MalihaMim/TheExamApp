@@ -6,16 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ViewCalendarEvents">
 
-    <EditText
-        android:id="@+id/textTest"
-        android:layout_width="369dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:lines="5"
-        android:text="Name"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="35dp" />
+    <ListView
+        android:id="@+id/eventList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

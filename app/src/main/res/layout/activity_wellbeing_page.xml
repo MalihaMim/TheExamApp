@@ -67,7 +67,6 @@
         app:itemBackground="@color/light_pink"
         app:itemTextColor="@drawable/pink_selector"
         app:itemIconTint="@drawable/pink_selector"
-        app:labelVisibilityMode="labeled"
         app:menu="@menu/menu_navigation"
         />
 </RelativeLayout>

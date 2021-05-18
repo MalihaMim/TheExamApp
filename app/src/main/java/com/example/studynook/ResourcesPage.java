@@ -2,8 +2,10 @@ package com.example.studynook;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -27,6 +29,7 @@ public class ResourcesPage extends AppCompatActivity {
         ActionBar bar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#FFBB3E"));
         bar.setBackgroundDrawable(color);
+        bar.setTitle("Resources");
 
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -84,5 +87,26 @@ public class ResourcesPage extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    // Exits the app when the user presses the back button on the main sections
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Exit Application")
+                .setMessage("Are you sure you want to exit the app?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent exit = new Intent(Intent.ACTION_MAIN);
+                        exit.addCategory(Intent.CATEGORY_HOME);
+                        exit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(exit);
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }
