@@ -72,9 +72,9 @@ public class CountdownPage extends AppCompatActivity {
         });
 
         countdown = findViewById(R.id.countdownText);
-        pause = findViewById(R.id.pauseButton);
-        reset = findViewById(R.id.resetButton);
-        resume = findViewById(R.id.resumeButton);
+        pause = findViewById(R.id.start);
+        reset = findViewById(R.id.reset);
+        resume = findViewById(R.id.resume);
 
         Bundle extras = getIntent().getExtras();
 

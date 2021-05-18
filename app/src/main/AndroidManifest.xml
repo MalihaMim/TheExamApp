@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyNook">
-        <activity android:name=".ResetPasswordPage"></activity>
-        <activity android:name=".LoginPage">
+<!--        <activity android:name=".StopwatchPage"></activity>-->
+        <activity android:name=".ResetPasswordPage" />
+        <activity android:name=".StopwatchPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,7 +39,8 @@
         <activity android:name=".SchedulingPage" />
         <activity android:name=".SignUpPage" />
         <activity android:name=".ProfilePage" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".LoginPage" />
 
         <meta-data
             android:name="preloaded_fonts"

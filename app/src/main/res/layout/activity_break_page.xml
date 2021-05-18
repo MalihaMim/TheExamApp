@@ -20,22 +20,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TimePicker
-            android:id="@+id/timePick"
-            android:layout_width="432dp"
-            android:layout_height="207dp"
-            android:layout_marginTop="84dp"
-            android:layout_weight="0.6"
-            android:timePickerMode="spinner"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <Button
             android:id="@+id/setalarmButton"
-            android:layout_width="439dp"
-            android:layout_height="53dp"
+            android:layout_width="406dp"
+            android:layout_height="44dp"
             android:layout_marginTop="352dp"
             android:text="Set Alarm"
             app:backgroundTint="#FF5053"
@@ -44,11 +32,21 @@
 
         <Button
             android:id="@+id/cancelalarmButton"
-            android:layout_width="439dp"
-            android:layout_height="53dp"
+            android:layout_width="413dp"
+            android:layout_height="51dp"
             android:layout_marginTop="424dp"
             android:text="Cancel alarm"
             app:backgroundTint="#FF5053"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/timeSelection"
+            android:layout_width="213dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="190dp"
+            android:layout_marginLeft="190dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
