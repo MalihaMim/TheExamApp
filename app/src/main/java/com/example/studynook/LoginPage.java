@@ -1,5 +1,6 @@
 package com.example.studynook;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,9 +11,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LoginPage extends AppCompatActivity {
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-    private EditText username, password;
+public class LoginPage extends AppCompatActivity {
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDbRef;
+    private EditText email, password;
     private Button login, signup;
     private TextView forgotPw;
     //DBHelper db;
@@ -22,7 +31,10 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-        username = findViewById(R.id.email);
+        mAuth = FirebaseAuth.getInstance();
+        mDbRef = FirebaseDatabase.getInstance().getReference("StudyNook");
+
+        email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         login = findViewById(R.id.login);
         signup = findViewById(R.id.signup);
@@ -41,26 +53,38 @@ public class LoginPage extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userId = username.getText().toString();
+                String userEmail = email.getText().toString();
                 String userPw = password.getText().toString();
 
-                if (userId.isEmpty()) {
-                    Toast t = Toast.makeText(getApplicationContext(), "You must enter a name to login!", Toast.LENGTH_SHORT);
+                if (userEmail.isEmpty()) {
+                    Toast t = Toast.makeText(getApplicationContext(), "You must enter an email to login!", Toast.LENGTH_SHORT);
                     t.show();
-                    username.setError("Enter a valid username");
+                    email.setError("Enter a valid email");
                 }
                 if (userPw.isEmpty()) {
                     Toast t = Toast.makeText(getApplicationContext(), "You must enter a password to login!", Toast.LENGTH_SHORT);
                     t.show();
                     password.setError("Enter a valid password");
                 }
-                else if (!userId.isEmpty() && !userPw.isEmpty()) {
+                else if (!userEmail.isEmpty() && !userPw.isEmpty()) {
+                    mAuth.signInWithEmailAndPassword(userEmail, userPw).addOnCompleteListener(LoginPage.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()) {
+                                Toast.makeText(LoginPage.this, "Log in successful", Toast.LENGTH_SHORT).show();
+                                Intent login = new Intent(LoginPage.this, HomePage.class);
+                                startActivity(login);
+                                finish();
+                            } else {
+                                Toast.makeText(LoginPage.this, "Log in failed", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
                     /*Boolean checkuserpass = db.checkUsernamePassword(userId,userPw);
                     if(checkuserpass==true){
                         Toast.makeText(LoginPage.this, "Log in successful", Toast.LENGTH_SHORT).show();
                         Intent in = new Intent(LoginPage.this, HomePage.class);
-                        in.putExtra("userId",userId);
-                        in.putExtra("userPw",userPw);
                         startActivity(in);
                     } else {
                         Toast.makeText(LoginPage.this, "Log in failed", Toast.LENGTH_SHORT).show();
@@ -72,8 +96,8 @@ public class LoginPage extends AppCompatActivity {
         forgotPw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent reset = new Intent(LoginPage.this, ResetPasswordPage.class);
-                startActivity(reset);
+                Intent resetPw = new Intent(LoginPage.this, ResetPasswordPage.class);
+                startActivity(resetPw);
             }
         });
     }
