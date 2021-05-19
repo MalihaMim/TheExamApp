@@ -24,10 +24,7 @@ public class MentalHealthPage extends AppCompatActivity {
     private Button decrease;
     private Button increase;
     private TextView status;
-
-    private int progressStatus = 0;
-    private Handler handler = new Handler();
-
+    private int progress = 0;
 
 
     @Override
@@ -46,28 +43,34 @@ public class MentalHealthPage extends AppCompatActivity {
         increase=(Button)findViewById(R.id.increase_btn);
         status=(TextView)findViewById(R.id.percentage);
 
+
+        updateProgress();
+
+        increase.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if(progress <= 100 || progress > 0)
+                {
+                    progress+=10;
+                    updateProgress();
+                }
+            }
+        });
+
         decrease.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                new Thread(new Runnable(){
-
-                    @Override
-                    public void run() {
-                        while(progressStatus<100){
-                            progressStatus+=1;
-                            handler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    prog_bar.setProgress(progressStatus);
-                                    status.setText(progressStatus+"%");
-
-                                }
-                            })
-                        }
-                    }
-                })
+                if(progress <= 100 || progress > 0)
+                {
+                    progress-=10;
+                    updateProgress();
+                }
             }
         });
+
+
+
+
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -102,6 +105,13 @@ public class MentalHealthPage extends AppCompatActivity {
             }
         });
     }
+
+    public void updateProgress()
+    {
+        prog_bar.setProgress(progress);
+        status.setText(progress + "%");
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
