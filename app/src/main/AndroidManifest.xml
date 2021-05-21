@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyNook">
         <activity android:name=".ResetPasswordPage"></activity>
-        <activity android:name=".MentalHealthPage">
+        <activity android:name=".LoginPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".WellBeingPage" />
         <activity android:name=".FitnessPage" />
-        <activity android:name=".LoginPage" />
+        <activity android:name=".MentalHealthPage" />
         <activity android:name=".HomePage" />
         <activity android:name=".FlashcardPage" />
         <activity android:name=".NotePage" />

@@ -13,9 +13,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.AdapterView;
 import android.widget.Toast;
+import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,11 +27,16 @@ import com.google.android.gms.tasks.Task;
  */
 public class FitnessPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    public Spinner dropdown; //Spinner object
-    public String chosen_exercise; //exercise that user chose from Spinner
-    public String[] exercises; //list of exercises in the dropdown
-    private Firebase firebase = new Firebase();; //creating a new Firebase object
-
+    //declaring variables that exist on the page
+    private Button log_button;
+    private Spinner dropdown;
+    private EditText input;
+    private String chosen_exercise;
+    private String[] exercises;
+    private Firebase firebase = new Firebase();
+    private String logInput;
+    //public String hours;
+    //public int num_hours;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +45,7 @@ public class FitnessPage extends AppCompatActivity implements AdapterView.OnItem
 
         //Changing the color of the top action bar:
         ActionBar actionBar = getSupportActionBar();
-        ColorDrawable color = new ColorDrawable(Color.parseColor("#3792CB")); //set color
+        ColorDrawable color = new ColorDrawable(Color.parseColor("#FE7F9C")); //set color
         actionBar.setBackgroundDrawable(color);
         actionBar.setDisplayHomeAsUpEnabled(true); // Displays the back button on top action bar
         actionBar.setTitle("Fitness"); //set title
@@ -49,6 +56,13 @@ public class FitnessPage extends AppCompatActivity implements AdapterView.OnItem
         //create a list of exercises for the spinner
         exercises = new String[]{"Select item","Walking", "Running", "Cardio", "Strength training", "Dance", "Sport"};
 
+        //where user enter the number of hours they spent doing that activity
+        input = (EditText) findViewById(R.id.Hours);
+        input.setText(logInput);
+
+        //hours = input.getText().toString();
+        //num_hours = Integer.parseInt(hours); //converting string to integer
+
         //create an adapter to describe how the exercises are displayed
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, exercises);
 
@@ -57,6 +71,11 @@ public class FitnessPage extends AppCompatActivity implements AdapterView.OnItem
         dropdown.setAdapter(adapter);
         dropdown.setOnItemSelectedListener(this);
     }
+
+   /* //Method to save input into the variable:
+    public void store_input(View view){
+        String text = input.getText().toString();
+    }*/
 
     //CREATING THE DIALOGUE BOX TO POP UP WHEN A USER TRIES TO SAVE AN ACTIVITY IN THE DATABASE
     public void openDialog(View v)
@@ -69,7 +88,8 @@ public class FitnessPage extends AppCompatActivity implements AdapterView.OnItem
         //Yes button:
         alert.setPositiveButton("Yes",new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialogInterface, int i){
-                firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("SelectedExcercise").setValue(chosen_exercise)
+                //Saving the exercise type on Firebase:
+                firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("SelectedExcercise").push().setValue(chosen_exercise + ": " + input.getText().toString() + " hour/s")
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
@@ -78,7 +98,8 @@ public class FitnessPage extends AppCompatActivity implements AdapterView.OnItem
                                 }
                             }
                         });
-                Toast.makeText(FitnessPage.this,"Saved!",Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(FitnessPage.this,"Saved!",Toast.LENGTH_SHORT).show(); //Message: exercise has been saved
             }
         });
 
@@ -92,6 +113,8 @@ public class FitnessPage extends AppCompatActivity implements AdapterView.OnItem
 
         alert.create().show(); //show dialog box
     }
+
+
 
     //Save into chosen exercise variable when the user clicks on a Spinner item
     @Override
