@@ -19,6 +19,7 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
@@ -50,7 +51,6 @@ public class CalendarPage extends AppCompatActivity {
     String selectedDate;
 //    private DatabaseReference dateReference;
     private Firebase firebase;
-
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override

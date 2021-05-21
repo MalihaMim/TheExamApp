@@ -41,7 +41,7 @@ import java.util.Map;
 
 public class ViewCalendarEvents extends AppCompatActivity {
     private final ArrayList<String> resultArray = new ArrayList<String>();
-    private final ArrayList<String> eventKey = new ArrayList<String>();
+    private final ArrayList<String> dateArray = new ArrayList<String>();
     //final ArrayAdapter arrayAdapter = new ArrayAdapter(ViewCalendarEvents.this, android.R.layout.simple_expandable_list_item_1, resultArray);
     private HashMap<String, String> combineData = new HashMap<>();
     private List<HashMap<String, String>> listItems = new ArrayList<>();
@@ -49,6 +49,7 @@ public class ViewCalendarEvents extends AppCompatActivity {
     private Firebase firebase;
     private ListView listView;
     private String key; // Trying to get the key for each data that is saved on the database
+    protected static ArrayAdapter arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +57,14 @@ public class ViewCalendarEvents extends AppCompatActivity {
         setContentView(R.layout.activity_view_calendar_events);
         listView = findViewById(R.id.eventList);
 
-        final ArrayAdapter arrayAdapter = new ArrayAdapter(ViewCalendarEvents.this, android.R.layout.simple_expandable_list_item_1, resultArray);
+        arrayAdapter = new ArrayAdapter(ViewCalendarEvents.this, android.R.layout.simple_expandable_list_item_1, resultArray);
         //resultArray = new ArrayList<String>();
         firebase = new Firebase();
         // get the key that corresponds to each data but i think this does not work
         key = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getKey();
+        //String dateTest = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("dateSelected");
+
+
         //TextView date = findViewById(R.id.date);
         //TextView event = findViewById(R.id.event);
 
@@ -182,12 +186,18 @@ public class ViewCalendarEvents extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String myEvent = resultArray.get(position);
+                //String myEvent = resultArray.get(position);
+                String test = parent.getItemAtPosition(position).toString();
+                String date = parent.getItemAtPosition(position).toString();
+                //String a = parent.getItemAtPosition(Integer.parseInt(dateArray.get(position))).toString();
                 //String myDate = dateArray.get(Integer.parseInt(resultArray.get(position)));
 
-                arrayAdapter.getItem(position);
-                Intent intent = new Intent(ViewCalendarEvents.this, EditCalendarEvent.class);
-                intent.putExtra("myEvent", myEvent);
+                //arrayAdapter.getItem(position);
+                Intent intent = new Intent(getApplicationContext(), EditCalendarEvent.class);
+                intent.putExtra("id", id);
+                intent.putExtra("myEvent", test);
+                intent.putExtra("myDate", date);
+                intent.putExtra("key", firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).getKey());
                 //intent.putExtra("myDate", dateArray);
                 startActivity(intent);
                 arrayAdapter.notifyDataSetChanged();
@@ -199,7 +209,7 @@ public class ViewCalendarEvents extends AppCompatActivity {
     // Get the events from the database and display it in a list view using the adapter
     private void getEvent() {
         // Initialise the array adapter
-        final ArrayAdapter arrayAdapter = new ArrayAdapter(ViewCalendarEvents.this, android.R.layout.simple_expandable_list_item_1, resultArray);
+        arrayAdapter = new ArrayAdapter(ViewCalendarEvents.this, android.R.layout.simple_expandable_list_item_1, resultArray);
 
         // Get the events data from the userEvents child in the firebase database
         DatabaseReference ref =  firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents");
@@ -244,13 +254,14 @@ public class ViewCalendarEvents extends AppCompatActivity {
         });
 
         // This might not be used (Just for the selected dates)
-        DatabaseReference dateRef =  firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("dateSelected");
+        /*DatabaseReference dateRef =  firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("dateSelected");
         dateRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 //textView.setVisibility(View.GONE);
 
                 String date = snapshot.getValue(String.class);
+                dateArray.add(date);
                 //String date = snapshot.child("UserAccount").child("selectedDate").getValue().toString();
                 //String y = snapshot.child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getValue().toString();
                 //resultArray.add(snapshot.child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getValue().toString());
@@ -283,7 +294,7 @@ public class ViewCalendarEvents extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
         /*Iterator it = combineData.entrySet().iterator();
         while(it.hasNext()) {
             HashMap<String, String> resultsMap = new HashMap<>();
@@ -300,7 +311,9 @@ public class ViewCalendarEvents extends AppCompatActivity {
     public void deleteEvent() {
 
     }
+    public void updateEvent(long id, String event) {
 
+    }
     // Go back to previous page when user clicks the top back button
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
