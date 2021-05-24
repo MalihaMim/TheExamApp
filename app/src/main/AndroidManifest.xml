@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.studynook">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_logo"
@@ -9,10 +11,19 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyNook">
-        <activity android:name=".EditCalendarEvent"></activity>
+
+        <receiver android:name="com.allyants.notifyme.NotificationPublisher" />
+        <receiver android:name="com.allyants.notifyme.BootNotifyMe" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".NotificationsPage"></activity>
+        <activity android:name=".EditCalendarEvent" />
         <activity android:name=".ResetPasswordPage" />
         <activity android:name=".CalendarPage" />
-
         <activity android:name=".WellBeingPage" />
         <activity android:name=".MentalHealthPage" />
         <activity android:name=".FitnessPage" />
@@ -30,7 +41,7 @@
         <activity android:name=".TimerPage" />
         <activity android:name=".AlarmPage" />
         <activity android:name=".PlannerPage" />
-        <activity android:name=".LoginPage" >
+        <activity android:name=".LoginPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

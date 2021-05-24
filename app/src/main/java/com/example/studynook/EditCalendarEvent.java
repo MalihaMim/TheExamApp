@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,10 +30,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
-public class EditCalendarEvent extends AppCompatActivity {
+import com.allyants.notifyme.NotifyMe;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
+
+public class EditCalendarEvent extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     private EditText editText;
     protected static ArrayList<String> getDate = new ArrayList<>();
     protected int eventid;
@@ -42,6 +53,11 @@ public class EditCalendarEvent extends AppCompatActivity {
     private long id;
     private DatabaseReference ref;
     private Button button;
+    String key;
+
+    Calendar now = Calendar.getInstance();
+    TimePickerDialog timePickerDialog;
+    DatePickerDialog datePickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +82,33 @@ public class EditCalendarEvent extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true); // Displays the back button on top action bar
         actionBar.setTitle("Edit my Event");
 
-        String key = getIntent().getExtras().get("key").toString();
-        ref = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents");
+        // Notification button
+        Button notify = findViewById(R.id.notifyMe);
+
+        // Get the calendar to display the notification
+        datePickerDialog = DatePickerDialog.newInstance(EditCalendarEvent.this,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.SECOND)
+        );
+        // Get the time picker to display the time
+        timePickerDialog = TimePickerDialog.newInstance(EditCalendarEvent.this,
+                now.get(Calendar.HOUR_OF_DAY),
+                now.get(Calendar.MINUTE),
+                now.get(Calendar.SECOND),
+                false
+        );
+
+        // Notification button
+        notify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datePickerDialog.show(getFragmentManager(), "DatePickerDialog");
+            }
+        });
+
+        key = getIntent().getExtras().get("key").toString();
+        ref = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").child(key);
         //ref = FirebaseDatabase.getInstance().getReference().child("UserAccount").child("userEvents").child(key);
 
         // Displays just the date at the top of the edit page
@@ -213,9 +254,8 @@ public class EditCalendarEvent extends AppCompatActivity {
     }*/
     };
 
-    public void EventListeners()
-    {
-        ref.addChildEventListener(new ChildEventListener() {
+    public void EventListeners() {
+        ref.child(key).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 snapshot.getRef().setValue(text.getText().toString());
@@ -252,7 +292,19 @@ public class EditCalendarEvent extends AppCompatActivity {
             }
         });
     }
+    private void writeNewPost(String event) {
+        // Create new post at /user-posts/$userid/$postid and at
+        // /posts/$postid simultaneously
+        String key = ref.child("userEvents").push().getKey();
+        //Post post = new Post(event);
+        CalendarDates dates = new CalendarDates(event);
+        Map<String, Object> eventValues = CalendarDates.toMap();
 
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/userEvents/" + key, eventValues);
+
+        ref.updateChildren(childUpdates);
+    }
     // Go back to previous page when user clicks the top back button
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -265,4 +317,48 @@ public class EditCalendarEvent extends AppCompatActivity {
         super.onPause();
         overridePendingTransition(0, 0);
     }
+    // Set the date for the notification to occur
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        now.set(Calendar.YEAR, year);
+        now.set(Calendar.MONTH, monthOfYear);
+        now.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        timePickerDialog.show(getFragmentManager(), "TimePickerDialog");
+    }
+    // Set the time for the notification to occur
+    @Override
+    public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
+        now.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        now.set(Calendar.MINUTE, minute);
+        now.set(Calendar.SECOND, second);
+
+        // Initialise notification
+        NotifyMe notifyMe = new NotifyMe.Builder(getApplicationContext())
+                .title("Upcoming Event")
+                .content(text.getText().toString())
+                .color(255, 0, 0, 255)
+                .led_color(255, 255, 255, 255)
+                .time(now)
+                .addAction(new Intent(), "Snooze", false)
+                .key("test")
+                .addAction(new Intent(), "Dismiss", true, false)
+                .addAction(new Intent(), "Done")
+                .large_icon(R.drawable.studynook_logo)
+                .build();
+
+        Toast.makeText(getApplicationContext(), "Notification set", Toast.LENGTH_LONG).show();
+
+    }
+    public NotificationCompat.Builder getChannelNotification(String title, String message) {
+        Intent resultIntent = new Intent(this, NotificationsPage.class);
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        String channel1ID = "channel1ID";
+        return new NotificationCompat.Builder(getApplicationContext(), channel1ID)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setSmallIcon(R.drawable.studynook_logo)
+                .setAutoCancel(true)
+                .setContentIntent(resultPendingIntent);
+    };
 }

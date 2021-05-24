@@ -218,7 +218,7 @@ public class ViewCalendarEvents extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 //textView.setVisibility(View.GONE);
 
-                String event = snapshot.getValue(String.class); // initialise the string as the value from the database
+               String event = snapshot.getValue(String.class); // initialise the string as the value from the database
                 //String date = snapshot.child("UserAccount").child("selectedDate").getValue().toString();
                 //String y = snapshot.child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getValue().toString();
                 //resultArray.add(snapshot.child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getValue().toString());
@@ -230,6 +230,9 @@ public class ViewCalendarEvents extends AppCompatActivity {
 //                    resultArray.add(event);
 //                }
                 resultArray.add(event); // save the event retrieved from database into the array list
+                /*String n = snapshot.getKey();
+                Map<String, Object> hopperUpdates = new HashMap<>();
+                hopperUpdates.put(snapshot.getValue(String.class), n);*/
                 arrayAdapter.notifyDataSetChanged(); // notify adapter the changes that have been made
                 listView.setAdapter(arrayAdapter); // set the adapter
             }
@@ -325,5 +328,10 @@ public class ViewCalendarEvents extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         overridePendingTransition(0, 0);
+    }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ViewCalendarEvents.this, CalendarPage.class));
+        onPause();
     }
 }
