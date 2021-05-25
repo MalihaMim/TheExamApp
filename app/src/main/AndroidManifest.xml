@@ -25,8 +25,8 @@
         <activity android:name=".ResetPasswordPage" />
         <activity android:name=".CalendarPage" />
         <activity android:name=".WellBeingPage" />
-        <activity android:name=".MentalHealthPage" />
         <activity android:name=".FitnessPage" />
+        <activity android:name=".MentalHealthPage" />
         <activity android:name=".HomePage" />
         <activity android:name=".FlashcardPage" />
         <activity android:name=".NotePage" />
