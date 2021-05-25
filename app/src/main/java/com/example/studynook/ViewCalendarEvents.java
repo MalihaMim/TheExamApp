@@ -171,7 +171,31 @@ public class ViewCalendarEvents extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-//                                String item = String.valueOf(arrayAdapter.getItem(position));
+//                              String item = String.valueOf(arrayAdapter.getItem(position));
+                                System.out.println("DSfsadgasdgsfahdfhdsfhgdhdfGS");
+                                //key = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").get();
+
+                                System.out.println("test: "+key);
+
+                                firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").child(key).addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").child(key).removeValue();
+
+                                        for (DataSnapshot itemSnapshot: snapshot.getChildren()) {
+                                            //DatabaseReference ref = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").child(key);
+                                            //ref.removeValue();
+                                            System.out.println("Testing "+itemSnapshot);
+                                            arrayAdapter.notifyDataSetChanged();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
                                 resultArray.remove(position);
                                 firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").child(key).removeValue();
                                 arrayAdapter.notifyDataSetChanged();
@@ -210,51 +234,71 @@ public class ViewCalendarEvents extends AppCompatActivity {
     private void getEvent() {
         // Initialise the array adapter
         arrayAdapter = new ArrayAdapter(ViewCalendarEvents.this, android.R.layout.simple_expandable_list_item_1, resultArray);
-
+        listView.setAdapter(arrayAdapter);
         // Get the events data from the userEvents child in the firebase database
-        DatabaseReference ref =  firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents");
-        ref.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                //textView.setVisibility(View.GONE);
 
-               String event = snapshot.getValue(String.class); // initialise the string as the value from the database
-                //String date = snapshot.child("UserAccount").child("selectedDate").getValue().toString();
-                //String y = snapshot.child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getValue().toString();
-                //resultArray.add(snapshot.child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getValue().toString());
-                //resultArray.add(snapshot.getValue().toString());
-
-//                for (DataSnapshot areaSnapshot: snapshot.getChildren()) {
-//                    // Get value from areaSnapShot not from dataSnapshot
-//                    String event = areaSnapshot.getValue(String.class);
-//                    resultArray.add(event);
-//                }
-                resultArray.add(event); // save the event retrieved from database into the array list
-                /*String n = snapshot.getKey();
-                Map<String, Object> hopperUpdates = new HashMap<>();
-                hopperUpdates.put(snapshot.getValue(String.class), n);*/
-                arrayAdapter.notifyDataSetChanged(); // notify adapter the changes that have been made
-                listView.setAdapter(arrayAdapter); // set the adapter
-            }
+        firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot areaSnapshot: snapshot.getChildren()) {
+                    // Get value from areaSnapShot not from dataSnapshot
+                    String event = areaSnapshot.getValue(String.class);
+                    resultArray.add(event);
+                    System.out.println(event + "  dd  "+areaSnapshot);
+                }
                 arrayAdapter.notifyDataSetChanged();
             }
 
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+//        DatabaseReference ref =  firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents");
+//        ref.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//                //textView.setVisibility(View.GONE);
+//
+////               String event = snapshot.getValue(String.class); // initialise the string as the value from the database
+//                //String date = snapshot.child("UserAccount").child("selectedDate").getValue().toString();
+//                //String y = snapshot.child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getValue().toString();
+//                //resultArray.add(snapshot.child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getValue().toString());
+//                //resultArray.add(snapshot.getValue().toString());
+//
+//                for (DataSnapshot areaSnapshot: snapshot.getChildren()) {
+//                    // Get value from areaSnapShot not from dataSnapshot
+//                    String event = areaSnapshot.getValue(String.class);
+//                    resultArray.add(event);
+//                }
+////                resultArray.add(event); // save the event retrieved from database into the array list
+//                /*String n = snapshot.getKey();
+//                Map<String, Object> hopperUpdates = new HashMap<>();
+//                hopperUpdates.put(snapshot.getValue(String.class), n);*/
+//                arrayAdapter.notifyDataSetChanged(); // notify adapter the changes that have been made
+//                listView.setAdapter(arrayAdapter); // set the adapter
+//            }
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//                arrayAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+//                key = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getKey();
+//                firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").child(key).removeValue();
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
         // This might not be used (Just for the selected dates)
         /*DatabaseReference dateRef =  firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("dateSelected");

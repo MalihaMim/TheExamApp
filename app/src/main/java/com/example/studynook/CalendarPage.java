@@ -162,8 +162,15 @@ public class CalendarPage extends AppCompatActivity {
                         });
 
                 // Save the selected date to the database
-                String eventKey = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").push().getKey();
+//                String eventKey = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").push().getKey();
+//                CalendarDates data = new CalendarDates();
+//                String text = userInput.getText().toString();
+////                data.setKey(eventKey);
+////                data.setData(selectedDate + "\n" + userInput.getText().toString());
+//                data.setDate(selectedDate);
+//                data.setText(text);
                 firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").push().setValue(selectedDate + "\n" + userInput.getText().toString());
+
 
                 //userEvents.add(index, String.valueOf(calendarView.getDate()));
                // userEvents.add(index, String.valueOf(Log.e("date",curDate+"/"+months+"/"+curDate)));

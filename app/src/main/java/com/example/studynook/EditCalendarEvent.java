@@ -65,12 +65,12 @@ public class EditCalendarEvent extends AppCompatActivity implements DatePickerDi
         setContentView(R.layout.activity_edit_calendar_event);
         firebase = new Firebase();
         id = getIntent().getExtras().getLong("id");
-        test = getIntent().getExtras().get("myEvent").toString();
+//        test = getIntent().getExtras().get("myEvent").toString();
 
-        String date = getIntent().getExtras().get("myDate").toString();
+        //String date = getIntent().getExtras().get("myDate").toString();
         String finalDate = "";
 
-        ArrayList<String> myDate = (ArrayList<String>) getIntent().getSerializableExtra("saveDate");
+        //ArrayList<String> myDate = (ArrayList<String>) getIntent().getSerializableExtra("saveDate");
         TextView textView = findViewById(R.id.setNewDate);
         text = findViewById(R.id.eventText);
         button = findViewById(R.id.saveEdit);
@@ -107,23 +107,22 @@ public class EditCalendarEvent extends AppCompatActivity implements DatePickerDi
             }
         });
 
-        key = getIntent().getExtras().get("key").toString();
-        ref = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").child(key);
+//        key = getIntent().getExtras().get("key").toString();
         //ref = FirebaseDatabase.getInstance().getReference().child("UserAccount").child("userEvents").child(key);
 
         // Displays just the date at the top of the edit page
-        if (date.length() > 10) {
-            finalDate = date.substring(0, 10);
-        } else {
-            finalDate = date;
-        }
-        textView.setText(finalDate);
+//        if (date.length() > 10) {
+//            finalDate = date.substring(0, 10);
+//        } else {
+//            finalDate = date;
+//        }
+//        textView.setText(finalDate);
         text.setText(test); // set the text as the event from
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventListeners();
+                writeNewPost(text.getText().toString());
             }
         });
 
@@ -182,63 +181,63 @@ public class EditCalendarEvent extends AppCompatActivity implements DatePickerDi
         });
 */
         // Save the edit but hasnt been done yet
-        /*button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ref.addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                        snapshot.getRef().setValue(text.getText().toString());
-                        String newEvent = snapshot.getValue(String.class);
-                        snapshot.getKey();
-                        ViewCalendarEvents.arrayAdapter.notifyDataSetChanged();
-                        Toast.makeText(EditCalendarEvent.this, "Event updated", Toast.LENGTH_LONG).show();
-                        //EditCalendarEvent.this.finish();
-                    }
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ref.addChildEventListener(new ChildEventListener() {
+//                    @Override
+//                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//                        snapshot.getRef().setValue(text.getText().toString());
+//                        String newEvent = snapshot.getValue(String.class);
+//                        snapshot.getKey();
+//                        ViewCalendarEvents.arrayAdapter.notifyDataSetChanged();
+//                        Toast.makeText(EditCalendarEvent.this, "Event updated", Toast.LENGTH_LONG).show();
+//                        //EditCalendarEvent.this.finish();
+//                    }
+//
+//                    @Override
+//                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//                        String myKey = snapshot.getKey();
+//                        String updateText = snapshot.getValue(String.class);
+//                       // String changed_text = String.valueOf(snapshot.getRef().setValue(text.getText().toString()));
+//                        //snapshot.getRef().setValue(changed_text);
+//
+//                        ViewCalendarEvents.arrayAdapter.notifyDataSetChanged();
+//                    }
+//
+//                    @Override
+//                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+//                        String commentKey = snapshot.getKey();
+//                    }
+//
+//                    @Override
+//                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        snapshot.getRef().child("userEvents").setValue(text.getText().toString());
+//                        //snapshot.getRef().child("userEvents").updateChildren(text.getText().toString());
+//                        Toast.makeText(EditCalendarEvent.this, "Event updated", Toast.LENGTH_LONG).show();
+//                        EditCalendarEvent.this.finish();
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//            }
+//        } );
 
-                    @Override
-                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                        String myKey = snapshot.getKey();
-                        String updateText = snapshot.getValue(String.class);
-                       // String changed_text = String.valueOf(snapshot.getRef().setValue(text.getText().toString()));
-                        //snapshot.getRef().setValue(changed_text);
-
-                        ViewCalendarEvents.arrayAdapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                        String commentKey = snapshot.getKey();
-                    }
-
-                    @Override
-                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-                *//*ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        snapshot.getRef().child("userEvents").setValue(text.getText().toString());
-                        //snapshot.getRef().child("userEvents").updateChildren(text.getText().toString());
-                        Toast.makeText(EditCalendarEvent.this, "Event updated", Toast.LENGTH_LONG).show();
-                        EditCalendarEvent.this.finish();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });*//*
-            }
-        } );
-
-    }*/
+    }
     /*public void editEvent(View view) {
         ref.child("userEvents").setValue(text.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -252,16 +251,33 @@ public class EditCalendarEvent extends AppCompatActivity implements DatePickerDi
             }
         });
     }*/
-    };
 
     public void EventListeners() {
-        ref.child(key).addChildEventListener(new ChildEventListener() {
+        ref = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents");
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String myKey = snapshot.getKey();
+                ref.child(myKey).setValue(text.getText().toString());
+                //String changed_text = String.valueOf(snapshot.getRef().setValue(text.getText().toString()));
+                //snapshot.getRef().setValue(changed_text);
+
+                ViewCalendarEvents.arrayAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        /*ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                snapshot.getRef().setValue(text.getText().toString());
-                String newEvent = snapshot.getValue(String.class);
+                //snapshot.getRef().setValue(text.getText().toString());
+                //String newEvent = snapshot.getValue(String.class);
                 snapshot.getKey();
-                ViewCalendarEvents.arrayAdapter.notifyDataSetChanged();
+                //ViewCalendarEvents.arrayAdapter.notifyDataSetChanged();
                 Toast.makeText(EditCalendarEvent.this, "Event updated", Toast.LENGTH_LONG).show();
                 //EditCalendarEvent.this.finish();
             }
@@ -270,7 +286,7 @@ public class EditCalendarEvent extends AppCompatActivity implements DatePickerDi
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String myKey = snapshot.getKey();
                 String updateText = snapshot.getValue(String.class);
-                // String changed_text = String.valueOf(snapshot.getRef().setValue(text.getText().toString()));
+                //String changed_text = String.valueOf(snapshot.getRef().setValue(text.getText().toString()));
                 //snapshot.getRef().setValue(changed_text);
 
                 ViewCalendarEvents.arrayAdapter.notifyDataSetChanged();
@@ -290,18 +306,18 @@ public class EditCalendarEvent extends AppCompatActivity implements DatePickerDi
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
     }
     private void writeNewPost(String event) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
-        String key = ref.child("userEvents").push().getKey();
+        String key = ref.push().getKey();
         //Post post = new Post(event);
         CalendarDates dates = new CalendarDates(event);
         Map<String, Object> eventValues = CalendarDates.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/userEvents/" + key, eventValues);
+        childUpdates.put(key, eventValues);
 
         ref.updateChildren(childUpdates);
     }
