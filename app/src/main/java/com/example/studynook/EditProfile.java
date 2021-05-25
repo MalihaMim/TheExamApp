@@ -45,7 +45,7 @@ public class EditProfile extends AppCompatActivity {
     private ImageView userPicture;
     private TextView changePicture;
     private EditText changeEmail, changeName;
-    private TextView cancel, save;
+    private Button save;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +64,7 @@ public class EditProfile extends AppCompatActivity {
         changePicture = findViewById(R.id.changePicture);
         changeName = findViewById(R.id.editName);
         changeEmail = findViewById(R.id.editEmail);
-        cancel = findViewById(R.id.cancel);
-        save = findViewById(R.id.save);
+        save = findViewById(R.id.saveBtn);
 
         firebase.getmDbRef().addValueEventListener(new ValueEventListener() {
             @Override
@@ -80,14 +79,6 @@ public class EditProfile extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(EditProfile.this, ProfilePage.class));
             }
         });
 
@@ -114,7 +105,7 @@ public class EditProfile extends AppCompatActivity {
                     user.updateEmail(changedEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(EditProfile.this, "Email changed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfile.this, "Email updated", Toast.LENGTH_SHORT).show();
                         }
                     });
 

@@ -133,52 +133,6 @@ public class SignUpPage extends AppCompatActivity {
                     }
                 }
             });
-
-
-//            Boolean checkUser = db.checkUsername(username);
-//            if(checkUser==false){
-//                Boolean insert = db.insertData(username,pw);
-//                if(insert==true){
-//                    Toast.makeText(SignUpPage.this, "Register successful",Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(SignUpPage.this, HomePage.class);
-//                    startActivity(intent);
-//                } else {
-//                    Toast.makeText(SignUpPage.this, "Register failed",Toast.LENGTH_SHORT).show();
-//                }
-//            } else {
-//                Toast.makeText(SignUpPage.this, "User already exists",Toast.LENGTH_SHORT).show();
-//            }
         }
-
-
     }
 }
-    //Validating the data the user inputs
-    /**public boolean validateDate() {
-        //String validate = regName.getEditText().getText().toString();
-
-        return true;
-    }
-
-    // Creating the user profile
-    public void createUser(View view) {
-
-
-        //Stores the value inside the database
-    }
-
-    public void regUser(View view) {
-       // name = regName.getText().toString();
-    }
-
-    public void checkDataEntered() {
-    }
-
-    private void initialiseData() {
-
-    }
-
-    private void setUpListener() {
-
-    }**/
-//}

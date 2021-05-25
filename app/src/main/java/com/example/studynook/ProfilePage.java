@@ -38,14 +38,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.ByteArrayOutputStream;
 
 public class ProfilePage extends AppCompatActivity {
-    private static final int PICK_FROM_CAMERA = 0;
-    private static final int PICK_FROM_ALBUM = 1;
 
     private Firebase firebase;
     private ImageView userPicture;
-    private TextView editProfile;
     private TextView userName, userEmail;
-    private Button signout;
+    private Button editProfile, signout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +58,7 @@ public class ProfilePage extends AppCompatActivity {
         bar.setTitle("Profile");
 
         userPicture = (ImageView) findViewById(R.id.userPicture);
-        editProfile = findViewById(R.id.editProfile);
+        editProfile = findViewById(R.id.editBtn);
 
         userName = findViewById(R.id.nameData);
         userEmail = findViewById(R.id.emailData);
@@ -90,39 +87,6 @@ public class ProfilePage extends AppCompatActivity {
             }
         });
 
-//        changePicture.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                AlertDialog.Builder ad = new AlertDialog.Builder(ProfilePage.this);
-//
-//                        ad.setTitle("Select options");
-//                        ad.setPositiveButton("Album", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                Intent album = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                                startActivityForResult(album, PICK_FROM_ALBUM);
-//                            }
-//                        });
-//
-//                        ad.setNeutralButton("Camera", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                                startActivityForResult(camera, PICK_FROM_CAMERA);
-//                            }
-//                        });
-//
-//                        ad.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                dialog.dismiss();
-//                            }
-//                        });
-//                        ad.show();
-//            }
-//        });
-
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,47 +98,6 @@ public class ProfilePage extends AppCompatActivity {
             }
         });
     }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if(resultCode != RESULT_OK)
-//            return;
-//        if(requestCode == PICK_FROM_ALBUM){
-//            Uri imageUri = data.getData();
-//            userPicture.setImageURI(imageUri);
-//            updateProfileImage(imageUri);
-//        }
-//        if (requestCode == PICK_FROM_CAMERA) {
-//            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-//            userPicture.setImageBitmap(bitmap);
-//            updateProfileImage(getImageUri(this, bitmap));
-//
-//        }
-//    }
-//
-//    private void updateProfileImage(Uri imageUri) {
-//        UserProfileChangeRequest imageUpdate = new UserProfileChangeRequest.Builder()
-//                .setPhotoUri(imageUri)
-//                .build();
-//
-//        firebase.getmAuth().getCurrentUser().updateProfile(imageUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                if(task.isSuccessful()){
-//                    Toast.makeText(ProfilePage.this, "Profile image updated", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//    }
-//
-//    private Uri getImageUri(Context context, Bitmap inImage) {
-//        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-//        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), inImage, "Title", null);
-//        return Uri.parse(path);
-//    }
-
 
     // Go back to previous page when user clicks the top back button
     @Override

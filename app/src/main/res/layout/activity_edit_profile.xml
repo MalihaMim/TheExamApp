@@ -62,6 +62,7 @@
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:inputType="textEmailAddress"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userEmail" />
@@ -74,34 +75,19 @@
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userName" />
 
-    <TextView
-        android:id="@+id/cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="32dp"
-        android:text="Cancel"
-        android:textColor="#FF0000"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/editEmail"
-        app:layout_constraintTop_toBottomOf="@+id/editEmail" />
-
-    <TextView
-        android:id="@+id/save"
+    <Button
+        android:id="@+id/saveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
         android:text="Save changes"
-        android:textColor="#00FF00"
-        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/editEmail"
+        app:layout_constraintStart_toStartOf="@+id/editEmail"
         app:layout_constraintTop_toBottomOf="@+id/editEmail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
