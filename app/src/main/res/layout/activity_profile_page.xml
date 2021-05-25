@@ -86,7 +86,6 @@
         android:layout_marginTop="16dp"
         android:text="Edit Profile"
         app:layout_constraintEnd_toEndOf="@+id/emailData"
-        app:layout_constraintStart_toStartOf="@+id/emailData"
         app:layout_constraintTop_toBottomOf="@+id/emailData" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
