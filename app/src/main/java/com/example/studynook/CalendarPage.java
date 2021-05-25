@@ -28,16 +28,22 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class CalendarPage extends AppCompatActivity {
     TextView dateSelected;
@@ -46,10 +52,8 @@ public class CalendarPage extends AppCompatActivity {
     private int index = 0;
     protected static ArrayList<String> userEvents = new ArrayList<>();
     protected static ArrayList<String> saveDate = new ArrayList<>();
-    //private HashSet<String>set = new HashSet<String>();
     private long newDate;
     String selectedDate;
-//    private DatabaseReference dateReference;
     private Firebase firebase;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -67,11 +71,6 @@ public class CalendarPage extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true); // Displays the back button
         actionBar.setTitle("Calendar");
 
-        /**int numDays = 2000;
-        int[] curDate = new int[numDays];
-        int[] months = new int[numDays];
-        int[] eventYear = new int[numDays];**/
-
         EditText userInput = findViewById(R.id.userInput); // Textfield for user to enter their date
         CalendarView calendarView = findViewById(R.id.calendar);
         addEvent = findViewById(R.id.saveEvent); // Button to save the event
@@ -83,50 +82,20 @@ public class CalendarPage extends AppCompatActivity {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int day) {
-                //curYear = year;
-                //curMonth = month;
-                //curDay = dayOfMonth;
 
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(year, month, day);
                 newDate = calendar.getTimeInMillis();
 
-                int mYear = calendar.get(Calendar.YEAR);
-                int mMonth = calendar.get(Calendar.MONTH);
-                int mDay = calendar.get(Calendar.DAY_OF_MONTH);
-
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                //String selectedDate = sdf.format(new Date(calendarView.getDate()));
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
                 selectedDate = sdf.format(newDate);
                 saveDate.add(selectedDate); // Save the date the user selectes into an array
-
-                //DatabaseReference ref = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("selectedDate").push();
-
-                //startActivity(intent);
-                //userInput.setText((selectedDate));
-                //userEvents.add(selectedDate);
 
                 // Hides the visibility of the add event content until the user clicks a date (Just for aesthetic purposes)
                 if (userInput.getVisibility() == View.GONE && addEvent.getVisibility() == View.GONE) {
                     userInput.setVisibility(View.VISIBLE);
                     addEvent.setVisibility(View.VISIBLE);
                 }
-                /**for(int h = 0; h < index; h++) {
-                    if(eventYear[h] == curYear) {
-                        for (int i = 0; i < index; i++) {
-                            if(curDate[i] == curDay) {
-                                for (int k = 0; k < index; k++) {
-                                    if(months[k] == curMonth && curDate[k] == curDay && eventYear[k] == curYear) {
-                                        userInput.setText(userEvents.get(k));
-                                        //userInput.setText();
-                                        return;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }**/
-                //userInput.setText("");
             }
         });
 
@@ -134,21 +103,9 @@ public class CalendarPage extends AppCompatActivity {
         addEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //curDate[index] = curDay;
-                //months[index] = curMonth;
-                //eventYear[index] = curYear;
-               // userInput.setText(userEvents);
-                //userEvents.add(userInput.getText().toString() + calendarView.getDate());
-                //String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-
-                //set.add(String.valueOf(userEvents));
-                //set.add("Event Date: " + selectedDate + "\n" + userInput.getText().toString());
-                //userEvents = new ArrayList<>(set);
                 Intent intentDate = new Intent(CalendarPage.this, EditCalendarEvent.class);
                 intentDate.putExtra("saveDate", saveDate);
                 startActivity(intentDate);
-
-                //userEvents.add("Event Date: " + selectedDate + "\n" + userInput.getText().toString());
 
                 // Save the selected date to the database
                 firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("selectedDate").push().setValue(selectedDate)
@@ -161,30 +118,14 @@ public class CalendarPage extends AppCompatActivity {
                             }
                         });
 
-                // Save the selected date to the database
-//                String eventKey = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").push().getKey();
-//                CalendarDates data = new CalendarDates();
-//                String text = userInput.getText().toString();
-////                data.setKey(eventKey);
-////                data.setData(selectedDate + "\n" + userInput.getText().toString());
-//                data.setDate(selectedDate);
-//                data.setText(text);
+                /*String data = selectedDate + "\n" + userInput.getText().toString();
+                String index = selectedDate;
+                HashMap<String,Object> m = new HashMap<String,Object>();
+                m.put(index,data);
+                HashMap<String,Object> m2 = new HashMap<String,Object>();
+                m2.put("userEvents",m);*/
+
                 firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").push().setValue(selectedDate + "\n" + userInput.getText().toString());
-
-
-                //userEvents.add(index, String.valueOf(calendarView.getDate()));
-               // userEvents.add(index, String.valueOf(Log.e("date",curDate+"/"+months+"/"+curDate)));
-                //index++;
-                //userInput.setText("");
-                //userInput.setVisibility(View.GONE);
-
-                //addEvent.setVisibility(View.GONE);
-
-                /**if (set == null) {
-                    Toast.makeText(CalendarPage.this,"No events!",Toast.LENGTH_LONG).show();
-                } else {
-                    userEvents = new ArrayList(set);
-                }**/
 
                 Intent intent = new Intent(CalendarPage.this, ViewCalendarEvents.class);
                 intent.putExtra("savedEvent", userEvents);
