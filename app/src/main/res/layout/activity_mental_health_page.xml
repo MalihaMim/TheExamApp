@@ -129,14 +129,26 @@
             android:id="@+id/pulsing_btn"
             android:layout_width="94dp"
             android:layout_height="83dp"
-            android:layout_marginStart="162dp"
-            android:layout_marginLeft="162dp"
-            android:layout_marginBottom="97dp"
+            android:layout_marginStart="156dp"
+            android:layout_marginLeft="156dp"
+            android:layout_marginBottom="56dp"
             android:text="Pulse"
             app:backgroundTint="#4D6753"
             app:cornerRadius="70dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="165dp"
+            android:layout_marginRight="165dp"
+            android:layout_marginBottom="3dp"
+            android:text="Save"
+            app:layout_constraintBottom_toTopOf="@+id/pulsing_btn"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

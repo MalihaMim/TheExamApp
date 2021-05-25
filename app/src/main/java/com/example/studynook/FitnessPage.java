@@ -34,7 +34,7 @@ public class FitnessPage extends AppCompatActivity implements AdapterView.OnItem
     private String chosen_exercise;
     private String[] exercises;
     private Firebase firebase = new Firebase();
-    private String logInput;
+    private String user_input;
     //public String hours;
     //public int num_hours;
 
@@ -43,22 +43,22 @@ public class FitnessPage extends AppCompatActivity implements AdapterView.OnItem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fitness_page);
 
-        //Changing the color of the top action bar:
+        //Top Action Bar code:
         ActionBar actionBar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#FE7F9C")); //set color
         actionBar.setBackgroundDrawable(color);
         actionBar.setDisplayHomeAsUpEnabled(true); // Displays the back button on top action bar
         actionBar.setTitle("Fitness"); //set title
 
-        //get the spinner from the xml
+        //Spinner holding the exercises:
         dropdown = (Spinner) findViewById(R.id.activity_type_dropdown);
 
-        //create a list of exercises for the spinner
+        //create a list of exercises to enter into spinner:
         exercises = new String[]{"Select item","Walking", "Running", "Cardio", "Strength training", "Dance", "Sport"};
 
-        //where user enter the number of hours they spent doing that activity
+        //input text box where user enters # of hours:
         input = (EditText) findViewById(R.id.Hours);
-        input.setText(logInput);
+        input.setText(user_input);
 
         //hours = input.getText().toString();
         //num_hours = Integer.parseInt(hours); //converting string to integer
@@ -72,20 +72,14 @@ public class FitnessPage extends AppCompatActivity implements AdapterView.OnItem
         dropdown.setOnItemSelectedListener(this);
     }
 
-   /* //Method to save input into the variable:
-    public void store_input(View view){
-        String text = input.getText().toString();
-    }*/
-
-    //CREATING THE DIALOGUE BOX TO POP UP WHEN A USER TRIES TO SAVE AN ACTIVITY IN THE DATABASE
-    public void openDialog(View v)
-    {
+    //CREATING THE DIALOGUE BOX TO POP UP WHEN A USER TRIES TO SAVE AN ACTIVITY IN THE DATABASE:
+    public void openDialog(View v) {
         //Setting up dialog box and what it will say
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Log");
         alert.setMessage("Save activity log?");
 
-        //Yes button:
+        //'Yes' button:
         alert.setPositiveButton("Yes",new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialogInterface, int i){
                 //Saving the exercise type on Firebase:
@@ -103,7 +97,7 @@ public class FitnessPage extends AppCompatActivity implements AdapterView.OnItem
             }
         });
 
-        //No button:
+        //'No' button:
         alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -116,7 +110,7 @@ public class FitnessPage extends AppCompatActivity implements AdapterView.OnItem
 
 
 
-    //Save into chosen exercise variable when the user clicks on a Spinner item
+    //SAVE INTO CHOSEN EXERCISE VARIABLE WHEN THE USER CLICKS ON A SPINNER ITEM:
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         chosen_exercise = parent.getItemAtPosition(position).toString();
@@ -132,14 +126,16 @@ public class FitnessPage extends AppCompatActivity implements AdapterView.OnItem
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
-    // Go back to previous page when user clicks the top back button
+
+    //GO BACK TO PREVIOUS PAGE WHEN USER CLICKS THE TOP BACK BUTTON:
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         startActivity(new Intent(FitnessPage.this, WellBeingPage.class));
         onPause();
         return super.onOptionsItemSelected(item);
     }
-    // Gets rid of back button animation
+
+    // GETS RID OF BACK BUTTON ANIMATION:
     public void onPause() {
         super.onPause();
         overridePendingTransition(0, 0);

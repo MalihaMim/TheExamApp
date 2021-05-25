@@ -51,6 +51,8 @@ public class ViewCalendarEvents extends AppCompatActivity {
     private String key; // Trying to get the key for each data that is saved on the database
     protected static ArrayAdapter arrayAdapter;
 
+    //new code:
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -182,6 +184,7 @@ public class ViewCalendarEvents extends AppCompatActivity {
             }
         });
 
+        //COULD THE POSITION OF THE ITEM HELP IN RETRIEVING THE KEY TO THE ITEM?
         // When you click on an item... view the event and edit it
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -205,7 +208,38 @@ public class ViewCalendarEvents extends AppCompatActivity {
                 //startActivity(intent);
             }
         });
+
+        ItemClicked();
     }
+
+    // When you click on an item... view the event and edit it
+    public void ItemClicked(){
+        // When you click on an item... view the event and edit it
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //String myEvent = resultArray.get(position);
+                String test = parent.getItemAtPosition(position).toString();
+                String date = parent.getItemAtPosition(position).toString();
+                //String a = parent.getItemAtPosition(Integer.parseInt(dateArray.get(position))).toString();
+                //String myDate = dateArray.get(Integer.parseInt(resultArray.get(position)));
+
+                //arrayAdapter.getItem(position);
+                Intent intent = new Intent(getApplicationContext(), EditCalendarEvent.class);
+                intent.putExtra("id", id);
+                intent.putExtra("myEvent", test);
+                intent.putExtra("myDate", date);
+                intent.putExtra("key", firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).getKey());
+                //intent.putExtra("myDate", dateArray);
+                startActivity(intent);
+                arrayAdapter.notifyDataSetChanged();
+                //Intent intent = new Intent(ViewCalendarEvents.this, EditCalendarEvent.class);
+                //startActivity(intent);
+
+            }
+        });
+    }
+
     // Get the events from the database and display it in a list view using the adapter
     private void getEvent() {
         // Initialise the array adapter

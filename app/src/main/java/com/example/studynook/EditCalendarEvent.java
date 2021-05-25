@@ -13,6 +13,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -40,8 +41,15 @@ public class EditCalendarEvent extends AppCompatActivity {
     private String test;
     private android.widget.EditText text;
     private long id;
-    private DatabaseReference ref;
+
     private Button button;
+
+    //New code:
+    private DatabaseReference ref; //reference to database
+    private DataSnapshot snapshot; //snapshot var
+    private DatabaseReference event_ref;
+
+    ViewCalendarEvents calendarevents = new ViewCalendarEvents();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,9 +90,12 @@ public class EditCalendarEvent extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 EventListeners();
             }
         });
+
+        //calendarevents.ItemClicked();
 
         //Bundle bundle = getIntent().getExtras();
         //String event = bundle.getString("myEvent"); // get the event from view calendar events page
@@ -220,6 +231,7 @@ public class EditCalendarEvent extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 snapshot.getRef().setValue(text.getText().toString());
                 String newEvent = snapshot.getValue(String.class);
+
                 snapshot.getKey();
                 ViewCalendarEvents.arrayAdapter.notifyDataSetChanged();
                 Toast.makeText(EditCalendarEvent.this, "Event updated", Toast.LENGTH_LONG).show();
@@ -229,6 +241,7 @@ public class EditCalendarEvent extends AppCompatActivity {
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String myKey = snapshot.getKey();
+                System.out.println(myKey);
                 String updateText = snapshot.getValue(String.class);
                 // String changed_text = String.valueOf(snapshot.getRef().setValue(text.getText().toString()));
                 //snapshot.getRef().setValue(changed_text);
