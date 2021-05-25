@@ -87,7 +87,6 @@ public class HomePage extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -95,7 +94,7 @@ public class HomePage extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIcon(android.R.drawable.ic_dialog_info)
                 .setTitle("Exit Application")
                 .setMessage("Are you sure you want to exit the app?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener()
