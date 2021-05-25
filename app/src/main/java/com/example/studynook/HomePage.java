@@ -76,13 +76,13 @@ public class HomePage extends AppCompatActivity {
                 return true;
 
             case R.id.profilebutton:
-                Intent data = getIntent();
-                String userId = data.getStringExtra("userId");
-                String userPw = data.getStringExtra("userPw");
+//                Intent data = getIntent();
+//                String userId = data.getStringExtra("userId");
+//                String userPw = data.getStringExtra("userPw");
 
                 Intent profile = new Intent(getApplicationContext(), ProfilePage.class);
-                profile.putExtra("userId",userId);
-                profile.putExtra("userPw",userPw);
+//                profile.putExtra("userId",userId);
+//                profile.putExtra("userPw",userPw);
                 startActivity(profile);
                 overridePendingTransition(0, 0);
                 return true;
