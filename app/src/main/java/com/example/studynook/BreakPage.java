@@ -16,7 +16,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -25,8 +28,9 @@ import java.util.Calendar;
 
 public class BreakPage extends AppCompatActivity {
 
-    private TimePicker timePicker;
-    private Button setAlarm, cancelAlarm;
+    private Spinner timePicker;
+//    private Button setAlarm, cancelAlarm;
+    private String studyTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,25 +41,22 @@ public class BreakPage extends AppCompatActivity {
         ColorDrawable color = new ColorDrawable(Color.parseColor("#FF5053"));
         actionBar.setBackgroundDrawable(color);
         actionBar.setDisplayHomeAsUpEnabled(true); // Displays the back button
-        actionBar.setTitle("Alarm");;
+        actionBar.setTitle("Break Reminder");;
 
-        setAlarm = findViewById(R.id.setalarmButton);
-        cancelAlarm = findViewById(R.id.cancelalarmButton);
+        timePicker = findViewById(R.id.timeSelection);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.time_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        timePicker.setAdapter(adapter);
 
-        setAlarm.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
+        timePicker.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH),
-                        timePicker.getHour(), timePicker.getMinute(), 0);
-                alarmSet(calendar);
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                studyTime = (String)parent.getItemAtPosition(position);
             }
-        });
-        cancelAlarm.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View v) {
-                alarmCancel();
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
@@ -113,7 +114,7 @@ public class BreakPage extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 return true;
         }
-        startActivity(new Intent(AlarmPage.this, SchedulingPage.class)); // This adds the top back button
+        startActivity(new Intent(this, SchedulingPage.class)); // This adds the top back button
         onPause(); // Removes back button animation
 
         return super.onOptionsItemSelected(item);

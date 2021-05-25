@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class StopwatchPage extends AppCompatActivity {
@@ -19,21 +22,23 @@ public class StopwatchPage extends AppCompatActivity {
     private long tMilliSec, tStart, tBuff, tUpdate = 0L;
     private int sec, min, milliSec;
     private Handler handler;
+    private Firebase firebase;
+    private float totalTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stopwatch_page);
 
+        totalTime = 0;
+        firebase = new Firebase();
         chronometer = findViewById(R.id.chronometer);
         start = findViewById(R.id.start);
         stop = findViewById(R.id.stop);
         stop.setVisibility(View.INVISIBLE);
-        resume = findViewById(R.id.resume);
-        resume.setVisibility(View.INVISIBLE);
-        reset = findViewById(R.id.reset);
-        reset.setVisibility(View.INVISIBLE);
         handler = new Handler();
+
+
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +64,11 @@ public class StopwatchPage extends AppCompatActivity {
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
+                Calendar c = Calendar.getInstance();
+                String date = sdf.format(c.getTime());
+                totalTime = (float) tUpdate / 60000;
+                firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("Total Study Time").child(date).push().setValue(totalTime);
                 tMilliSec = 0L;
                 tStart = 0L;
                 tBuff = 0L;

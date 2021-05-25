@@ -59,32 +59,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/reset"
-            android:layout_width="146dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="256dp"
-            android:layout_marginLeft="256dp"
-            android:layout_marginTop="460dp"
-            android:text="Reset"
-            android:textSize="24sp"
-            app:backgroundTint="#FF5053"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/resume"
-            android:layout_width="146dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="460dp"
-            android:text="Resume"
-            android:textSize="24sp"
-            app:backgroundTint="#FF5053"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
             android:id="@+id/stop"
             android:layout_width="239dp"
             android:layout_height="56dp"
