@@ -1,9 +1,13 @@
 package com.example.studynook;
 
+import androidx.annotation.AnyRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -17,32 +21,31 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class SignUpPage extends AppCompatActivity {
-    private FirebaseAuth mAuth;
-    private DatabaseReference mDbRef;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
+public class SignUpPage extends AppCompatActivity {
+
+    private Firebase firebase;
     private View view;
     private EditText name, email, password;
     private Button regButton;
-    //DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_page);
 
-        mAuth = FirebaseAuth.getInstance();
-        mDbRef = FirebaseDatabase.getInstance().getReference("StudyNook");
-
+        firebase = new Firebase();
         name = findViewById(R.id.regName);
         email = findViewById(R.id.regEmail);
         password = findViewById(R.id.regPassword);
         regButton = findViewById(R.id.regAccountButton);
-
-        //db = new DBHelper(this);
 
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,26 +97,33 @@ public class SignUpPage extends AppCompatActivity {
         }
         // If all the fields are filled out in the correct format then register the account and go to the home page
         else if(isEmpty(name) == false && isEmail(email) == true && isPassword(password) == false) {
-//            Toast displayMessage = Toast.makeText(this, "Account has been registered.", Toast.LENGTH_SHORT);
-//            displayMessage.show();
 
             String userName = name.getText().toString();
             String userEmail = email.getText().toString();
             String userPw = password.getText().toString();
 
-
-            mAuth.createUserWithEmailAndPassword(userEmail, userPw).addOnCompleteListener(SignUpPage.this, new OnCompleteListener<AuthResult>() {
+            firebase.getmAuth().createUserWithEmailAndPassword(userEmail, userPw).addOnCompleteListener(SignUpPage.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        FirebaseUser user = mAuth.getCurrentUser();
+                        FirebaseUser user = firebase.getmAuth().getCurrentUser();
+                        UserProfileChangeRequest setImage = new UserProfileChangeRequest.Builder()
+                                .setPhotoUri(Uri.parse("android.resource://com.example.studynook/drawable/avatar"))
+                                .build();
+
+                        user.updateProfile(setImage).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+
+                            }
+                        });
+
                         UserAccount account = new UserAccount();
                         account.setIdToken(user.getUid());
                         account.setEmail(user.getEmail());
-                        account.setPassword(userPw);
                         account.setName(userName);
 
-                        mDbRef.child("UserAccount").child(user.getUid()).setValue(account);
+                        firebase.getmDbRef().child("UserAccount").child(user.getUid()).setValue(account);
 
                         Toast.makeText(SignUpPage.this, "Register successful",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SignUpPage.this, HomePage.class);
@@ -123,48 +133,6 @@ public class SignUpPage extends AppCompatActivity {
                     }
                 }
             });
-//            Boolean checkUser = db.checkUsername(username);
-//            if(checkUser==false){
-//                Boolean insert = db.insertData(username,pw);
-//                if(insert==true){
-//                    Toast.makeText(SignUpPage.this, "Register successful",Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(SignUpPage.this, HomePage.class);
-//                    startActivity(intent);
-//                } else {
-//                    Toast.makeText(SignUpPage.this, "Register failed",Toast.LENGTH_SHORT).show();
-//                }
-//            } else {
-//                Toast.makeText(SignUpPage.this, "User already exists",Toast.LENGTH_SHORT).show();
-//            }
         }
     }
 }
-    //Validating the data the user inputs
-    /**public boolean validateDate() {
-        //String validate = regName.getEditText().getText().toString();
-
-        return true;
-    }
-
-    // Creating the user profile
-    public void createUser(View view) {
-
-
-        //Stores the value inside the database
-    }
-
-    public void regUser(View view) {
-       // name = regName.getText().toString();
-    }
-
-    public void checkDataEntered() {
-    }
-
-    private void initialiseData() {
-
-    }
-
-    private void setUpListener() {
-
-    }**/
-//}

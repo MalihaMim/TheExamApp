@@ -1,8 +1,10 @@
 package com.example.studynook;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,31 +21,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginPage extends AppCompatActivity {
-//    private FirebaseAuth mAuth;
-//    private DatabaseReference mDbRef;
     private EditText email, password;
     private Button login, signup;
     private TextView forgotPw;
 
     private Firebase firebase;
-    //DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-//        mAuth = FirebaseAuth.getInstance();
-//        mDbRef = FirebaseDatabase.getInstance().getReference("StudyNook");
         firebase = new Firebase();
-
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         login = findViewById(R.id.login);
         signup = findViewById(R.id.signup);
         forgotPw = findViewById(R.id.forgotPw);
-
-        //db = new DBHelper(this);
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,15 +77,6 @@ public class LoginPage extends AppCompatActivity {
                             }
                         }
                     });
-
-                    /*Boolean checkuserpass = db.checkUsernamePassword(userId,userPw);
-                    if(checkuserpass==true){
-                        Toast.makeText(LoginPage.this, "Log in successful", Toast.LENGTH_SHORT).show();
-                        Intent in = new Intent(LoginPage.this, HomePage.class);
-                        startActivity(in);
-                    } else {
-                        Toast.makeText(LoginPage.this, "Log in failed", Toast.LENGTH_SHORT).show();
-                    }*/
                 }
             }
         });
@@ -103,6 +88,27 @@ public class LoginPage extends AppCompatActivity {
                 startActivity(resetPw);
             }
         });
+    }
+
+    // Exits the app when the user presses the back button on the main sections
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Exit Application")
+                .setMessage("Are you sure you want to exit the app?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent exit = new Intent(Intent.ACTION_MAIN);
+                        exit.addCategory(Intent.CATEGORY_HOME);
+                        exit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(exit);
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }
 

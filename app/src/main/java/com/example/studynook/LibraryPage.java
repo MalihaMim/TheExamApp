@@ -16,7 +16,7 @@ import android.widget.Button;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class LibraryPage extends AppCompatActivity {
-    Button gutt,internet,liba,otherweb,at;
+    Button gutt,internet,liba,otherweb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +25,6 @@ public class LibraryPage extends AppCompatActivity {
         internet = findViewById(R.id.btn_internet);
         liba = findViewById(R.id.btn_openlib);
         otherweb = findViewById(R.id.btn_other);
-        at = findViewById(R.id.btn_aut);
 
         ActionBar actionBar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#FFBB3E"));
@@ -102,14 +101,7 @@ public class LibraryPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        at.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Uri uri = Uri.parse("https://library.aut.ac.nz/"); // missing 'http://' will cause crashed
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            }
-        });
+
     }
     // Go back to previous page when user clicks the top back button
     @Override

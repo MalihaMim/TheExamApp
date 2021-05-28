@@ -114,7 +114,7 @@ public class SetAlarm extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 return true;
         }
-        startActivity(new Intent(SetAlarm.this, AlarmPage.class));
+        startActivity(new Intent(SetAlarm.this, BreakPage.class));
         onPause();
         return super.onOptionsItemSelected(item);
     }

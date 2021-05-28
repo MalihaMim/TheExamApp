@@ -20,52 +20,52 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/countdownText"
-            android:layout_width="289dp"
-            android:layout_height="120dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="140dp"
-            android:text="00 : 00 : 00"
+<!--        <TextView-->
+<!--            android:id="@+id/countdownText"-->
+<!--            android:layout_width="289dp"-->
+<!--            android:layout_height="120dp"-->
+<!--            android:layout_marginStart="60dp"-->
+<!--            android:layout_marginLeft="60dp"-->
+<!--            android:layout_marginTop="140dp"-->
+<!--            android:text="00 : 00 : 00"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Display3"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <Chronometer
+            android:id="@+id/chronometer"
+            android:layout_width="332dp"
+            android:layout_height="106dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginTop="128dp"
+            android:format="00:00:00"
             android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            android:textSize="70sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/start"
-            android:layout_width="244dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="288dp"
-            android:text="Pause"
+            android:layout_width="239dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="84dp"
+            android:layout_marginLeft="84dp"
+            android:layout_marginTop="328dp"
+            android:text="START"
             android:textSize="24sp"
             app:backgroundTint="#FF5053"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/reset"
-            android:layout_width="244dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="428dp"
-            android:text="Reset"
-            android:textSize="24sp"
-            app:backgroundTint="#FF5053"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/resume"
-            android:layout_width="244dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="356dp"
-            android:text="Resume"
+            android:id="@+id/stop"
+            android:layout_width="239dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="84dp"
+            android:layout_marginLeft="84dp"
+            android:layout_marginTop="404dp"
+            android:text="RESET"
             android:textSize="24sp"
             app:backgroundTint="#FF5053"
             app:layout_constraintStart_toStartOf="parent"

@@ -78,27 +78,6 @@
             android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"/>
     </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Find/Buy Book"
-        android:textColor="@color/dark_orange"
-        android:layout_gravity="center"
-        android:textSize="20sp" />
-    <Button
-        android:id="@+id/btn_aut"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:text="AUT\nLibrary"
-        android:backgroundTint="@color/dark_orange"
-        android:textAllCaps="false"
-        android:fontFamily="sans-serif-medium"
-        android:textColor="@color/white"
-        android:layout_marginTop="30sp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
-        android:layout_gravity="center"/>
     </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

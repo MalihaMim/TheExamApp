@@ -24,6 +24,7 @@
         <activity android:name=".EditCalendarEvent" />
         <activity android:name=".ResetPasswordPage" />
         <activity android:name=".CalendarPage" />
+        <activity android:name=".EditProfile" />
         <activity android:name=".WellBeingPage" />
         <activity android:name=".FitnessPage" />
         <activity android:name=".MentalHealthPage" />
