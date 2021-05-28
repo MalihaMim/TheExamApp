@@ -83,12 +83,12 @@ public class SignUpPage extends AppCompatActivity {
             name.setError("Enter a valid name");
         }
         if (isEmail(email) == false) {
-            email.setError("Enter valid email!");
+            email.setError("Enter a valid email");
             Toast t = Toast.makeText(this, "You must enter a valid email to register!", Toast.LENGTH_SHORT);
             t.show();
         }
         if (isPassword(password)) {
-            password.setError("Enter a valid password");
+            password.setError("Password has to be 8 or more characters");
             Toast error = Toast.makeText(this, "You must enter a password to register!", Toast.LENGTH_SHORT);
             error.show();
         }
