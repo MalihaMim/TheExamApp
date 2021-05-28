@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,8 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,6 +38,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -42,13 +46,13 @@ import java.util.Map;
 public class ViewCalendarEvents extends AppCompatActivity {
     private final ArrayList<String> resultArray = new ArrayList<String>();
     private final ArrayList<String> dateArray = new ArrayList<String>();
-    //final ArrayAdapter arrayAdapter = new ArrayAdapter(ViewCalendarEvents.this, android.R.layout.simple_expandable_list_item_1, resultArray);
     private HashMap<String, String> combineData = new HashMap<>();
     private List<HashMap<String, String>> listItems = new ArrayList<>();
     private int day, month, year;
     private Firebase firebase;
     private ListView listView;
     private String key; // Trying to get the key for each data that is saved on the database
+    private Hashtable<String, String> eventsList = new Hashtable<String, String>();
     protected static ArrayAdapter arrayAdapter;
 
     //new code:
@@ -60,12 +64,10 @@ public class ViewCalendarEvents extends AppCompatActivity {
         listView = findViewById(R.id.eventList);
 
         arrayAdapter = new ArrayAdapter(ViewCalendarEvents.this, android.R.layout.simple_expandable_list_item_1, resultArray);
-        //resultArray = new ArrayList<String>();
         firebase = new Firebase();
+
         // get the key that corresponds to each data but i think this does not work
         key = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getKey();
-        //String dateTest = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("dateSelected");
-
 
         //TextView date = findViewById(R.id.date);
         //TextView event = findViewById(R.id.event);
@@ -79,86 +81,6 @@ public class ViewCalendarEvents extends AppCompatActivity {
 
         // Method to display the event from list view
         getEvent();
-       /* try{
-
-        }catch(NullPointerException e) {
-            e.printStackTrace();
-        }*/
-
-        /*DatabaseReference ref = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents");
-        ref.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                textView.setVisibility(View.GONE);
-                //String event = snapshot.getValue().toString();
-                //String test = snapshot.child("UserAccount").child("userEvent").getValue().toString();
-                //String y = snapshot.child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents");
-                resultArray.add(snapshot.child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getValue().toString());
-                listView.setAdapter(arrayAdapter);
-                arrayAdapter.notifyDataSetChanged();
-            }
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
-        /*try {
-            // Get the array list of events created from the user from the Calendar page
-            resultArray = getIntent().getStringArrayListExtra("savedEvent");
-
-            // If the array list is empty then display that there are no events
-            if(resultArray.isEmpty()) {
-                resultArray.add("");
-                textView.setVisibility(View.VISIBLE);
-            } // If there is stuff, then display it using the list view
-            else if (!resultArray.isEmpty()){
-               *//* arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, resultArray);
-                listView.setAdapter(arrayAdapter);
-                arrayAdapter.notifyDataSetChanged();
-                textView.setVisibility(View.GONE);*//*
-
-                DatabaseReference ref = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents");
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String event = snapshot.child("userEvent").getValue().toString();
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-            }
-        }catch(NullPointerException e) {
-            e.printStackTrace();
-        }*/
-
-        //String date = bundle.getString("Date");
-
-        // Display the user events
-       /** StringBuilder builder = new StringBuilder();
-        for (String details : resultArray) {
-            builder.append(details + "\n");
-        }**/
-        //text.setText(builder.toString());
-        //listView.setAdapter(arrayAdapter);
 
         // Delete an item from the list view when they hold on it for a long time
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -173,11 +95,42 @@ public class ViewCalendarEvents extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-//                                String item = String.valueOf(arrayAdapter.getItem(position));
-                                resultArray.remove(position);
-                                firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").child(key).removeValue();
-                                arrayAdapter.notifyDataSetChanged();
-                                arrayAdapter.remove(position);
+                                System.out.println("DSfsadgasdgsfahdfhdsfhgdhdfGS");
+
+                                firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                        if (!task.isSuccessful()) {
+                                            Log.e("firebase", "Error getting data", task.getException());
+                                        }
+                                        else {
+                                            Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                                            System.out.println(task.getResult().getValue());
+                                            firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").child(key).removeValue();
+
+                                            for (DataSnapshot itemSnapshot: task.getResult().getChildren()) {
+                                                System.out.println("Testing "+itemSnapshot);
+                                                String myKey = itemSnapshot.getKey();
+                                                String myValue = itemSnapshot.getValue(String.class);
+                                                System.out.println("where am i?" +itemToDelete);
+                                                if (myValue.equals(arrayAdapter.getItem(itemToDelete))) {
+                                                    System.out.print("My item: "+arrayAdapter.getItem(itemToDelete));
+                                                    System.out.print("My Value: "+myValue);
+                                                    firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").child(myKey).removeValue();
+                                                    resultArray.remove(itemToDelete);
+                                                    //arrayAdapter.notifyDataSetChanged();
+                                                    arrayAdapter.remove(itemToDelete);
+                                                    break;
+                                                }
+                                                arrayAdapter.notifyDataSetChanged();
+                                            }
+                                        }
+                                    }
+                                });
+
+
+
+
                             }
                         }).setNegativeButton("No", null).show();
                 return true;
@@ -192,20 +145,14 @@ public class ViewCalendarEvents extends AppCompatActivity {
                 //String myEvent = resultArray.get(position);
                 String test = parent.getItemAtPosition(position).toString();
                 String date = parent.getItemAtPosition(position).toString();
-                //String a = parent.getItemAtPosition(Integer.parseInt(dateArray.get(position))).toString();
-                //String myDate = dateArray.get(Integer.parseInt(resultArray.get(position)));
 
-                //arrayAdapter.getItem(position);
                 Intent intent = new Intent(getApplicationContext(), EditCalendarEvent.class);
                 intent.putExtra("id", id);
                 intent.putExtra("myEvent", test);
                 intent.putExtra("myDate", date);
                 intent.putExtra("key", firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).getKey());
-                //intent.putExtra("myDate", dateArray);
                 startActivity(intent);
                 arrayAdapter.notifyDataSetChanged();
-                //Intent intent = new Intent(ViewCalendarEvents.this, EditCalendarEvent.class);
-                //startActivity(intent);
             }
         });
 
@@ -244,110 +191,29 @@ public class ViewCalendarEvents extends AppCompatActivity {
     private void getEvent() {
         // Initialise the array adapter
         arrayAdapter = new ArrayAdapter(ViewCalendarEvents.this, android.R.layout.simple_expandable_list_item_1, resultArray);
-
+        listView.setAdapter(arrayAdapter);
         // Get the events data from the userEvents child in the firebase database
-        DatabaseReference ref =  firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents");
-        ref.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                //textView.setVisibility(View.GONE);
 
-                String event = snapshot.getValue(String.class); // initialise the string as the value from the database
-                //String date = snapshot.child("UserAccount").child("selectedDate").getValue().toString();
-                //String y = snapshot.child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getValue().toString();
-                //resultArray.add(snapshot.child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getValue().toString());
-                //resultArray.add(snapshot.getValue().toString());
-
-//                for (DataSnapshot areaSnapshot: snapshot.getChildren()) {
-//                    // Get value from areaSnapShot not from dataSnapshot
-//                    String event = areaSnapshot.getValue(String.class);
-//                    resultArray.add(event);
-//                }
-                resultArray.add(event); // save the event retrieved from database into the array list
-                arrayAdapter.notifyDataSetChanged(); // notify adapter the changes that have been made
-                listView.setAdapter(arrayAdapter); // set the adapter
-            }
+        firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                resultArray.clear();
+                for (DataSnapshot areaSnapshot: snapshot.getChildren()) {
+                    String event = areaSnapshot.getValue(String.class);
+                    resultArray.add(event);
+                }
                 arrayAdapter.notifyDataSetChanged();
             }
 
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
 
-        // This might not be used (Just for the selected dates)
-        /*DatabaseReference dateRef =  firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("dateSelected");
-        dateRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                //textView.setVisibility(View.GONE);
-
-                String date = snapshot.getValue(String.class);
-                dateArray.add(date);
-                //String date = snapshot.child("UserAccount").child("selectedDate").getValue().toString();
-                //String y = snapshot.child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getValue().toString();
-                //resultArray.add(snapshot.child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getValue().toString());
-                //resultArray.add(snapshot.getValue().toString());
-
-//                for (DataSnapshot areaSnapshot: snapshot.getChildren()) {
-//                    // Get value from areaSnapShot not from dataSnapshot
-//                    String event = areaSnapshot.getValue(String.class);
-//                    resultArray.add(event);
-//                }
-                //dateArray.add(date);
-
-                //listView.setAdapter(arrayAdapter);
-            }
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
-        /*Iterator it = combineData.entrySet().iterator();
-        while(it.hasNext()) {
-            HashMap<String, String> resultsMap = new HashMap<>();
-            Map.Entry pair = (Map.Entry) it.next();
-            resultsMap.put("First Line", pair.getKey().toString());
-            resultsMap.put("Second Line", pair.getValue().toString());
-            listItems.add(resultsMap);
-            adapter.notifyDataSetChanged();
-        }
-        listView.setAdapter(adapter);*/
         listView.setAdapter(arrayAdapter); // set the adapter
     }
-    // Delete items from the array list
-    public void deleteEvent() {
 
-    }
-    public void updateEvent(long id, String event) {
-
-    }
     // Go back to previous page when user clicks the top back button
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -359,5 +225,10 @@ public class ViewCalendarEvents extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         overridePendingTransition(0, 0);
+    }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ViewCalendarEvents.this, CalendarPage.class));
+        onPause();
     }
 }

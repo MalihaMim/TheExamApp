@@ -76,18 +76,17 @@ public class HomePage extends AppCompatActivity {
                 return true;
 
             case R.id.profilebutton:
-                Intent data = getIntent();
-                String userId = data.getStringExtra("userId");
-                String userPw = data.getStringExtra("userPw");
+//                Intent data = getIntent();
+//                String userId = data.getStringExtra("userId");
+//                String userPw = data.getStringExtra("userPw");
 
                 Intent profile = new Intent(getApplicationContext(), ProfilePage.class);
-                profile.putExtra("userId",userId);
-                profile.putExtra("userPw",userPw);
+//                profile.putExtra("userId",userId);
+//                profile.putExtra("userPw",userPw);
                 startActivity(profile);
                 overridePendingTransition(0, 0);
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -95,7 +94,7 @@ public class HomePage extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIcon(android.R.drawable.ic_dialog_info)
                 .setTitle("Exit Application")
                 .setMessage("Are you sure you want to exit the app?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener()
