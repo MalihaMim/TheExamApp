@@ -45,17 +45,10 @@ import java.util.Map;
 
 public class ViewCalendarEvents extends AppCompatActivity {
     private final ArrayList<String> resultArray = new ArrayList<String>();
-    private final ArrayList<String> dateArray = new ArrayList<String>();
-    private HashMap<String, String> combineData = new HashMap<>();
-    private List<HashMap<String, String>> listItems = new ArrayList<>();
-    private int day, month, year;
     private Firebase firebase;
     private ListView listView;
     private String key; // Trying to get the key for each data that is saved on the database
-    private Hashtable<String, String> eventsList = new Hashtable<String, String>();
     protected static ArrayAdapter arrayAdapter;
-
-    //new code:
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +59,8 @@ public class ViewCalendarEvents extends AppCompatActivity {
         arrayAdapter = new ArrayAdapter(ViewCalendarEvents.this, android.R.layout.simple_expandable_list_item_1, resultArray);
         firebase = new Firebase();
 
-        // get the key that corresponds to each data but i think this does not work
+        // Get the key that corresponds to each data but i think this does not work
         key = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getKey();
-
-        //TextView date = findViewById(R.id.date);
-        //TextView event = findViewById(R.id.event);
 
         // Top Action bar design
         ActionBar actionBar = getSupportActionBar();
@@ -127,17 +117,12 @@ public class ViewCalendarEvents extends AppCompatActivity {
                                         }
                                     }
                                 });
-
-
-
-
                             }
                         }).setNegativeButton("No", null).show();
                 return true;
             }
         });
 
-        //COULD THE POSITION OF THE ITEM HELP IN RETRIEVING THE KEY TO THE ITEM?
         // When you click on an item... view the event and edit it
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -145,72 +130,44 @@ public class ViewCalendarEvents extends AppCompatActivity {
                 //String myEvent = resultArray.get(position);
                 String test = parent.getItemAtPosition(position).toString();
                 String date = parent.getItemAtPosition(position).toString();
-
+                long myKey = parent.getItemIdAtPosition(position);
+                int myPosition = arrayAdapter.getPosition(position);
+                System.out.println("does this work: " + test);
                 Intent intent = new Intent(getApplicationContext(), EditCalendarEvent.class);
-                intent.putExtra("id", id);
+                intent.putExtra("id", position);
                 intent.putExtra("myEvent", test);
                 intent.putExtra("myDate", date);
-                intent.putExtra("key", firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).getKey());
+                intent.putExtra("key", myKey);
+                intent.putExtra("position", myPosition);
+                System.out.println("MY KEY: " + myPosition); // Testing purposes
                 startActivity(intent);
                 arrayAdapter.notifyDataSetChanged();
             }
         });
-
-        ItemClicked();
     }
-
-    // When you click on an item... view the event and edit it
-    public void ItemClicked(){
-        // When you click on an item... view the event and edit it
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //String myEvent = resultArray.get(position);
-                String test = parent.getItemAtPosition(position).toString();
-                String date = parent.getItemAtPosition(position).toString();
-                //String a = parent.getItemAtPosition(Integer.parseInt(dateArray.get(position))).toString();
-                //String myDate = dateArray.get(Integer.parseInt(resultArray.get(position)));
-
-                //arrayAdapter.getItem(position);
-                Intent intent = new Intent(getApplicationContext(), EditCalendarEvent.class);
-                intent.putExtra("id", id);
-                intent.putExtra("myEvent", test);
-                intent.putExtra("myDate", date);
-                intent.putExtra("key", firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).getKey());
-                //intent.putExtra("myDate", dateArray);
-                startActivity(intent);
-                arrayAdapter.notifyDataSetChanged();
-                //Intent intent = new Intent(ViewCalendarEvents.this, EditCalendarEvent.class);
-                //startActivity(intent);
-
-            }
-        });
-    }
-
     // Get the events from the database and display it in a list view using the adapter
     private void getEvent() {
         // Initialise the array adapter
         arrayAdapter = new ArrayAdapter(ViewCalendarEvents.this, android.R.layout.simple_expandable_list_item_1, resultArray);
         listView.setAdapter(arrayAdapter);
-        // Get the events data from the userEvents child in the firebase database
 
+        // Get the events data from the userEvents child in the firebase database
         firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                resultArray.clear();
+                resultArray.clear(); // Clears the array-list when there is new data changes
+
                 for (DataSnapshot areaSnapshot: snapshot.getChildren()) {
                     String event = areaSnapshot.getValue(String.class);
-                    resultArray.add(event);
+                    resultArray.add(event); // Add the event to the array-list
                 }
                 arrayAdapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
         listView.setAdapter(arrayAdapter); // set the adapter
     }
 

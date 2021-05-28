@@ -1,6 +1,7 @@
 package com.example.studynook;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,10 +10,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toolbar;
 
 import java.util.HashSet;
 
@@ -20,18 +24,25 @@ public class EditText extends AppCompatActivity {
 
     protected int noteId;
     private android.widget.EditText editText;
+//    private TextView titleBox;
+//    private Toolbar toolbar;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_text);
+
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         ActionBar actionBar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#A1C7A8"));
         actionBar.setBackgroundDrawable(color);
         actionBar.setDisplayHomeAsUpEnabled(true); // Displays the back button
         actionBar.setTitle("Edit Note");
-
+//        actionBar.hide();
+//        setSupportActionBar(toolbar);
+        
         editText = findViewById(R.id.editText);
 
         Intent intent = getIntent();
@@ -67,6 +78,11 @@ public class EditText extends AppCompatActivity {
             }
         });
     }
+
+//    private void setSupportActionBar(Toolbar toolbar) {
+//        this.toolbar = toolbar;
+//    }
+
     // Go back to previous page when user clicks the top back button
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
