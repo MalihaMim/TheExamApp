@@ -76,60 +76,35 @@ public class CalendarPage extends AppCompatActivity {
         addEvent = findViewById(R.id.saveEvent); // Button to save the event
         viewEvent = findViewById(R.id.viewEvent); // Button to view their events
 
-        //View eventContent = findViewById(R.id.eventContents);
-
-        // User selects date and inputs their event details
+        // Save the selected date user inputs into a date format
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int day) {
-
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(year, month, day);
                 newDate = calendar.getTimeInMillis();
 
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
                 selectedDate = sdf.format(newDate);
-                saveDate.add(selectedDate); // Save the date the user selectes into an array
-
-                // Hides the visibility of the add event content until the user clicks a date (Just for aesthetic purposes)
-                if (userInput.getVisibility() == View.GONE && addEvent.getVisibility() == View.GONE) {
-                    userInput.setVisibility(View.VISIBLE);
-                    addEvent.setVisibility(View.VISIBLE);
-                }
+                saveDate.add(selectedDate); // Save the date the user selects into an array
             }
         });
-
         // When the user clicks on the save button, add event to the database
         addEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentDate = new Intent(CalendarPage.this, EditCalendarEvent.class);
-                intentDate.putExtra("saveDate", saveDate);
-                startActivity(intentDate);
+                // Validate user input and make sure that the user selects an event and a selected date for it
+                if(selectedDate == null || userInput.getText().toString() == null || userInput.getText().toString().isEmpty()) {
+                    Toast.makeText(CalendarPage.this, "Please enter a selected date or an event", Toast.LENGTH_LONG).show();
+                }
+                // If the user enters in all the corrects field then save it to the database and load the next activity
+                else if(userInput.getText().toString() != null && selectedDate != null){
+                    firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").push().setValue(selectedDate + "\n" + userInput.getText().toString());
 
-                // Save the selected date to the database
-                firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("selectedDate").push().setValue(selectedDate)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()) {
-                                    Toast.makeText(getApplicationContext(), "Date Saved", Toast.LENGTH_LONG);
-                                }
-                            }
-                        });
-
-                /*String data = selectedDate + "\n" + userInput.getText().toString();
-                String index = selectedDate;
-                HashMap<String,Object> m = new HashMap<String,Object>();
-                m.put(index,data);
-                HashMap<String,Object> m2 = new HashMap<String,Object>();
-                m2.put("userEvents",m);*/
-
-                firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").push().setValue(selectedDate + "\n" + userInput.getText().toString());
-
-                Intent intent = new Intent(CalendarPage.this, ViewCalendarEvents.class);
-                intent.putExtra("savedEvent", userEvents);
-                startActivity(intent);
+                    Intent intent = new Intent(CalendarPage.this, ViewCalendarEvents.class);
+                    intent.putExtra("savedEvent", userEvents);
+                    startActivity(intent);
+                }
             }
         });
         // Go to view my events page
@@ -153,29 +128,4 @@ public class CalendarPage extends AppCompatActivity {
         super.onPause();
         overridePendingTransition(0, 0);
     }
-
-    public ArrayList<String> getDateList() {
-        return saveDate;
-    }
 }
-
-/**calendarView = (CalendarView) findViewById(R.id.calendarView);
-
- // When the user clicks on the date, display the current date...
- calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-@Override
-public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-String date = (month + 1) + "/" + dayOfMonth + "/" + year;
-dateSelected.setText(date);
-}
-});
-
- addEvent = findViewById(R.id.addEvent);
- addEvent.setOnClickListener(new View.OnClickListener() {
-@Override
-public void onClick(View v) {
-Intent calIntent = new Intent(Intent.ACTION_INSERT);
-calIntent.setData(CalendarContract.Events.CONTENT_URI);
-startActivity(calIntent);
-}
-});**/
