@@ -50,6 +50,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SchedulingPage" />
+        <activity android:name=".StopwatchPage" />
         <activity android:name=".SignUpPage" />
         <activity android:name=".ProfilePage" />
         <activity android:name=".ViewCalendarEvents" />
