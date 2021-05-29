@@ -109,26 +109,6 @@ public class HomePage extends AppCompatActivity {
         todoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                SparseBooleanArray checkedItems = todoListView.getCheckedItemPositions();
-//                for (int i = 0; i < checkedItems.size(); i++) {
-//                    int checkedPosition = checkedItems.keyAt(i);
-//                    todoListView.setItemChecked(checkedPosition, true);
-//                }
-//                arrayAdapter.notifyDataSetChanged();
-
-//                SparseBooleanArray checkedItems = todoListView.getCheckedItemPositions();
-//                int count = arrayAdapter.getCount() ;
-//
-//                for (int i = count-1; i >= 0; i--) {
-//                    if (checkedItems.get(i)) {
-//                        resultArray.remove(i);
-//
-//                    }
-//                }
-//
-//                todoListView.clearChoices();
-//                arrayAdapter.notifyDataSetChanged();
-
 
                 firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
@@ -137,7 +117,6 @@ public class HomePage extends AppCompatActivity {
                             Log.e("firebase", "Error getting data", task.getException());
                         } else {
                             Log.d("firebase", String.valueOf(task.getResult().getValue()));
-//                            System.out.println(task.getResult().getValue());
                             String key = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getKey();
                             firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").child(key).removeValue();
 
@@ -150,11 +129,8 @@ public class HomePage extends AppCompatActivity {
                                 String[] result = myValue.split("\n");
                                 if (result[0].equals(date)) {
                                     if (result[1].equals(arrayAdapter.getItem(position))) {
-//                                        System.out.print("My item: " + arrayAdapter.getItem(position));
-//                                        System.out.print("My Value: " + myValue);
                                         firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").child(myKey).removeValue();
                                         resultArray.remove(position);
-                                        //arrayAdapter.notifyDataSetChanged();
                                         arrayAdapter.remove(position);
                                         break;
                                     }
