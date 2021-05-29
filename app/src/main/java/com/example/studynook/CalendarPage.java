@@ -128,4 +128,9 @@ public class CalendarPage extends AppCompatActivity {
         super.onPause();
         overridePendingTransition(0, 0);
     }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(CalendarPage.this, SchedulingPage.class));
+        onPause();
+    }
 }
