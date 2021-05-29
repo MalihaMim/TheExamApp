@@ -10,12 +10,37 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 public class HomePage extends AppCompatActivity {
+
+    private TextView totalStudyTime, todayDate;
+    private Firebase firebase;
+    private long total;
+
+    private final ArrayList<String> resultArray = new ArrayList<String>();
+    private ListView todoListView;
+    protected static ArrayAdapter arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +50,99 @@ public class HomePage extends AppCompatActivity {
         ActionBar bar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#3E7396"));
         bar.setBackgroundDrawable(color);
+
+        totalStudyTime = findViewById(R.id.totalTime);
+        todayDate = findViewById(R.id.todayDate);
+        firebase = new Firebase();
+        total = 0L;
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
+        Calendar c = Calendar.getInstance();
+        String date = dateFormat.format(c.getTime());
+        todayDate.setText(date);
+
+        firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("totalStudyTime").child(date).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot timeSnapshot : snapshot.getChildren()) {
+                    long time = timeSnapshot.getValue(long.class);
+                    total += time;
+                }
+
+                String totalTime = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(total),
+                        TimeUnit.MILLISECONDS.toMinutes(total) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(total)),
+                        TimeUnit.MILLISECONDS.toSeconds(total) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(total)));
+                totalStudyTime.setText(totalTime);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        todoListView = findViewById(R.id.todoList);
+        arrayAdapter = new ArrayAdapter(HomePage.this, android.R.layout.simple_list_item_multiple_choice, resultArray);
+        todoListView.setAdapter(arrayAdapter);
+
+        firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                resultArray.clear(); // Clears the array-list when there is new data changes
+
+                for (DataSnapshot areaSnapshot: snapshot.getChildren()) {
+                    String event = areaSnapshot.getValue(String.class);
+                    String[] result = event.split("\n");
+                    if (result[0].equals(date)) {
+                        resultArray.add(result[1]); // Add the event to the array-list
+                    }
+                }
+                arrayAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        todoListView.setAdapter(arrayAdapter);
+
+        todoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if (!task.isSuccessful()) {
+                            Log.e("firebase", "Error getting data", task.getException());
+                        } else {
+                            Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                            String key = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").getKey();
+                            firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").child(key).removeValue();
+
+                            for (DataSnapshot itemSnapshot : task.getResult().getChildren()) {
+                                System.out.println("Testing " + itemSnapshot);
+                                String myKey = itemSnapshot.getKey();
+                                String myValue = itemSnapshot.getValue(String.class);
+                                System.out.println("where am i?" + position);
+
+                                String[] result = myValue.split("\n");
+                                if (result[0].equals(date)) {
+                                    if (result[1].equals(arrayAdapter.getItem(position))) {
+                                        firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").child(myKey).removeValue();
+                                        resultArray.remove(position);
+                                        arrayAdapter.remove(position);
+                                        break;
+                                    }
+                                }
+                                todoListView.clearChoices();
+                                arrayAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    }
+                });
+            }
+        });
 
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
