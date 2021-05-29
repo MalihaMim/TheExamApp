@@ -40,7 +40,7 @@
         <activity android:name=".LibraryPage" />
         <activity android:name=".ResourcesPage" />
         <activity android:name=".TimerPage" />
-        <activity android:name=".AlarmPage" />
+        <activity android:name=".BreakPage" />
         <activity android:name=".PlannerPage" />
         <activity android:name=".LoginPage">
             <intent-filter>
