@@ -121,11 +121,8 @@ public class HomePage extends AppCompatActivity {
                             firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("userEvents").child(key).removeValue();
 
                             for (DataSnapshot itemSnapshot : task.getResult().getChildren()) {
-                                System.out.println("Testing " + itemSnapshot);
                                 String myKey = itemSnapshot.getKey();
                                 String myValue = itemSnapshot.getValue(String.class);
-                                System.out.println("where am i?" + position);
-
                                 String[] result = myValue.split("\n");
                                 if (result[0].equals(date)) {
                                     if (result[1].equals(arrayAdapter.getItem(position))) {
