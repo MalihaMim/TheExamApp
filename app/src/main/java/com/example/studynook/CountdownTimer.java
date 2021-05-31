@@ -14,23 +14,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.NumberPicker;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class TimerPage extends AppCompatActivity {
+public class CountdownTimer extends AppCompatActivity {
 
-    private Button timer, stopwatch;
+    protected NumberPicker hour, minutes, seconds;
+    private Button start;
+    protected boolean isStart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timer_page);
+        setContentView(R.layout.activity_countdown_timer);
 
         ActionBar actionBar = getSupportActionBar();
         ColorDrawable color = new ColorDrawable(Color.parseColor("#FF5053"));
         actionBar.setBackgroundDrawable(color);
         actionBar.setDisplayHomeAsUpEnabled(true); // Displays the back button
-        actionBar.setTitle("Timer Page");
+        actionBar.setTitle("Timer");
 
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -66,24 +69,31 @@ public class TimerPage extends AppCompatActivity {
             }
         });
 
-        timer = findViewById(R.id.countdownTimerButton);
-        stopwatch = findViewById(R.id.stopwatchButton);
+        hour = findViewById(R.id.hourPicker);
+        hour.setMinValue(0);
+        hour.setMaxValue(99);
 
-        timer.setOnClickListener(new View.OnClickListener() {
+        minutes = findViewById(R.id.minutePicker);
+        minutes.setMinValue(0);
+        minutes.setMaxValue(59);
+
+        seconds = findViewById(R.id.secondPicker);
+        seconds.setMinValue(0);
+        seconds.setMaxValue(59);
+
+        isStart = false;
+        start = findViewById(R.id.countdownTimerButton);
+        start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TimerPage.this, CountdownTimer.class);
+                isStart = true;
+                long time = (long) hour.getValue() * 3600000 + (long) minutes.getValue() * 60000 + (long) seconds.getValue() * 1000;
+                Intent intent = new Intent(CountdownTimer.this, CountdownPage.class);
+                intent.putExtra("isStart", isStart);
+                intent.putExtra("Countdown", time);
                 startActivity(intent);
             }
         });
-
-        stopwatch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TimerPage.this, StopwatchPage.class);
-                startActivity(intent);
-            }
-        } );
     }
 
 //    @Override
@@ -105,17 +115,18 @@ public class TimerPage extends AppCompatActivity {
 //                overridePendingTransition(0, 0);
 //                return true;
 //        }
-//
+//        startActivity(new Intent(CountdownTimer.this, SchedulingPage.class));
+//        onPause();
 //        return super.onOptionsItemSelected(item);
 //    }
 
-    // Go back to previous page when user clicks the top back button
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        startActivity(new Intent(TimerPage.this, SchedulingPage.class));
+        startActivity(new Intent(CountdownTimer.this, TimerPage.class));
         onPause();
         return super.onOptionsItemSelected(item);
     }
+
     // Gets rid of back button animation
     public void onPause() {
         super.onPause();

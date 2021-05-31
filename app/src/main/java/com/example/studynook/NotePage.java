@@ -5,13 +5,12 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,15 +19,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class NotePage extends AppCompatActivity {
 
     protected static ArrayList<String> notes = new ArrayList<>();
     protected static ArrayAdapter arrayAdapter;
+    protected Firebase firebase;
+    private ListView listView;
+    private String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +47,19 @@ public class NotePage extends AppCompatActivity {
         bar.setDisplayHomeAsUpEnabled(true); // Displays the back button
         bar.setTitle("Notes");
 
-        ListView listView = findViewById(R.id.list);
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
-        HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
+        listView = findViewById(R.id.list);
+        firebase = new Firebase();
+        key = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("Notes").getKey();
+        displayNote();
 
-        if (set == null) {
-            notes.add("Example note");
-        } else {
-            notes = new ArrayList(set);
-        }
+//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
+//        HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
+//
+//        if (set == null) {
+//            notes.add("");
+//        } else {
+//            notes = new ArrayList(set);
+//        }
 
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -85,17 +95,30 @@ public class NotePage extends AppCompatActivity {
             }
         });
         // Using custom listView provided by Android Studio
-        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, notes);
-
-        listView.setAdapter(arrayAdapter);
+//        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, notes);
+//
+//        listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Going from NotePage to EditText
+//                Intent intent = new Intent(getApplicationContext(), EditText.class);
+//                intent.putExtra("noteId", position);
+//                startActivity(intent);
+
+                String text = parent.getItemAtPosition(position).toString();
+                long myKey = parent.getItemIdAtPosition(position);
+                int myPosition = arrayAdapter.getPosition(position);
+
                 Intent intent = new Intent(getApplicationContext(), EditText.class);
-                intent.putExtra("noteId", position);
+                intent.putExtra("id", position);
+                intent.putExtra("text", text);
+                intent.putExtra("key", myKey);
+                intent.putExtra("position", myPosition);
+                intent.putExtra("add", true);
                 startActivity(intent);
+                arrayAdapter.notifyDataSetChanged();
             }
         });
 
@@ -112,16 +135,66 @@ public class NotePage extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                notes.remove(itemToDelete);
-                                arrayAdapter.notifyDataSetChanged();
-                                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
-                                HashSet<String> set = new HashSet(NotePage.notes);
-                                sharedPreferences.edit().putStringSet("notes", set).apply();
+//                                notes.remove(itemToDelete);
+//                                arrayAdapter.notifyDataSetChanged();
+//                                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
+//                                HashSet<String> set = new HashSet(NotePage.notes);
+//                                sharedPreferences.edit().putStringSet("notes", set).apply();
+
+                                firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("Notes").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                        if (!task.isSuccessful())
+                                            Log.e("firebase", "Error getting data", task.getException());
+                                        else {
+                                            Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                                            firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("Notes").child(key).removeValue();
+
+                                            for (DataSnapshot itemSnapshot : task.getResult().getChildren()) {
+                                                String myKey = itemSnapshot.getKey();
+                                                String myValue = itemSnapshot.getValue(String.class);
+                                                if (myValue.equals(arrayAdapter.getItem(itemToDelete))) {
+                                                    firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("Notes").child(myKey).removeValue();
+                                                    notes.remove(itemToDelete);
+                                                    arrayAdapter.remove(itemToDelete);
+                                                    break;
+                                                }
+                                                arrayAdapter.notifyDataSetChanged();
+                                            }
+                                        }
+                                    }
+                                });
                             }
                         }).setNegativeButton("No", null).show();
                 return true;
             }
         });
+    }
+
+    private void displayNote() {
+        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, notes);
+        listView.setAdapter(arrayAdapter);
+
+        firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("Notes").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                notes.clear();
+
+                for (DataSnapshot areaSnapshot : snapshot.getChildren()) {
+                    String text = areaSnapshot.getValue(String.class);
+                    notes.add(text);
+                }
+
+                arrayAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        listView.setAdapter(arrayAdapter);
     }
 
     @Override
@@ -138,6 +211,7 @@ public class NotePage extends AppCompatActivity {
 
         if (item.getItemId() == R.id.addnote) {
             Intent intent = new Intent(getApplicationContext(), EditText.class);
+            intent.putExtra("add", false);
             startActivity(intent);
             return true;
         }

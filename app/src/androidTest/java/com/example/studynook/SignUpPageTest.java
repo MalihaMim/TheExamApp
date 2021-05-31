@@ -28,7 +28,7 @@ public class SignUpPageTest {
     @Before
     public void initValidString() {
         // Specify a valid string.
-        stringToBetyped = "test@gmail.com";
+        stringToBetyped = "test";
     }
 
     @Test
