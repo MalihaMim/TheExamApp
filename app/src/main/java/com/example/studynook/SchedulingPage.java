@@ -18,7 +18,7 @@ import android.widget.Button;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SchedulingPage extends AppCompatActivity {
-    private Button alarm, timer, calendar, planner, stopwatch;
+    private Button alarm, timer, calendar, planner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,6 @@ public class SchedulingPage extends AppCompatActivity {
         timer = findViewById(R.id.timerButton);
         calendar = findViewById(R.id.calendarButton);
         planner = findViewById(R.id.plannerButton);
-        stopwatch = findViewById(R.id.stopwatchButton);
 
         alarm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,13 +67,6 @@ public class SchedulingPage extends AppCompatActivity {
             }
         } );
 
-        stopwatch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SchedulingPage.this, StopwatchPage.class);
-                startActivity(intent);
-            }
-        } );
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
