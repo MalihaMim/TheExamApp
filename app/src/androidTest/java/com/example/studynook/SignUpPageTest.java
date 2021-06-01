@@ -19,7 +19,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 @RunWith(AndroidJUnit4.class)
 public class SignUpPageTest {
 
-    private String stringToBetyped;
+    private String nameToBetyped, emailToBetyped, pwToBetyped;
 
     @Rule
     public ActivityScenarioRule<SignUpPage> activityRule
@@ -28,14 +28,20 @@ public class SignUpPageTest {
     @Before
     public void initValidString() {
         // Specify a valid string.
-        stringToBetyped = "test";
+        nameToBetyped = "test";
+        emailToBetyped = "test";
+        pwToBetyped = "12345678";
     }
 
     @Test
-    public void changeText_sameActivity() {
+    public void hasErrorText_sameActivity() {
         // Type text and then press the button.
+        onView(withId(R.id.regName))
+                .perform(typeText(nameToBetyped), closeSoftKeyboard());
         onView(withId(R.id.regEmail))
-                .perform(typeText(stringToBetyped), closeSoftKeyboard());
+                .perform(typeText(emailToBetyped), closeSoftKeyboard());
+        onView(withId(R.id.regPassword))
+                .perform(typeText(pwToBetyped), closeSoftKeyboard());
         onView(withId(R.id.regAccountButton)).perform(click());
 
         // Check that the text has error message.
