@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TimerPage">
+    tools:context=".CountdownTimer">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
@@ -31,6 +31,19 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+<!--        <Chronometer-->
+<!--            android:id="@+id/timerChronometer"-->
+<!--            android:layout_width="332dp"-->
+<!--            android:layout_height="106dp"-->
+<!--            android:layout_marginStart="48dp"-->
+<!--            android:layout_marginLeft="48dp"-->
+<!--            android:layout_marginTop="128dp"-->
+<!--            android:format="00:00:00"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Display3"-->
+<!--            android:textSize="70sp"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
         <Button
             android:id="@+id/start"

@@ -2,8 +2,10 @@ package com.example.studynook;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -112,7 +114,7 @@ public class StopwatchPage extends AppCompatActivity {
     // Go back to previous page when user clicks the top back button
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        startActivity(new Intent(StopwatchPage.this, SchedulingPage.class));
+        startActivity(new Intent(StopwatchPage.this, TimerPage.class));
         onPause();
         return super.onOptionsItemSelected(item);
     }

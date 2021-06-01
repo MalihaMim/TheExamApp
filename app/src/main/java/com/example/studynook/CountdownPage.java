@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -143,7 +144,7 @@ public class CountdownPage extends AppCompatActivity {
     }
 
     public void resetTimer() {
-        Intent intent = new Intent(CountdownPage.this, TimerPage.class);
+        Intent intent = new Intent(CountdownPage.this, CountdownTimer.class);
         startActivity(intent);
     }
 
@@ -181,7 +182,7 @@ public class CountdownPage extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 return true;
         }
-        startActivity(new Intent(CountdownPage.this, TimerPage.class));
+        startActivity(new Intent(CountdownPage.this, CountdownTimer.class));
         onPause();
 
         return super.onOptionsItemSelected(item);

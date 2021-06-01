@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,15 +54,15 @@ public class LoginPage extends AppCompatActivity {
                 String userEmail = email.getText().toString();
                 String userPw = password.getText().toString();
 
-                if (userEmail.isEmpty()) {
+                if (userEmail.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
                     Toast t = Toast.makeText(getApplicationContext(), "You must enter an email to login!", Toast.LENGTH_SHORT);
                     t.show();
                     email.setError("Enter a valid email");
                 }
-                if (userPw.isEmpty()) {
+                if (userPw.isEmpty() || userPw.length() < 8) {
                     Toast t = Toast.makeText(getApplicationContext(), "You must enter a password to login!", Toast.LENGTH_SHORT);
                     t.show();
-                    password.setError("Enter a valid password");
+                    password.setError("Password has to be 8 or more characters");
                 }
                 else if (!userEmail.isEmpty() && !userPw.isEmpty()) {
                     firebase.getmAuth().signInWithEmailAndPassword(userEmail, userPw).addOnCompleteListener(LoginPage.this, new OnCompleteListener<AuthResult>() {
