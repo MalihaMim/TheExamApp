@@ -18,7 +18,7 @@ import android.widget.Button;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SchedulingPage extends AppCompatActivity {
-    private Button alarm, timer, calendar, planner;
+    private Button timer, calendar, planner, breakP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +30,12 @@ public class SchedulingPage extends AppCompatActivity {
         actionBar.setBackgroundDrawable(color);
         actionBar.setTitle("Schedule");
 
-        alarm = findViewById(R.id.alarmButton);
+        breakP = findViewById(R.id.breakButton);
         timer = findViewById(R.id.timerButton);
         calendar = findViewById(R.id.calendarButton);
         planner = findViewById(R.id.plannerButton);
 
-        alarm.setOnClickListener(new View.OnClickListener() {
+        breakP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SchedulingPage.this, BreakPage.class);

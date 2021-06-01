@@ -4,17 +4,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -27,6 +33,9 @@ public class CountdownPage extends AppCompatActivity {
     private CountDownTimer countTimer;
     private boolean isRunning;
     private long countdownTime, pauseTimeLeft;
+    private Uri sound;
+    private MediaPlayer mp;
+    private Vibrator vibrate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,8 +129,14 @@ public class CountdownPage extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+                mp = MediaPlayer.create(getApplicationContext(), sound);
+                mp.start();
+                vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                long[] pattern = {1000, 1500};
+                vibrate.vibrate(pattern, 0);
+                Toast.makeText(CountdownPage.this, "Time's up!!", Toast.LENGTH_SHORT).show();
                 isRunning = false;
-                countdown.setText("Finish!!");
                 pause.setVisibility(View.INVISIBLE);
                 reset.setVisibility(View.VISIBLE);
             }
@@ -145,6 +160,8 @@ public class CountdownPage extends AppCompatActivity {
 
     public void resetTimer() {
         Intent intent = new Intent(CountdownPage.this, CountdownTimer.class);
+        mp.stop();
+        vibrate.cancel();
         startActivity(intent);
     }
 

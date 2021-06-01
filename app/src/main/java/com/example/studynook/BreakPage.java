@@ -120,23 +120,6 @@ public class BreakPage extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void alarmSet(Calendar calendar) {
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, AlarmSound.class);
-        PendingIntent pending = PendingIntent.getBroadcast(this, 1, intent, 0);
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pending);
-//        Toast.makeText(this, "Your alarm is set", Toast.LENGTH_LONG).show();
-    }
-
-    private void alarmCancel() {
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, AlarmSound.class);
-        PendingIntent pending = PendingIntent.getBroadcast(this, 1, intent, 0);
-        alarmManager.cancel(pending);
-//        Toast.makeText(this, "Your alarm is cancelled", Toast.LENGTH_LONG).show();
-    }
-
     // Gets rid of back button animation
     public void onPause() {
         super.onPause();
