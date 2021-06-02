@@ -15,6 +15,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true //wellbeing page
     }
 
     buildTypes {
@@ -50,5 +51,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //noinspection GradleCompatible,GradleCompatible
     implementation 'com.android.support:appcompat-v7:23.1.1'
+
+    //for wellbeing page...
+    /*implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
+    implementation 'com.android.support.multidex:1.0.3'*/
 
 }
