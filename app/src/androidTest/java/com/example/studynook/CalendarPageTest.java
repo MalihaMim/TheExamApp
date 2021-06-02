@@ -12,6 +12,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.closeSoftKeyboard;
 import static androidx.test.espresso.Espresso.onView;
@@ -34,18 +35,22 @@ public class CalendarPageTest {
 
     public ActivityScenario<CalendarPage> calendarPage = null;
 
+
     @Before
     public void setUp() throws Exception {
-        stringToBetyped = "Testing";
+        stringToBetyped = "";
     }
 
     @Test
-    public void clickButton_sameActivity () {
+    public void clickButton_sameActivity() {
         // Type text and then press the button.
         onView(withId(R.id.userInput))
                 .perform(typeText(stringToBetyped), ViewActions.closeSoftKeyboard());
-        onView(withId(R.id.viewEvent)).perform(click());
+        onView(withId(R.id.saveEvent)).perform(click());
 
+        // Check error
+        onView((withId(R.id.userInput)))
+                .check(matches(hasErrorText("Please enter an event if not yet entered")));
     }
 
     @After
