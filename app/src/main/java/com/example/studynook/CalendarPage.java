@@ -95,7 +95,9 @@ public class CalendarPage extends AppCompatActivity {
             public void onClick(View v) {
                 // Validate user input and make sure that the user selects an event and a selected date for it
                 if(selectedDate == null || userInput.getText().toString() == null || userInput.getText().toString().isEmpty()) {
-                    Toast.makeText(CalendarPage.this, "Please enter a selected date or an event", Toast.LENGTH_LONG).show();
+                    Toast myToast = Toast.makeText(CalendarPage.this, "Please enter a selected date or an event", Toast.LENGTH_LONG);
+                    myToast.show();
+                    userInput.setError("Please enter an event if not yet entered");
                 }
                 // If the user enters in all the corrects field then save it to the database and load the next activity
                 else if(userInput.getText().toString() != null && selectedDate != null){
@@ -127,5 +129,10 @@ public class CalendarPage extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         overridePendingTransition(0, 0);
+    }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(CalendarPage.this, SchedulingPage.class));
+        onPause();
     }
 }

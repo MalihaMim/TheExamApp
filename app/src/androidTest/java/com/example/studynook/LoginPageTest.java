@@ -16,7 +16,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 public class LoginPageTest {
 
-    private String stringToBetyped;
+    private String emailToBetyped, pwToBetyped;
 
     @Rule
     public ActivityScenarioRule<LoginPage> activityRule
@@ -25,14 +25,17 @@ public class LoginPageTest {
     @Before
     public void initValidString() {
         // Specify a valid string.
-        stringToBetyped = "12345678";
+        emailToBetyped = "test@gmail.com";
+        pwToBetyped = "123456";
     }
 
     @Test
-    public void changeText_sameActivity() {
+    public void hasErrorText_sameActivity() {
         // Type text and then press the button.
+        onView(withId(R.id.email))
+                .perform(typeText(emailToBetyped), closeSoftKeyboard());
         onView(withId(R.id.password))
-                .perform(typeText(stringToBetyped), closeSoftKeyboard());
+                .perform(typeText(pwToBetyped), closeSoftKeyboard());
         onView(withId(R.id.login)).perform(click());
 
         // Check that the text has error message.

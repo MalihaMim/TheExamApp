@@ -52,15 +52,6 @@ public class NotePage extends AppCompatActivity {
         key = firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("Notes").getKey();
         displayNote();
 
-//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
-//        HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
-//
-//        if (set == null) {
-//            notes.add("");
-//        } else {
-//            notes = new ArrayList(set);
-//        }
-
         // Initialise and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -94,18 +85,10 @@ public class NotePage extends AppCompatActivity {
                 return false;
             }
         });
-        // Using custom listView provided by Android Studio
-//        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, notes);
-//
-//        listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Going from NotePage to EditText
-//                Intent intent = new Intent(getApplicationContext(), EditText.class);
-//                intent.putExtra("noteId", position);
-//                startActivity(intent);
 
                 String text = parent.getItemAtPosition(position).toString();
                 long myKey = parent.getItemIdAtPosition(position);
@@ -135,11 +118,6 @@ public class NotePage extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-//                                notes.remove(itemToDelete);
-//                                arrayAdapter.notifyDataSetChanged();
-//                                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
-//                                HashSet<String> set = new HashSet(NotePage.notes);
-//                                sharedPreferences.edit().putStringSet("notes", set).apply();
 
                                 firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("Notes").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                                     @Override
@@ -171,6 +149,7 @@ public class NotePage extends AppCompatActivity {
         });
     }
 
+    // Display the list of note in the database to the ListView display
     private void displayNote() {
         arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, notes);
         listView.setAdapter(arrayAdapter);
