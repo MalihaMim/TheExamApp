@@ -40,6 +40,7 @@ public class EditText extends AppCompatActivity {
     private long id;
     private String text;
     private Firebase firebase;
+    protected boolean flag;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -62,9 +63,12 @@ public class EditText extends AppCompatActivity {
 
         firebase = new Firebase();
 
+        //Get a boolean variable from the NotePage
         Bundle extras = getIntent().getExtras();
-        boolean flag = extras.getBoolean("add");
+        flag = extras.getBoolean("add");
 
+        // if flag is true so rewrite the existed note
+        // else add a new note
         if(flag == true) {
             id = extras.getInt("id");
             text = extras.get("text").toString();
@@ -77,7 +81,7 @@ public class EditText extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (id != -1) {
+                if (id != -1) { //If the id != 1, so replace the existed note in database with the updated note
                     final int itemToEdit = NotePage.arrayAdapter.getPosition(id);
 
                     firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("Notes").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -99,62 +103,19 @@ public class EditText extends AppCompatActivity {
                     });
                     Toast.makeText(EditText.this, "Changes have been updated!", Toast.LENGTH_LONG).show();
                 }
-                else {
+                else { // Save the new note to the database
                     firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("Notes").push().setValue(editText.getText().toString());
                 }
 
                 Intent intent = new Intent(getApplicationContext(), NotePage.class);
                 ArrayList<String> myNote = new ArrayList<>(NotePage.notes);
                 intent.putExtra("savedNotes", myNote);
+                Toast.makeText(EditText.this, "Note is Saved!", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });
-//        Intent intent = getIntent();
-//
-//        noteId = intent.getIntExtra("noteId", -1);
-//        if (noteId != -1)
-//            editText.setText(NotePage.notes.get(noteId));
-//        else {
-//            NotePage.notes.add("");
-//            noteId = NotePage.notes.size() - 1;
-//            NotePage.arrayAdapter.notifyDataSetChanged();
-//        }
-
-//        editText.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                NotePage.notes.set(noteId, String.valueOf(charSequence));
-//                NotePage.arrayAdapter.notifyDataSetChanged();
-//                // Creating Object of SharedPreferences to store data in the phone
-//                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
-//                HashSet<String> set = new HashSet(NotePage.notes);
-//                sharedPreferences.edit().putStringSet("notes", set).apply();
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
 
     }
-
-//    private void saveNote() {
-//        if (title.getText().toString().trim().isEmpty())
-//            Toast.makeText(this, "Note title can not be empty!", Toast.LENGTH_SHORT).show();
-//        else if (title.getText().toString().trim().isEmpty()
-//                && editText.getText().toString().trim().isEmpty())
-//            Toast.makeText(this, "Note can not be empty!", Toast.LENGTH_SHORT).show();
-//
-//        Note note = new Note();
-//        note.setTitle(title.getText().toString());
-//        note.setText(editText.getText().toString());
-//    }
 
     private void setSupportActionBar(Toolbar toolbar) {
         toolbar.setVisibility(View.VISIBLE);

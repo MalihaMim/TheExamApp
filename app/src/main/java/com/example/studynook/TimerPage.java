@@ -86,28 +86,6 @@ public class TimerPage extends AppCompatActivity {
         } );
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_top_bar, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch(item.getItemId()) {
-//            case R.id.notibutton:
-//                //startActivity(new Intent(this, ));
-//                overridePendingTransition(0, 0);
-//                return true;
-//
-//            case R.id.profilebutton:
-//                startActivity(new Intent(getApplicationContext(), ProfilePage.class));
-//                overridePendingTransition(0, 0);
-//                return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 
     // Go back to previous page when user clicks the top back button
     @Override

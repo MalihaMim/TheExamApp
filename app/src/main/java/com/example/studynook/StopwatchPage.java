@@ -25,7 +25,7 @@ import java.util.Locale;
 public class StopwatchPage extends AppCompatActivity {
 
     private Chronometer chronometer;
-    private Button start, stop, resume, reset;
+    private Button start, stop;
     private boolean isResume;
     private long tMilliSec, tStart, tBuff, tUpdate = 0L;
     private int sec, min, milliSec;
@@ -109,7 +109,6 @@ public class StopwatchPage extends AppCompatActivity {
             handler.postDelayed(this, 60);
         }
     };
-
 
     // Go back to previous page when user clicks the top back button
     @Override
