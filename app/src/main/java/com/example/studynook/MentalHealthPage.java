@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+//import com.anychart.AnyChartView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,6 +37,18 @@ public class MentalHealthPage extends AppCompatActivity implements AdapterView.O
     private TextView status;
     private int progress = 0;
 
+    //Pie chart code:
+    //AnyChartView anyChartView;
+
+    //Emotions are set to 0, will be used later for calculation
+    private int happy = 0;
+    private int upset = 0;
+    private int anxious = 0;
+    private int tired = 0;
+    private int motivated = 0;
+    private int energetic = 0;
+
+
     //Mood variables:
     private String[] moods; //dropdown values
     private String chosen_mood;
@@ -48,6 +61,8 @@ public class MentalHealthPage extends AppCompatActivity implements AdapterView.O
     //Pulse button variables:
     private Button pulse;
     private Handler handler;
+
+    //On creation of the page:
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

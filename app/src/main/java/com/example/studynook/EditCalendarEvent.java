@@ -32,10 +32,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Date;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -43,7 +45,10 @@ import java.util.Map;
 import com.allyants.notifyme.NotifyMe;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
-
+/**
+ * This class allows the user to make edits to their events and also allows them set a notification
+ * for it. This requires Firebase to be implemented into the code.
+ */
 public class EditCalendarEvent extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     private EditText editText;
     private Firebase firebase;
@@ -51,7 +56,6 @@ public class EditCalendarEvent extends AppCompatActivity implements DatePickerDi
     private android.widget.EditText text;
     private long id;
     private Button button;
-
     Calendar now = Calendar.getInstance();
     TimePickerDialog timePickerDialog;
     DatePickerDialog datePickerDialog;
@@ -89,7 +93,10 @@ public class EditCalendarEvent extends AppCompatActivity implements DatePickerDi
                 false
         );
 
-        // Notification button
+        /**
+         * This is a button that allows the user to set a notification for their events. Upon
+         * clicking it, a date picker dialog box will pop up, followed by the time picker dialog.
+         */
         notify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +106,10 @@ public class EditCalendarEvent extends AppCompatActivity implements DatePickerDi
 
         text.setText(event); // Display the text-field as the event you clicked on
 
-        // Save button to save changes to the event
+        /**
+         * This button will allow the user to save their changes. It will update the firebase
+         * console and save the changes according to the key each event has.
+         */
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
