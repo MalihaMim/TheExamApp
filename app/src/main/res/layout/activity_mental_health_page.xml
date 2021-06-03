@@ -13,33 +13,23 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-14dp"
+        android:layout_marginLeft="-14dp"
+        android:layout_marginTop="-2dp"
         android:background="#BAC2AB"
         tools:context=".MentalHealthPage">
-
-        <com.anychart.AnyChartView
-            android:id="@+id/pie_chart"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginEnd="38dp"
-            android:layout_marginRight="38dp"
-            android:layout_marginBottom="17dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="200dp"
             android:layout_height="200dp"
+            android:layout_marginTop="2dp"
             android:indeterminateOnly="false"
             android:progressDrawable="@drawable/circle"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.568"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.009"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
             tools:progress="0" />
 
         <TextView
@@ -58,28 +48,30 @@
             android:id="@+id/decrease_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            android:layout_marginLeft="108dp"
             android:text="-10%"
             app:backgroundTint="#4D6753"
-            app:layout_constraintStart_toStartOf="@+id/progress_bar"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
 
         <Button
             android:id="@+id/increase_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="111dp"
+            android:layout_marginRight="111dp"
             android:text="+10%"
             app:backgroundTint="#4D6753"
-            app:layout_constraintEnd_toEndOf="@+id/progress_bar"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
-
 
         <SeekBar
             android:id="@+id/mood_range"
             android:layout_width="157dp"
             android:layout_height="47dp"
-            android:layout_marginTop="11dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:max="10"
             android:min="1"
             android:progress="1"
@@ -88,37 +80,37 @@
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="135dp"
-            android:layout_height="18dp"
-            android:layout_marginTop="28dp"
-            android:text="How are you feeling?"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.532"
+            android:layout_width="190dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="124dp"
+            android:layout_marginLeft="124dp"
+            android:layout_marginTop="3dp"
+            android:text="How are you feeling about it?"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/decrease_btn" />
+            app:layout_constraintTop_toBottomOf="@+id/save_prog_btn" />
 
         <Spinner
             android:id="@+id/mood_dropdown"
             android:layout_width="144dp"
             android:layout_height="39dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="29dp"
+            android:layout_marginRight="29dp"
             android:background="#FFFFFF"
             android:dropDownSelector="#000000"
             android:spinnerMode="dropdown"
-            app:layout_constraintStart_toEndOf="@+id/mood_title"
+            app:layout_constraintEnd_toStartOf="@+id/mood_range"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <TextView
             android:id="@+id/mood_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="316dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginLeft="29dp"
+            android:layout_marginTop="380dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginRight="14dp"
             android:text="Mood"
             app:layout_constraintEnd_toStartOf="@+id/mood_dropdown"
             app:layout_constraintStart_toStartOf="parent"
@@ -128,37 +120,89 @@
             android:id="@+id/mood_value_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="71dp"
-            android:layout_marginRight="71dp"
+            android:layout_marginEnd="77dp"
+            android:layout_marginRight="77dp"
             android:text="Scale: 1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mood_range" />
 
         <Button
             android:id="@+id/pulsing_btn"
-            android:layout_width="94dp"
-            android:layout_height="83dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginBottom="46dp"
-            android:text="Pulse"
+            android:layout_width="123dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="37dp"
+            android:text="Breathe"
             app:backgroundTint="#4D6753"
             app:cornerRadius="70dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
             android:id="@+id/save_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="29dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="42dp"
+            android:layout_marginRight="42dp"
             android:text="Save"
+            app:backgroundTint="#4D6753"
+            app:layout_constraintEnd_toStartOf="@+id/mood_value_title"
+            app:layout_constraintTop_toBottomOf="@+id/mood_range" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="How much work do you feel you have done?"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mood_dropdown" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="89dp"
+            android:layout_marginLeft="89dp"
+            android:layout_marginEnd="107dp"
+            android:layout_marginRight="107dp"
+            android:layout_marginBottom="1dp"
+            android:text="Breathe in and"
+            app:layout_constraintBottom_toTopOf="@+id/textView6"
+            app:layout_constraintEnd_toStartOf="@+id/pulsing_btn"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="52dp"
+            android:text="Breathe out when button stops pulsing"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/save_prog_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginRight="3dp"
+            android:text="Save"
+            app:backgroundTint="#4D6753"
+            app:layout_constraintEnd_toStartOf="@+id/increase_btn"
+            app:layout_constraintStart_toEndOf="@+id/decrease_btn"
+            app:layout_constraintTop_toBottomOf="@+id/decrease_btn" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

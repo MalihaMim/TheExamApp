@@ -31,6 +31,7 @@ import java.util.ArrayList;
 public class NotePage extends AppCompatActivity {
 
     protected static ArrayList<String> notes = new ArrayList<>();
+    protected static ArrayList<String> textNote = new ArrayList<>();
     protected static ArrayAdapter arrayAdapter;
     protected Firebase firebase;
     private ListView listView;

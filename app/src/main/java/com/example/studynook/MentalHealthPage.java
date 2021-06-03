@@ -36,6 +36,7 @@ public class MentalHealthPage extends AppCompatActivity implements AdapterView.O
     private Button increase;
     private TextView status;
     private int progress = 0;
+    private Button save_progress;
 
     //Pie chart code:
     //AnyChartView anyChartView;
@@ -81,6 +82,7 @@ public class MentalHealthPage extends AppCompatActivity implements AdapterView.O
         decrease=(Button)findViewById(R.id.decrease_btn);
         increase=(Button)findViewById(R.id.increase_btn);
         status=(TextView)findViewById(R.id.percentage);
+        save_progress=(Button)findViewById(R.id.save_prog_btn);
 
         //Initialising mood variables:
         mood_dropdown = (Spinner)findViewById(R.id.mood_dropdown);
@@ -164,6 +166,23 @@ public class MentalHealthPage extends AppCompatActivity implements AdapterView.O
         });
 
 
+        //WHEN USER CLICKS SAVE PROGRESS BUTTON:
+        save_progress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Saving progress amount into Firebase:
+                firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("StudyProgress").push().setValue(progress)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()) {
+                                    Toast.makeText(getApplicationContext(), "Mood saved", Toast.LENGTH_LONG);
+                                }
+                            }
+                        });
+            }
+        });
+
         pulse = (Button)findViewById(R.id.pulsing_btn);
         init();
         findViewById(R.id.pulsing_btn).setOnClickListener(new View.OnClickListener() {
@@ -203,7 +222,7 @@ public class MentalHealthPage extends AppCompatActivity implements AdapterView.O
     private Runnable runnableAnim = new Runnable() {
         @Override
         public void run() {
-            pulse.animate().scaleX(4f).scaleY(4.f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
+            pulse.animate().scaleX(4f).scaleY(4.f).alpha(0f).setDuration(5000).withEndAction(new Runnable() {
                 @Override
                 public void run() {
                     pulse.setScaleX(1f);
