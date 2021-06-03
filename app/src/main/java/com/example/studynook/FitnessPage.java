@@ -28,7 +28,6 @@ import com.google.android.gms.tasks.Task;
 public class FitnessPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     //declaring variables that exist on the page
-    private Button log_button;
     private Spinner dropdown;
     private EditText input;
     private String chosen_exercise;
