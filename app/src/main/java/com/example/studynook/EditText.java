@@ -39,6 +39,7 @@ public class EditText extends AppCompatActivity {
     private Button save;
     private long id;
     private String text;
+    private String noteTitle;
     private Firebase firebase;
     protected boolean flag;
 
@@ -73,6 +74,8 @@ public class EditText extends AppCompatActivity {
             id = extras.getInt("id");
             text = extras.get("text").toString();
             editText.setText(text);
+            noteTitle = extras.get("title").toString();
+            title.setText(noteTitle);
         } else {
             id = -1;
             text = "";
@@ -91,10 +94,10 @@ public class EditText extends AppCompatActivity {
 
                             for (DataSnapshot itemSnapshot : task.getResult().getChildren()) {
                                 String myKey = itemSnapshot.getKey();
-                                String myValue = itemSnapshot.getValue(String.class);
+                                String myValue[] = itemSnapshot.getValue(String.class).split("\n");
 
-                                if (myValue.equals(NotePage.arrayAdapter.getItem((int) id))) {
-                                    firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("Notes").child(myKey).setValue(editText.getText().toString());
+                                if (myValue[0].equals(NotePage.arrayAdapter.getItem((int) id))) {
+                                    firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("Notes").child(myKey).setValue(title.getText().toString()+"\n"+editText.getText().toString());
                                     break;
                                 }
                             }
@@ -104,7 +107,7 @@ public class EditText extends AppCompatActivity {
                     Toast.makeText(EditText.this, "Changes have been updated!", Toast.LENGTH_LONG).show();
                 }
                 else { // Save the new note to the database
-                    firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("Notes").push().setValue(editText.getText().toString());
+                    firebase.getmDbRef().child("UserAccount").child(firebase.getmAuth().getCurrentUser().getUid()).child("Notes").push().setValue(title.getText().toString()+"\n"+editText.getText().toString());
                 }
 
                 Intent intent = new Intent(getApplicationContext(), NotePage.class);

@@ -27,10 +27,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class NotePage extends AppCompatActivity {
 
     protected static ArrayList<String> notes = new ArrayList<>();
+    protected static ArrayList<String> textNote = new ArrayList<>();
     protected static ArrayAdapter arrayAdapter;
     protected Firebase firebase;
     private ListView listView;
@@ -93,10 +95,21 @@ public class NotePage extends AppCompatActivity {
                 String text = parent.getItemAtPosition(position).toString();
                 long myKey = parent.getItemIdAtPosition(position);
                 int myPosition = arrayAdapter.getPosition(position);
+                String temp = "";
+
+                if (text != null) {
+                    for (String find : textNote) {
+                        String[] cond = find.split("\n");
+
+                        if (cond[0] != null && cond[0].equalsIgnoreCase(text))
+                            temp = cond[1];
+                    }
+                }
 
                 Intent intent = new Intent(getApplicationContext(), EditText.class);
                 intent.putExtra("id", position);
-                intent.putExtra("text", text);
+                intent.putExtra("title", text);
+                intent.putExtra("text", temp);
                 intent.putExtra("key", myKey);
                 intent.putExtra("position", myPosition);
                 intent.putExtra("add", true);
@@ -161,7 +174,11 @@ public class NotePage extends AppCompatActivity {
 
                 for (DataSnapshot areaSnapshot : snapshot.getChildren()) {
                     String text = areaSnapshot.getValue(String.class);
-                    notes.add(text);
+                    String[] separate = text.split("\n");
+
+                    if (separate[0] != null)
+                        notes.add(separate[0]);
+                    textNote.add(text);
                 }
 
                 arrayAdapter.notifyDataSetChanged();
