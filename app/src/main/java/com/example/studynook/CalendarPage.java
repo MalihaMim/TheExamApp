@@ -45,6 +45,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ * This class is the base of the calendar page where a user is able to enter a selected date and
+ * appropriate event along with it. They are able to save it using the 'add event' button and they
+ * can also view their existing events by clicking on the 'view my events' button.
+ */
 public class CalendarPage extends AppCompatActivity {
     TextView dateSelected;
     private Button addEvent, viewEvent;
@@ -76,7 +81,10 @@ public class CalendarPage extends AppCompatActivity {
         addEvent = findViewById(R.id.saveEvent); // Button to save the event
         viewEvent = findViewById(R.id.viewEvent); // Button to view their events
 
-        // Save the selected date user inputs into a date format
+        /**
+         * This listener saves the selected date a user has clicked in a variable called selectedDate
+         * @param selectedDate - saves the selected date user has clicked and is used for database entry
+         */
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int day) {
@@ -89,7 +97,11 @@ public class CalendarPage extends AppCompatActivity {
                 saveDate.add(selectedDate); // Save the date the user selects into an array
             }
         });
-        // When the user clicks on the save button, add event to the database
+        /**
+         * This listener will save the selected date + text input that the user has created into the
+         * firebase console when they click 'add event' button. Validation is also required here to
+         * ensure there is a date and a entry required before saving it to the database
+         */
         addEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
